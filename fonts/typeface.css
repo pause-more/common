@@ -1,7 +1,16 @@
 /* SmallSans */
-@font-face { 
-    font-family:"SmallSans";
-    font-weight:300;
-    src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2") format("woff2");
-    
+@font-face {
+	font-family: 'SmallSans';
+	font-weight: 300;
+	src: url('./KakaoSmallSans-Light.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SmallSans';
+	font-weight: 400;
+	src: url('./KakaoSmallSans-Regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SmallSans';
+	font-weight: 600;
+	src: url('./KakaoSmallSans-Bold.woff2') format('woff2');
 }
