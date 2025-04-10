@@ -1,0 +1,22 @@
+/**
+ * Kakao Small Sans
+ * Original: https://github.com/kakao/kakao-font/tree/main/Kakao-Small-Sans
+*/
+@font-face{
+  font-family:Small Sans;
+  font-weight:300;
+  font-display:swap;
+  src:url('KakaoSmallSans-Light.woff2') format('woff2');
+}
+@font-face{
+  font-family:Small Sans;
+  font-weight:400;
+  font-display:swap;
+  src:url('KakaoSmallSans-Regular.woff2') format('woff2');
+}
+@font-face{
+  font-family:Small Sans;
+  font-weight:600;
+  font-display:swap;
+  src:url('KakaoSmallSans-Bold.woff2') format('woff2');
+}
