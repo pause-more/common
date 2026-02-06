@@ -1,29 +1,34 @@
-@font-face {
-    font-family: 'NanumHumanEL';
-    src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEL.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEL.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEL.woff) format("woff");
+/**
+ * NanumHuman
+ * Original: https://m-hangeul.naver.com/font/detail/NanumHuman
+*/
+@font-face{
+  font-family:AOF23NH;
+  font-weight:200;
+  src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEL.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEL.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEL.woff) format("woff");
 }
-
-@font-face {
-    font-family: 'NanumHumanLight';
-    src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanLight.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanLight.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanLight.woff) format("woff");
+@font-face{
+  font-family:AOF23NH;
+  font-weight:300;
+  src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanLight.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanLight.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanLight.woff) format("woff");
 }
-
-@font-face {
-    font-family: 'NanumHuman';
-    src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanRegular.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanRegular.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanRegular.woff) format("woff");
+@font-face{
+  font-family:AOF23NH;
+  font-weight:400;
+  src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanRegular.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanRegular.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanRegular.woff) format("woff");
 }
-
-@font-face {
-    font-family: 'NanumHumanBold';
-    src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanBold.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanBold.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanBold.woff) format("woff");
+@font-face{
+  font-family:AOF23NH;
+  font-weight:600;
+  src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanBold.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanBold.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanBold.woff) format("woff");
 }
-
-@font-face {
-    font-family: 'NanumHumanEB';
-    src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEB.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEB.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEB.woff) format("woff");
+@font-face{
+  font-family:AOF23NH;
+  font-weight:700;
+  src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEB.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEB.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanEB.woff) format("woff");
 }
-
-@font-face {
-    font-family: 'NanumHumanHeavy';
-    src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanHeavy.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanHeavy.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanHeavy.woff) format("woff");
+@font-face{
+  font-family:AOF23NH;
+  font-weight:800;
+  src: url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanHeavy.ttf) format("truetype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanHeavy.otf) format("embedded-opentype"), url(https://campaign-cdn.pstatic.net/0/hangeul/2022/webfont/NanumHuman/NanumHumanHeavy.woff) format("woff");
 }
