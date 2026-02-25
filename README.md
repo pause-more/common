@@ -1,2 +1,1 @@
-pause-more.com
-(C) pause more, all rights reserved.
+ⓒ pause-more.com. all rights reserved.
