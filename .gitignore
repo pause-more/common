@@ -1,0 +1,8 @@
+.DS_Store
+.wrangler/
+node_modules/
+dist/
+build/
+desktop/release/
+main
+*.log

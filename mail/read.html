@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- ⓒ pause-more.com -->
+    <meta charset="utf-8">
+    <title>오토원워크</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0373ef">
+    <meta name="application-name" content="오토원워크">
+    <link rel="icon" type="image/png" href="/img/app_ico.png">
+    <script src="/layout/config.js?v=20260522-sidebar1"></script>
+    <script src="/layout/api.js?v=20260513-2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
+    <link href="../layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
+    <link href="./mail.css?v=20260529-read-icon-stroke2" rel="stylesheet">
+    <script type="module" src="../layout/app.js?v=20260528-profile-settings15"></script>
+    <script type="module" src="./mailLayout.js?v=20260529-read-icon-stroke2"></script>
+    <script type="module" src="./mailRead.js?v=20260515-1"></script>
+</head>
+<body class="mailPageLayout workbenchLayoutPage">
+    <div id="wrap">
+        <div id="container">
+            <div id="contents" class="contents">
+                <div data-include-html="/gnbMenu.html"></div>
+
+                <div class="mainArea">
+                    <div class="siteSheet readType">
+                    <div class="contents_">
+                            <div class="cont_flex_area">
+                                <div class="mailArea">
+                            <div class="mail_topArea">
+                                <div class="readTopBar">
+                                    <div class="actionLeft">
+                                        <button type="button" class="backBtn">목록</button>
+                                        <button type="button" class="replyBtn">답장</button>
+                                        <button type="button" class="forwardBtn">전달</button>
+                                        <button type="button" class="deleteBtn">삭제</button>
+                                    </div>
+                                    <div class="actionRight">
+                                        <button type="button" class="printBtn" aria-label="인쇄">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M214.67,72H200V40a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8V72H41.33C27.36,72,16,82.77,16,96v80a8,8,0,0,0,8,8H56v32a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V184h32a8,8,0,0,0,8-8V96C240,82.77,228.64,72,214.67,72ZM72,48H184V72H72ZM184,208H72V160H184Zm40-40H200V152a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8v16H32V96c0-4.41,4.19-8,9.33-8H214.67c5.14,0,9.33,3.59,9.33,8Zm-24-52a12,12,0,1,1-12-12A12,12,0,0,1,200,116Z"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cont_flex_area readViewWrap">
+                                    <div class="readViewHeader">
+                                        <div class="readViewLeft">
+                                            <button type="button" class="mailStarBtn"></button>
+                                            <div class="readTitleArea">
+                                                <h3 class="readSubject"></h3>
+                                            <p class="readDate"></p>
+                                            <div class="readMeta">
+                                                <dl><dt>보낸사람</dt><dd class="readSender">-</dd></dl>
+                                                <dl><dt>받는사람</dt><dd class="readReceiver">-</dd></dl>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <div class="readAttachWrap read_inner" style="display:none;">
+                                    <div class="replyAttachWrap">
+                                        <div class="replyAttachTop">
+                                            <div class="replyAttachBtns"><strong>첨부파일</strong></div>
+                                            <div class="replyAttachSummary"><span class="readAttachSummaryText"></span></div>
+                                        </div>
+                                        <div class="replyAttachTableWrap">
+                                            <table class="replyAttachTable">
+                                                <colgroup>
+                                                    <col>
+                                                    <col style="width:140px;">
+                                                    <col style="width:140px;">
+                                                    <col style="width:110px;">
+                                                    <col style="width:110px;">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>파일이름</th>
+                                                        <th>크기</th>
+                                                        <th>형식</th>
+                                                        <th>미리보기</th>
+                                                        <th>다운로드</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="readAttachTbody">
+                                                    <tr class="replyAttachEmptyRow"><td colspan="5">첨부된 파일이 없습니다.</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="readBodyWrap"><div class="readBody"></div></div>
+
+                                <link rel="stylesheet" href="https://unpkg.com/@tiptap/core@2.11.5/dist/style.css">
+                                <div class="inlineReplyWrap" style="display:none;">
+                                    <div class="inlineReplyHead">
+                                        <strong class="inlineReplyModeText">답장 작성</strong>
+                                    </div>
+
+                                    <div class="inlineReplyActions">
+                                        <button type="button" class="inlineReplySendBtn">보내기</button>
+                                        <button type="button" class="inlineReplyDraftBtn">임시저장</button>
+                                        <button type="button" class="inlineReplyCancelBtn">취소</button>
+                                    </div>
+
+                                    <div class="inlineReplyFields">
+                                        <div class="inlineReplyRow">
+                                            <div class="inlineReplyLabel">받는사람</div>
+                                            <div class="inlineReplyValue">
+                                                <input type="text" class="inlineReplyReceiver">
+                                            </div>
+                                        </div>
+
+                                        <div class="inlineReplyRow">
+                                            <div class="inlineReplyLabel">제목</div>
+                                            <div class="inlineReplyValue">
+                                                <input type="text" class="inlineReplySubject">
+                                            </div>
+                                        </div>
+
+                                        <div class="inlineReplyRow inlineReplyFileRow">
+                                            <div class="inlineReplyLabel">첨부파일</div>
+                                            <div class="inlineReplyValue">
+                                                <div class="replyAttachWrap">
+                                                    <div class="replyAttachTop">
+                                                        <div class="replyAttachBtns">
+                                                            <label class="replyAttachPcBtn">
+                                                                <input type="file" class="inlineReplyFileInput" multiple>
+                                                                내 PC
+                                                            </label>
+                                                            <button type="button" class="replyAttachDeleteBtn">삭제</button>
+                                                        </div>
+                                                        <div class="replyAttachSummary">
+                                                            <span class="replyAttachSummaryText">[파일: 0/10] [일반: 0 KB / 20 MB] [대용량: 0 KB / 1 GB]</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="replyAttachTableWrap">
+                                                        <table class="replyAttachTable">
+                                                            <colgroup>
+                                                                <col style="width:56px;">
+                                                                <col>
+                                                                <col style="width:140px;">
+                                                                <col style="width:140px;">
+                                                                <col style="width:110px;">
+                                                            </colgroup>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><input type="checkbox" class="replyAttachCheckAll"></th>
+                                                                    <th>파일이름</th>
+                                                                    <th>크기</th>
+                                                                    <th>첨부방식</th>
+                                                                    <th>삭제</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="replyAttachTbody">
+                                                                <tr class="replyAttachEmptyRow"><td colspan="5">첨부된 파일이 없습니다.</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="composeEditorWrap inlineReplyEditorShell">
+                                        <div class="tiptapToolbar inlineReplyToolbar">
+                                            <select class="tt-fontsize inlineReplyFontsize">
+                                                <option value="12px">12pt</option>
+                                                <option value="13px" selected>13pt</option>
+                                                <option value="14px">14pt</option>
+                                                <option value="16px">16pt</option>
+                                                <option value="18px">18pt</option>
+                                            </select>
+
+                                            <button type="button" class="tt-btn" data-cmd="bold"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_bold.png"></button>
+                                            <button type="button" class="tt-btn" data-cmd="italic"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_italic.png"></button>
+                                            <button type="button" class="tt-btn" data-cmd="underline"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_underline.png"></button>
+                                            <button type="button" class="tt-btn" data-cmd="strike"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_strike.png"></button>
+
+                                            <span class="tt-divider"></span>
+
+                                            <button type="button" class="tt-btn" data-cmd="bulletList"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_list1.png"></button>
+                                            <button type="button" class="tt-btn" data-cmd="orderedList"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_list2.png"></button>
+
+                                            <span class="tt-divider"></span>
+
+                                            <button type="button" class="tt-btn" data-cmd="alignLeft"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_align1.png"></button>
+                                            <button type="button" class="tt-btn" data-cmd="alignCenter"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_align2.png"></button>
+                                            <button type="button" class="tt-btn" data-cmd="alignRight"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_align3.png"></button>
+
+                                            <span class="tt-divider"></span>
+
+                                            <button type="button" class="tt-btn" data-cmd="link"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_url.png"></button>
+                                            <button type="button" class="tt-btn" data-cmd="clear"><img src="//ecimg.cafe24img.com/pg2594b64908626038/autonecar/data/icon/toolbar_del.png"></button>
+                                        </div>
+
+                                        <div id="inlineReplyEditor" class="mailEditor tiptapEditor inlineReplyEditor"></div>
+                                        <textarea class="inlineReplyBodyHidden" style="display:none;"></textarea>
+                                    </div>
+                                </div>
+
+                                <script type="module">
+                                    import { Editor } from 'https://esm.sh/@tiptap/core@2.11.5'
+                                    import StarterKit from 'https://esm.sh/@tiptap/starter-kit@2.11.5'
+                                    import Underline from 'https://esm.sh/@tiptap/extension-underline@2.11.5'
+                                    import Link from 'https://esm.sh/@tiptap/extension-link@2.11.5'
+                                    import TextAlign from 'https://esm.sh/@tiptap/extension-text-align@2.11.5'
+                                    import TextStyle from 'https://esm.sh/@tiptap/extension-text-style@2.11.5'
+                                    import { Extension } from 'https://esm.sh/@tiptap/core@2.11.5'
+
+                                    window.ReadTiptapBundle = {
+                                        Editor: Editor,
+                                        StarterKit: StarterKit,
+                                        Underline: Underline,
+                                        Link: Link,
+                                        TextAlign: TextAlign,
+                                        TextStyle: TextStyle,
+                                        Extension: Extension
+                                    };
+
+                                    document.dispatchEvent(new Event('read:tiptap:ready'));
+                                </script>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

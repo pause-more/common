@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>오토원워크</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0373ef">
+    <meta name="application-name" content="오토원워크">
+    <link rel="icon" type="image/png" href="/img/app_ico.png">
+    <script src="/layout/config.js?v=20260522-sidebar1"></script>
+    <script src="/layout/api.js?v=20260513-2"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/xeicon/2/xeicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="../layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
+    <link href="./admin.css?v=20260527-admin-sidebar20" rel="stylesheet">
+    <script type="module" src="../layout/auth.js?v=20260513-8"></script>
+    <script type="module" src="../layout/app.js?v=20260528-profile-settings15"></script>
+    <script src="./adminLayout.js?v=20260527-admin-sidebar20"></script>
+    <script type="module" src="./holidayAdmin.js?v=20260520-3"></script>
+</head>
+<body class="adminPageLayout workbenchLayoutPage is-admin-layout">
+    <div id="wrap">
+        <div id="container">
+            <div id="contents" class="contents">
+                <div data-include-html="/gnbMenu.html"></div>
+                <div class="mainArea">
+    <div class="siteSheet">
+        <div class="settingsArea attendAdminPage holidayAdminPage">
+            <div class="titleArea">
+                <h3>휴가 관리</h3>
+                <span class="holidayAdminDateLabel"></span>
+            </div>
+            <div class="holidayAdminLayout">
+                <div class="attendPanel attendAdminSummaryPanel holidayAdminSummaryPanel">
+                    <div class="attendAdminSummary holidayAdminSummaryCards">
+                        <div class="attendAdminSummaryCard holidayAdminMetricCard">
+                            <span>전체인원</span>
+                            <strong class="holidayAdminTotalCount">0</strong>
+                        </div>
+                        <div class="attendAdminSummaryCard holidayAdminMetricCard">
+                            <span>이번달 누적 사용 연차</span>
+                            <strong class="holidayAdminUsedCount">0d</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="attendPanel attendAdminListPanel holidayAdminListPanel">
+                    <div class="attendHistoryTableWrap">
+                        <table class="attendHistoryTable holidayAdminTable">
+                            <thead>
+                                <tr>
+                                    <th>이름</th>
+                                    <th>입사일</th>
+                                    <th>기준 기간</th>
+                                    <th>발생 연차</th>
+                                    <th>사용 연차</th>
+                                    <th>추가 연차</th>
+                                    <th>잔여 연차</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody class="holidayAdminBody">
+                                <tr class="attendEmptyRow">
+                                    <td colspan="8">표시할 직원 휴가 정보가 없습니다.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

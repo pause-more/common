@@ -1,0 +1,38 @@
+name = "autone-mail-api"
+main = "worker.js"
+compatibility_date = "2026-05-06"
+
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+VAPID_PUBLIC_KEY = "BM_tZml8auWUIjSVzIwpT1XUVbvvgJPNqV_TjKmXsgAnTiPABwm9oLp2UY8FfOLzyWt7whdp71TytaPu-SM1rUU"
+
+[[d1_databases]]
+binding = "GROUPWARE_DB"
+database_name = "autone-groupware-db"
+database_id = "19fc066c-2929-4cf7-8c6d-a087d908e161"
+
+[[r2_buckets]]
+binding = "GROUPWARE_FILES"
+bucket_name = "autone-groupware-files"
+
+[[kv_namespaces]]
+binding = "MAIL_KV"
+id = "feecd33937b54544836df14ba3be8cf6"
+
+[[durable_objects.bindings]]
+name = "CHAT_ROOMS"
+class_name = "ChatRoomDurableObject"
+
+[[durable_objects.bindings]]
+name = "CHAT_USERS"
+class_name = "ChatUserDurableObject"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ChatRoomDurableObject"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["ChatUserDurableObject"]

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- ⓒ pause-more.com -->
+    <meta charset="utf-8">
+    <title>오토원워크</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0373ef">
+    <meta name="application-name" content="오토원워크">
+    <link rel="icon" type="image/png" href="/img/app_ico.png">
+    <script src="/layout/config.js?v=20260522-sidebar1"></script>
+    <script src="/layout/api.js?v=20260513-2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/xeicon/2/xeicon.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
+    <link href="./layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
+    <link href="./chat.css?v=20260528-members-popover1" rel="stylesheet">
+    <script type="module" src="./layout/app.js?v=20260528-profile-settings15"></script>
+    <script type="module" src="./chat.js?v=20260528-member-label1"></script>
+</head>
+<body class="chatPageLayout workbenchLayoutPage">
+<div id="wrap">
+    <div id="container">
+        <div id="contents" class="contents">
+            <div data-include-html="/gnbMenu.html"></div>
+            <div class="mainArea">
+                <div class="siteSheet chatSheet">
+                    <div class="contents_">
+                        <div class="chatPage" data-chat-page>
+                            <div class="chatShellHead">
+                                <div class="chatTitleMenu">
+                                    <button type="button" class="chatTitleToggle" aria-haspopup="true" aria-expanded="false">
+                                        <span class="chatTitleText">멤버</span>
+                                        <svg class="chatTitleArrow" xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="#1b1b1b" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 15.41 5.71-5.7-1.42-1.42-4.29 4.3-4.29-4.3-1.42 1.42z"></path></svg>
+                                    </button>
+                                    <div class="chatTitleDropdown" role="menu" hidden>
+                                        <button type="button" class="chatTitleMenuItem is-active" data-chat-menu-tab="contacts" role="menuitem">멤버</button>
+                                        <button type="button" class="chatTitleMenuItem" data-chat-menu-tab="rooms" role="menuitem">채팅</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <aside class="chatSidebar">
+                                <div class="chatSearchField">
+                                    <i class="ph ph-magnifying-glass"></i>
+                                    <input type="search" class="chatSearchInput" placeholder="이름, 내용 검색">
+                                </div>
+                                <div class="chatListPanel" data-chat-panel="rooms">
+                                    <div class="chatRoomList"></div>
+                                </div>
+                                <div class="chatListPanel is-active" data-chat-panel="contacts">
+                                    <div class="chatContactList"></div>
+                                </div>
+                            </aside>
+                            <section class="chatConversation">
+                                <div class="chatEmptyState">
+                                    <strong>대화를 선택해주세요</strong>
+                                </div>
+                                <div class="chatRoomView" hidden>
+                                    <header class="chatRoomHead">
+                                        <button type="button" class="chatBackBtn" aria-label="목록으로">
+                                            <i class="ph ph-arrow-left"></i>
+                                        </button>
+                                        <span class="chatRoomAvatar">-</span>
+                                        <div class="chatRoomTitleWrap">
+                                            <strong class="chatRoomTitle">-</strong>
+                                            <span class="chatRoomMeta">연결 중</span>
+                                        </div>
+                                        <button type="button" class="chatRoomInviteBtn" aria-label="멤버 초대" hidden>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path></svg>
+                                        </button>
+                                        <button type="button" class="chatRoomCloseBtn" aria-label="채팅방 닫기">
+                                            <i class="ph ph-x"></i>
+                                        </button>
+                                    </header>
+                                    <div class="chatMessages" aria-live="polite"></div>
+                                    <form class="chatComposer">
+                                        <div class="chatComposerBox">
+                                            <div class="chatReplyPreview" hidden>
+                                                <div class="chatReplyPreviewMeta"></div>
+                                                <div class="chatReplyPreviewText"></div>
+                                            </div>
+                                            <span class="chatReplyInputIcon" aria-hidden="true">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M221.66,181.66l-48,48a8,8,0,0,1-11.32-11.32L196.69,184H72a8,8,0,0,1-8-8V32a8,8,0,0,1,16,0V168H196.69l-34.35-34.34a8,8,0,0,1,11.32-11.32l48,48A8,8,0,0,1,221.66,181.66Z"></path></svg>
+                                            </span>
+                                            <div class="chatComposerEmoticonPreview" hidden></div>
+                                            <div class="chatComposerHighlight" aria-hidden="true"></div>
+                                            <textarea class="chatComposerInput" rows="1" placeholder="" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" inputmode="text"></textarea>
+                                            <div class="chatComposerFileList"></div>
+                                            <div class="chatComposerPanel chatEmojiPanel" hidden></div>
+                                            <div class="chatComposerPanel chatMentionPanel" hidden></div>
+                                            <div class="chatComposerToolbar">
+                                                <input type="file" class="chatFileInput" multiple hidden>
+                                                <button type="button" class="chatComposerIconBtn chatEmojiBtn" aria-label="이모티콘">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,176,108Zm-1.07,48c-10.29,17.79-27.4,28-46.93,28s-36.63-10.2-46.92-28a8,8,0,1,1,13.84-8c7.47,12.91,19.21,20,33.08,20s25.61-7.1,33.07-20a8,8,0,0,1,13.86,8Z"></path></svg>
+                                                </button>
+                                                <button type="button" class="chatComposerIconBtn chatMentionBtn" aria-label="멘션">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24a104,104,0,0,0,0,208c21.51,0,44.1-6.48,60.43-17.33a8,8,0,0,0-8.86-13.33C166,210.38,146.21,216,128,216a88,88,0,1,1,88-88c0,26.45-10.88,32-20,32s-20-5.55-20-32V88a8,8,0,0,0-16,0v4.26a48,48,0,1,0,5.93,65.1c6,12,16.35,18.64,30.07,18.64,22.54,0,36-17.94,36-48A104.11,104.11,0,0,0,128,24Zm0,136a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path></svg>
+                                                </button>
+                                                <button type="button" class="chatComposerIconBtn chatAttachBtn" aria-label="파일 첨부">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256"><path d="M209.66,122.34a8,8,0,0,1,0,11.32l-82.05,82a56,56,0,0,1-79.2-79.21L147.67,35.73a40,40,0,1,1,56.61,56.55L105,193A24,24,0,1,1,71,159L154.3,74.38A8,8,0,1,1,165.7,85.6L82.39,170.31a8,8,0,1,0,11.27,11.36L192.93,81A24,24,0,1,0,159,47L59.76,147.68a40,40,0,1,0,56.53,56.62l82.06-82A8,8,0,0,1,209.66,122.34Z"></path></svg>
+                                                </button>
+                                                <button type="button" class="chatComposerIconBtn chatPollBtn" aria-label="투표 만들기">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="currentColor" viewBox="0 0 256 256"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"></path></svg>
+                                                </button>
+                                                <button type="submit" class="chatComposerIconBtn chatSendBtn" aria-label="메시지 발송" disabled>전송</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
+	                        </div>
+	                        <button type="button" class="chatComposeFab" aria-label="새 대화 시작"></button>
+	                        <div class="chatMemberModal" hidden>
+	                            <div class="chatMemberModalDim"></div>
+	                            <div class="chatMemberModalDialog" role="dialog" aria-modal="true" aria-labelledby="chatMemberModalTitle">
+	                                <div class="chatMemberModalHead">
+	                                    <button type="button" class="chatMemberBackBtn" aria-label="이전" hidden><i class="xi-angle-left"></i></button>
+	                                    <strong id="chatMemberModalTitle">대화 상대 선택</strong>
+	                                    <button type="button" class="chatMemberModalClose" aria-label="닫기"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>
+	                                </div>
+	                                <div class="chatMemberModalBody">
+	                                    <div class="chatRoomMemberSummary" hidden></div>
+	                                    <div class="chatMemberSelectStep">
+	                                        <div class="chatMemberSearchField">
+	                                            <i class="ph ph-magnifying-glass"></i>
+	                                            <input type="search" class="chatMemberSearchInput" placeholder="이름으로 검색">
+	                                        </div>
+	                                        <div class="chatSelectedMembers" hidden></div>
+	                                        <div class="chatMemberList"></div>
+	                                    </div>
+	                                    <div class="chatGroupSetupStep" hidden>
+	                                        <input type="file" class="chatGroupAvatarInput" accept="image/*" hidden>
+	                                        <button type="button" class="chatGroupAvatarPicker" aria-label="채팅방 프로필 사진 변경">
+	                                            <span class="chatGroupAvatarPreview">+</span>
+	                                        </button>
+	                                        <label class="chatGroupNameField">
+	                                            <input type="text" class="chatGroupNameInput" maxlength="30" placeholder="채팅방 이름">
+	                                            <span class="chatGroupNameCount">0/30</span>
+	                                        </label>
+	                                    </div>
+	                                </div>
+	                                <div class="chatMemberModalFoot">
+	                                    <button type="button" class="chatMemberStartBtn" disabled>채팅 시작</button>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="chatRoomMembersModal" hidden>
+	                            <div class="chatRoomMembersDim"></div>
+	                            <div class="chatRoomMembersDialog" role="dialog" aria-modal="true" aria-labelledby="chatRoomMembersModalTitle">
+	                                <div class="chatRoomMembersHead">
+	                                    <strong id="chatRoomMembersModalTitle">참여 멤버</strong>
+	                                    <button type="button" class="chatRoomMembersClose" aria-label="닫기"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>
+	                                </div>
+	                                <div class="chatRoomMembersBody">
+	                                    <div class="chatRoomMembersCount"></div>
+	                                    <div class="chatRoomMembersList"></div>
+	                                </div>
+	                            </div>
+	                        </div>
+                            <div class="chatPollModal" hidden>
+                                <div class="chatPollDim"></div>
+                                <div class="chatPollDialog" role="dialog" aria-modal="true" aria-labelledby="chatPollTitle">
+                                    <div class="chatPollHead">
+                                        <button type="button" class="chatPollClose" aria-label="닫기">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
+                                        </button>
+                                        <strong id="chatPollTitle">투표 만들기</strong>
+                                    </div>
+                                    <div class="chatPollBody">
+                                        <div class="chatPollAuthor">-</div>
+                                        <input type="text" class="chatPollTitleInput" maxlength="80" placeholder="투표 제목을 입력하세요">
+                                        <div class="chatPollOptionList">
+                                            <div class="chatPollOptionRow"><button type="button" class="chatPollOptionRemove" disabled aria-label="항목 삭제"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="#9c9c9c" viewBox="0 0 256 256"><path d="M176,128a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,128Zm56,0A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path></svg></button><input type="text" maxlength="80" placeholder="1. 항목을 입력하세요"></div>
+                                            <div class="chatPollOptionRow"><button type="button" class="chatPollOptionRemove" disabled aria-label="항목 삭제"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="#9c9c9c" viewBox="0 0 256 256"><path d="M176,128a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,128Zm56,0A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path></svg></button><input type="text" maxlength="80" placeholder="2. 항목을 입력하세요"></div>
+                                        </div>
+                                        <button type="button" class="chatPollAddOption"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="#0373ef" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.13,104.13,0,0,0,128,24Zm40,112H136v32a8,8,0,0,1-16,0V136H88a8,8,0,0,1,0-16h32V88a8,8,0,0,1,16,0v32h32a8,8,0,0,1,0,16Z"></path></svg> 항목 추가</button>
+                                        <label class="chatPollCheck"><input type="checkbox" class="chatPollAnonymous"> <span>익명 투표</span></label>
+                                        <label class="chatPollCheck"><input type="checkbox" class="chatPollMultiple"> <span>복수 선택</span></label>
+                                        <div class="chatPollDeadline">
+                                            <span>투표 종료 시간</span>
+                                            <span class="chatPollDeadlinePicker">
+                                                <button type="button" class="chatPollDeadlineDate">-</button>
+                                                <button type="button" class="chatPollDeadlineTime">-</button>
+                                                <input type="datetime-local" class="chatPollDeadlineInput" aria-label="투표 종료 시간 선택">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="chatPollFoot">
+                                        <button type="button" class="chatPollCreateBtn" disabled>투표 만들기</button>
+                                    </div>
+                                </div>
+                            </div>
+	                        <div class="chatClipboardModal" hidden>
+	                            <div class="chatClipboardDim"></div>
+	                            <div class="chatClipboardDialog" role="dialog" aria-modal="true" aria-labelledby="chatClipboardTitle">
+	                                <strong id="chatClipboardTitle" class="chatClipboardTitle">클립보드 이미지 전송</strong>
+	                                <div class="chatClipboardPreview"></div>
+	                                <div class="chatClipboardActions">
+	                                    <button type="button" class="chatClipboardCancel">취소</button>
+	                                    <button type="button" class="chatClipboardSend">전송</button>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="chatImageViewerModal" hidden>
+	                            <div class="chatImageViewerDim"></div>
+	                            <div class="chatImageViewerDialog" role="dialog" aria-modal="true" aria-labelledby="chatImageViewerTitle">
+	                                <strong id="chatImageViewerTitle" class="chatImageViewerTitle">이미지 미리보기</strong>
+	                                <button type="button" class="chatImageViewerClose" aria-label="닫기"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>
+	                                <div class="chatImageViewerStage"></div>
+	                                <div class="chatImageViewerFileList" hidden></div>
+	                                <div class="chatImageViewerBar">
+	                                    <button type="button" class="chatImageViewerIconBtn chatImageViewerAll" aria-label="첨부파일 전체보기">
+	                                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256"><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z"></path></svg>
+	                                    </button>
+	                                    <div class="chatImageViewerRightTools">
+	                                        <button type="button" class="chatImageViewerIconBtn chatImageViewerDownload" aria-label="다운로드">
+	                                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256"><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"></path></svg>
+	                                        </button>
+	                                        <button type="button" class="chatImageViewerIconBtn chatImageViewerShare" aria-label="팀원에게 공유">
+	                                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256"><path d="M216,112v96a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V112A16,16,0,0,1,56,96H80a8,8,0,0,1,0,16H56v96H200V112H176a8,8,0,0,1,0-16h24A16,16,0,0,1,216,112ZM93.66,69.66,120,43.31V136a8,8,0,0,0,16,0V43.31l26.34,26.35a8,8,0,0,0,11.32-11.32l-40-40a8,8,0,0,0-11.32,0l-40,40A8,8,0,0,0,93.66,69.66Z"></path></svg>
+	                                        </button>
+	                                        <button type="button" class="chatImageViewerIconBtn chatImageViewerForward" aria-label="채팅방으로 전달">
+	                                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256"><path d="M232.07,186.76a80,80,0,0,0-62.5-114.17A80,80,0,1,0,23.93,138.76l-7.27,24.71a16,16,0,0,0,19.87,19.87l24.71-7.27a80.39,80.39,0,0,0,25.18,7.35,80,80,0,0,0,108.34,40.65l24.71,7.27a16,16,0,0,0,19.87-19.86ZM62,159.5a8.28,8.28,0,0,0-2.26.32L32,168l8.17-27.76a8,8,0,0,0-.63-6,64,64,0,1,1,26.26,26.26A8,8,0,0,0,62,159.5Zm153.79,28.73L224,216l-27.76-8.17a8,8,0,0,0-6,.63,64.05,64.05,0,0,1-85.87-24.88A79.93,79.93,0,0,0,174.7,89.71a64,64,0,0,1,41.75,92.48A8,8,0,0,0,215.82,188.23Z"></path></svg>
+	                                        </button>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

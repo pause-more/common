@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- ⓒ pause-more.com -->
+    <meta charset="utf-8">
+    <title>오토원워크</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0373ef">
+    <meta name="application-name" content="오토원워크">
+    <link rel="icon" type="image/png" href="/img/app_ico.png">
+    <script src="/layout/config.js?v=20260522-sidebar1"></script>
+    <script src="/layout/api.js?v=20260513-2"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/xeicon/2/xeicon.min.css">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
+    <link href="../layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
+    <link href="./attendance.css?v=20260513-1" rel="stylesheet">
+    <script type="module" src="../layout/app.js?v=20260528-profile-settings15"></script>
+    <script type="module" src="./absence.js?v=20260513-1"></script>
+</head>
+<body class="workbenchLayoutPage">
+    <div id="wrap">
+        <div id="container">
+            <div id="contents" class="contents">
+                <div data-include-html="/gnbMenu.html"></div>
+
+                <div class="mainArea">
+                    <div class="siteSheet absenceSheet">
+                        <div class="contents_">
+                            <div class="cont_flex_area">
+                                <div class="titleArea">
+                                    <h3>부재 일정</h3>
+                                </div>
+                                <div class="absencePage">
+                                    <div class="absenceWelcome">
+                                        <h3>연차 현황</h3>
+                                        <div class="absenceInfoRow">
+                                            <div class="absenceInfoChip summary_day">
+                                                <h3 class="w_day"></h3>
+                                                <p>입사일 기준으로 계산됩니다.</p>
+                                                <div class="dayGraph"></div>
+                                            </div>
+                                            <div class="absenceInfoChip day_s">
+                                                <h3>잔여 연차</h3>
+                                                <p class="absenceRemainingDays"></p>
+                                            </div>
+                                            <div class="absenceInfoChip day_s">
+                                                <h3>사용 연차</h3>
+                                                <p class="absenceUsedDays"></p>
+                                            </div>
+                                            <div class="absenceInfoChip day_s">
+                                                <h3>발생 연차</h3>
+                                                <p class="absenceGrantedDays"></p>
+                                            </div>
+                                            <div class="absenceInfoChip day_s">
+                                                <h3>근속 연수</h3>
+                                                <p class="absenceServiceText"></p>
+                                            </div>
+                                        </div>
+                                        <div class="attendPanel absenceHistoryPanel">
+                                            <div class="attendPanelHead">
+                                                <div class="absenceFilterBar">
+                                                    <div class="absenceFilterField">
+                                                        <label for="absenceYear">연도</label>
+                                                        <select id="absenceYear" class="absenceYearSelect"></select>
+                                                    </div>
+                                                    <button type="button" class="absenceSearchBtn">검색</button>
+                                                </div>
+                                            </div>
+                                            <div class="attendHistoryTableWrap history_table">
+                                                <table class="attendHistoryTable absenceTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>유형</th>
+                                                            <th>일수</th>
+                                                            <th>기간</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="absenceHistoryBody">
+                                                        <tr class="attendEmptyRow">
+                                                            <td colspan="3">나타낼 내용이 없습니다.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="absenceNoticeList">
+                                            <p>연차와 반차 현황은 전자결재 승인 내역과 연동됩니다.</p>
+                                            <p>승인 완료된 휴가원만 부재 일정에 자동 반영됩니다.</p>
+                                            <p>본 페이지는 개인별 부재 일정 확인이 가능합니다.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

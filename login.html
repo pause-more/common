@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- ⓒ pause-more.com -->
+    <meta charset="utf-8">
+    <title>오토원워크</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0373ef">
+    <meta name="application-name" content="오토원워크">
+    <link rel="icon" type="image/png" href="/img/app_ico.png">
+    <script src="/layout/config.js?v=20260522-sidebar1"></script>
+    <script src="/layout/api.js?v=20260513-2"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/xeicon/2/xeicon.min.css">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
+    <link href="./layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
+    <link href="login.css?v=20260521-4" rel="stylesheet">
+    <script type="module" src="./layout/auth.js?v=20260521-4"></script>
+</head>
+<body class="loginPage">
+    <div class="loginWrap">
+        <img class="loginLogo" src="/img/work_logo.png" alt="AUTOONE work">
+        <h1>오토원워크 로그인</h1>
+        <fieldset>
+            <label for="userId">아이디</label>
+            <input type="text" id="userId" class="loginInput" autocomplete="username" autofocus>
+            <label for="userPw">비밀번호</label>
+            <input type="password" id="userPw" class="loginInput" autocomplete="current-password">
+        </fieldset>
+        <div id="loginMsg" class="loginMsg">아이디 또는 비밀번호가 틀렸습니다.</div>
+        <div class="loginActionRow">
+            <div class="loginSubActions">
+                <label class="loginRemember">
+                    <input type="checkbox" id="rememberUserId">
+                    <span>아이디 저장</span>
+                </label>
+                <span class="loginDivider" aria-hidden="true"></span>
+                <button type="button" class="loginTextBtn" onclick="handleFindPassword()">비밀번호 찾기</button>
+            </div>
+            <button class="loginBtn" onclick="login()">로그인</button>
+        </div>
+    </div>
+</body>
+</html>

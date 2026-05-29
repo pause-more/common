@@ -1,0 +1,750 @@
+/* Phosphor icon fallback for packaged app environments where webfont loading can fail. */
+.ph.ph-arrow-clockwise,
+.ph.ph-star,
+.ph-fill.ph-star,
+.ph.ph-caret-down,
+.ph.ph-caret-left,
+.ph.ph-caret-right,
+.ph.ph-caret-double-left,
+.ph.ph-caret-double-right {
+    display:inline-block;
+    width:1em;
+    height:1em;
+    line-height:1;
+    vertical-align:-0.125em;
+}
+
+body.unifiedWorkbench .gnbMenu,
+body.unifiedWorkbench .mailSubmenuPanel {
+    display:none !important;
+}
+
+body.unifiedWorkbench.mailPageLayout .sidebar .gnbMenu,
+body.unifiedWorkbench.mailPageLayout .sidebar .mailSubmenuPanel {
+    display:none !important;
+}
+
+.ph.ph-arrow-clockwise::before,
+.ph.ph-star::before,
+.ph-fill.ph-star::before,
+.ph.ph-caret-down::before,
+.ph.ph-caret-left::before,
+.ph.ph-caret-right::before,
+.ph.ph-caret-double-left::before,
+.ph.ph-caret-double-right::before {
+    content:"";
+    display:block;
+    width:100%;
+    height:100%;
+    background:currentColor;
+    -webkit-mask-position:center;
+    -webkit-mask-repeat:no-repeat;
+    -webkit-mask-size:contain;
+    mask-position:center;
+    mask-repeat:no-repeat;
+    mask-size:contain;
+}
+.ph.ph-arrow-clockwise::before {
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M232 56v48a8 8 0 0 1-8 8h-48a8 8 0 0 1 0-16h28.7l-12.9-12.9a88 88 0 1 0 1.5 123 8 8 0 1 1 11.5 11.1A104 104 0 1 1 203.1 71.8L216 84.7V56a8 8 0 0 1 16 0Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M232 56v48a8 8 0 0 1-8 8h-48a8 8 0 0 1 0-16h28.7l-12.9-12.9a88 88 0 1 0 1.5 123 8 8 0 1 1 11.5 11.1A104 104 0 1 1 203.1 71.8L216 84.7V56a8 8 0 0 1 16 0Z'/%3E%3C/svg%3E");
+}
+.ph.ph-star::before {
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z'/%3E%3C/svg%3E");
+}
+.ph-fill.ph-star::before {
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z'/%3E%3C/svg%3E");
+}
+.ph.ph-caret-down::before {
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M213.7 101.7 133.7 181.7a8 8 0 0 1-11.4 0l-80-80A8 8 0 0 1 48 88h160a8 8 0 0 1 5.7 13.7Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M213.7 101.7 133.7 181.7a8 8 0 0 1-11.4 0l-80-80A8 8 0 0 1 48 88h160a8 8 0 0 1 5.7 13.7Z'/%3E%3C/svg%3E");
+}
+.ph.ph-caret-left::before {
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M160 216a8 8 0 0 1-5.7-2.3l-80-80a8 8 0 0 1 0-11.4l80-80a8 8 0 0 1 11.4 11.4L91.3 128l74.4 74.3A8 8 0 0 1 160 216Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M160 216a8 8 0 0 1-5.7-2.3l-80-80a8 8 0 0 1 0-11.4l80-80a8 8 0 0 1 11.4 11.4L91.3 128l74.4 74.3A8 8 0 0 1 160 216Z'/%3E%3C/svg%3E");
+}
+.ph.ph-caret-right::before {
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m181.7 133.7-80 80a8 8 0 0 1-11.4-11.4l74.4-74.3-74.4-74.3a8 8 0 0 1 11.4-11.4l80 80a8 8 0 0 1 0 11.4Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m181.7 133.7-80 80a8 8 0 0 1-11.4-11.4l74.4-74.3-74.4-74.3a8 8 0 0 1 11.4-11.4l80 80a8 8 0 0 1 0 11.4Z'/%3E%3C/svg%3E");
+}
+.ph.ph-caret-double-left::before {
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m113.7 213.7-80-80a8 8 0 0 1 0-11.4l80-80a8 8 0 0 1 11.4 11.4L50.7 128l74.4 74.3a8 8 0 0 1-11.4 11.4Zm96 0a8 8 0 0 0 0-11.4L135.3 128l74.4-74.3a8 8 0 0 0-11.4-11.4l-80 80a8 8 0 0 0 0 11.4l80 80a8 8 0 0 0 11.4 0Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m113.7 213.7-80-80a8 8 0 0 1 0-11.4l80-80a8 8 0 0 1 11.4 11.4L50.7 128l74.4 74.3a8 8 0 0 1-11.4 11.4Zm96 0a8 8 0 0 0 0-11.4L135.3 128l74.4-74.3a8 8 0 0 0-11.4-11.4l-80 80a8 8 0 0 0 0 11.4l80 80a8 8 0 0 0 11.4 0Z'/%3E%3C/svg%3E");
+}
+.ph.ph-caret-double-right::before {
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m137.7 133.7-80 80a8 8 0 0 1-11.4-11.4l74.4-74.3-74.4-74.3a8 8 0 0 1 11.4-11.4l80 80a8 8 0 0 1 0 11.4Zm84-11.4-80-80a8 8 0 0 0-11.4 11.4l74.4 74.3-74.4 74.3a8 8 0 0 0 11.4 11.4l80-80a8 8 0 0 0 0-11.4Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m137.7 133.7-80 80a8 8 0 0 1-11.4-11.4l74.4-74.3-74.4-74.3a8 8 0 0 1 11.4-11.4l80 80a8 8 0 0 1 0 11.4Zm84-11.4-80-80a8 8 0 0 0-11.4 11.4l74.4 74.3-74.4 74.3a8 8 0 0 0 11.4 11.4l80-80a8 8 0 0 0 0-11.4Z'/%3E%3C/svg%3E");
+}
+
+@media all and (min-width:721px){
+    body.mailPageLayout:not(.workbenchLayoutPage) .workbenchAppLabel { display:none !important; }
+    body.mailPageLayout:not(.workbenchLayoutPage) #container { margin-left:260px; }
+    body.mailPageLayout:not(.workbenchLayoutPage) #contents { width:100%; max-width:100%; padding:0 50px 50px; box-sizing:border-box; }
+    body.mailPageLayout:not(.workbenchLayoutPage) .sidebar { display:grid; grid-template-columns:60px 200px; width:260px; overflow:visible; }
+    body.mailPageLayout:not(.workbenchLayoutPage) .workbenchAppRail { position:relative; z-index:2; height:100%; padding-bottom:var(--workbench-chrome-profile-clearance); border-right:1px solid #e8e8e8; background:#fff; }
+    body.mailPageLayout:not(.workbenchLayoutPage) .sidebar .gnbMenu { display:block !important; position:relative; z-index:1; min-height:100%; padding:0; border-right:1px solid #e8e8e8; background:#fff; overflow-y:auto; }
+    body.mailPageLayout:not(.workbenchLayoutPage) .side_bottom { position:absolute; left:0; bottom:12px; z-index:3; width:60px; margin:0; padding:0; background:transparent; }
+    body.mailPageLayout:not(.workbenchLayoutPage) .mailSubmenuPanel { min-height:100%; padding:0; box-sizing:border-box; }
+    body.mailPageLayout .mailMenuHeading { margin:0; padding:20px 15px 12px; font-size:18px; font-weight:600; color:#1b1b1b; line-height:1; }
+    body.mailPageLayout .mailSubmenuList { display:flex; flex-direction:column; gap:0; }
+    body.mailPageLayout .mailCustomSectionTitle { margin:20px 0 8px; padding:20px 15px 0; border-top:1px solid #e8e8e8; font-size:12px; font-weight:400; color:#9c9c9c; line-height:1; }
+    body.mailPageLayout .mailSubmenuActions { margin-top:28px; padding:0 14px; }
+    body.mailPageLayout .mailSubmenuItem { margin:0; }
+    body.mailPageLayout .mailSubmenuItem { margin:0; border-radius:0; }
+    body.mailPageLayout .mailSubmenuItem:hover { background:#f4f5f8; }
+    body.mailPageLayout .mailSubmenuItem a { display:flex; align-items:center; gap:5px; min-height:42px; padding:0 15px; color:#1b1b1b; box-sizing:border-box; background:transparent; text-decoration:none; border-radius:7px; }
+    body.mailPageLayout .mailSubmenuItem a:hover { background:#f4f5f8; color:#1b1b1b; }
+    body.mailPageLayout .workbenchAppSubmenu > .workbenchAppSubitem { color:#2c3a47; text-decoration:none; }
+    body.mailPageLayout .workbenchAppSubitem:hover { background:#f4f5f8; color:#1b1b1b; }
+    body.mailPageLayout .workbenchAppSubitem.is-active { background:#f4f5f8; color:#1b1b1b; }
+    body.mailPageLayout .mailSubmenuItem .menu_ico { display:flex; align-items:center; justify-content:center; width:18px; height:18px; flex:0 0 18px; }
+    body.mailPageLayout .mailSubmenuItem .menu_ico svg { width:18px; height:18px; fill:#1b1b1b !important; }
+    body.mailPageLayout .mailSubmenuItem .menu_txt { font-size:14px; font-weight:500; }
+    body.mailPageLayout .mailSubmenuItem.is-custom { position:relative; }
+    body.mailPageLayout .mailSubmenuItemMore { position:absolute; top:50%; right:12px; transform:translateY(-50%); z-index:3; }
+    body.mailPageLayout .mailSubmenuMoreBtn { display:flex; align-items:center; justify-content:center; width:28px; height:28px; padding:0; border:0; background:transparent; color:#707070; font-size:20px; line-height:1; cursor:pointer; opacity:0; visibility:hidden; pointer-events:none; }
+    body.mailPageLayout .mailSubmenuItem.is-custom:hover .mailSubmenuMoreBtn,
+    body.mailPageLayout .mailSubmenuItemMore.is-open .mailSubmenuMoreBtn { opacity:1; visibility:visible; pointer-events:auto; }
+    body.mailPageLayout .mailSubmenuMoreMenu { display:none; position:absolute; top:30px; right:0; min-width:120px; padding:6px; border:1px solid #e8e8e8; border-radius:7px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,0.08); }
+    body.mailPageLayout .mailSubmenuItemMore.is-open .mailSubmenuMoreMenu { display:block; }
+    body.mailPageLayout .mailSubmenuMoreMenu button { display:block; width:100%; height:38px; padding:0 12px; border:0; background:transparent; font-size:14px; text-align:left; cursor:pointer; border-radius:7px; }
+    body.mailPageLayout .mailSubmenuMoreMenu button:hover { background:#f4f5f8; color:#1b1b1b; text-decoration:none; }
+    body.mailPageLayout .mailSubmenuItem.selected a { background:#f4f5f8; border-radius:7px; }
+    body.mailPageLayout .mailSubmenuItem.selected a .menu_txt { font-weight:500; color:#1b1b1b; }
+    body.mailPageLayout .myMailAddBtn { display:inline-flex; align-items:center; gap:0; margin:0 0 0 46px; padding:0; border:0; border-radius:7px; background:transparent; font-size:13px; color:#2c3a47; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+    body.mailPageLayout .myMailAddBtn:hover { background:transparent; }
+    body.mailPageLayout .myMailAddBtnIcon { display:inline-flex; align-items:center; justify-content:center; width:auto; height:auto; border-radius:7px; background:transparent; color:inherit; font-size:13px; line-height:1; }
+    body.mailPageLayout .mailComposeFab { position:fixed; right:30px; bottom:30px; z-index:120; display:block; width:56px; height:56px; border-radius:50%; background:#0373ef; color:transparent; font-size:0; line-height:0; text-decoration:none; box-shadow:0 10px 24px rgba(0,0,0,0.14); }
+    body.mailPageLayout .mailComposeFab::before,
+    body.mailPageLayout .mailComposeFab::after { content:""; position:absolute; top:50%; left:50%; background:#fff; border-radius:999px; transform:translate(-50%, -50%); }
+    body.mailPageLayout .mailComposeFab::before { width:20px; height:2.5px; }
+    body.mailPageLayout .mailComposeFab::after { width:2.5px; height:20px; }
+
+    .mailArea { display:flex; flex-direction:column; min-height:calc(100vh - 110px); font-size:14px; }
+    .mail_topArea { position:relative; z-index:20; }
+    .mail_topArea.is-fixed { position:fixed; z-index:90; background:#fff; padding-top:20px; box-sizing:border-box; }
+    .mail_topAreaPlaceholder { display:none; }
+    .mail_topAreaPlaceholder.is-show { display:block; }
+
+    .titleArea { display:none; }
+    .composeTitleArea { display:none; }
+    .cont_flex_area { min-height:auto; }
+    
+    .mailTopBar { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; overflow:visible; }
+    .mailStatus { display:flex; align-items:center; gap:0 10px; min-width:0; flex:0 0 auto; }
+    .mailStatus strong { font-size:26px; line-height:1; font-weight:600; }
+    .mailStatus span { white-space:nowrap; font-size:14px; line-height:1; color:#1b1b1b; }
+    .mailStatus span em { color:#0373ef; font-style:normal; font-weight:600; }
+    .refreshBtn { display:none !important; }
+
+    .mailSearchArea { display:none !important; }
+    .mailSearchBox { display:flex; align-items:center; width:220px; max-width:100%; height:34px; padding:0 12px; border:1px solid #dfdfdf; border-radius:7px; background:#fff; margin-left:auto; box-sizing:border-box; }
+    .mailActionSearchBox { width:220px; min-width:180px; }
+    .mailSearchBox i, .mailSearchBox ion-icon { margin:0 10px 0 0; font-size:16px; color:#707070; flex:0 0 auto; }
+    .mailSearchBox input[type=text] { flex:1; height:100%; padding:0; border:0; background:transparent; outline:none; font-size:13px; min-width:0; }
+    .mailSearchBox input::placeholder { color:#9c9c9c; }
+
+    .detailBtn { min-width:64px; height:42px; padding:0 18px; border:1px solid #dfdfdf; border-radius:7px; background:#f7f7f7; font-weight:600; color:#1b1b1b; cursor:pointer; }
+
+    .mailActionBar { position:relative; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 0 20px; overflow:visible; }
+    .actionLeft { position:relative; z-index:21; display:flex; align-items:center; gap:5px; flex-wrap:wrap; min-width:0; overflow:visible; }
+    .actionLeft > button, .actionRight > button { display:inline-flex; align-items:center; justify-content:center; height:34px; padding:0 14px; border:1px solid #dfdfdf; border-radius:7px; background:#fff; font-size:13px; cursor:pointer; white-space:nowrap; }
+    .actionLeft > button i, .actionRight > button i { margin-left:4px; font-size:16px; }
+    .actionLeft button.sendBtn { background:#2c3a47; color:#fff; border-color:#2c3a47; font-weight:600; }
+    .readTopBar .actionLeft > .backBtn { color:#1b1b1b; }
+
+    .actionRight { display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+    .settingBtn { width:38px; padding:0; }
+    .settingBtn i { margin:0; font-size:16px; }
+    .arrowBtn { width:38px; padding:0 !important; }
+    .arrowBtn i { margin:0 !important; font-size:16px; }
+
+    .selectAction { position:relative; z-index:30; display:flex; align-items:center; margin-right:0; overflow:visible; }
+    .selectAllBox { display:flex; align-items:center; gap:0; padding:0 12px; height:34px; border:1px solid #dfdfdf; border-radius:7px; background:#fff; font-size:0; }
+    .selectAllBox input[type="checkbox"] { display:block; width:auto; height:auto; margin:0; }
+    .selectAllBox label { display:none; }
+    .selectArrowBtn { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; padding:0; margin:0 0 0 2px; border:0; background:transparent; cursor:pointer; }
+    .selectArrowBtn ion-icon,
+    .selectArrowBtn i { font-size:10px; line-height:1; }
+    .selectAction.is-open .selectAllBox { border-color:#1b1b1b; }
+    .selectDropdown { display:none; position:absolute; left:0; top:calc(100% + 6px); min-width:120px; padding:6px; border:1px solid #1b1b1b; border-radius:7px; background:#fff; z-index:95; }
+    .selectAction.is-open .selectDropdown { display:block; }
+    .selectDropdown button { display:block; width:100%; padding:8px 12px; text-align:left; border:0; background:#fff; font-size:13px; cursor:pointer; border-radius:7px; }
+    .selectDropdown button:hover { background:#f4f5f8; }
+
+    .mailListWrap { position:relative; z-index:1; width:100%; overflow:visible; border:0; }
+    .mailRow { position:relative; z-index:1; display:flex; align-items:center; min-height:40px; padding:0 5px; transition:background 0.2s ease; color:#2c3a47; cursor:pointer; }
+    .mailRow:hover { background:#f4f5f8; }
+    .mailRow:nth-child(1) { border-top:1px solid #e8e8e8; }
+    .col { flex:0 0 auto; font-size:14px; line-height:1.4; }
+    .col.check { display:flex; align-items:center; justify-content:center; width:24px; font-size:0; }
+    .col.check input[type="checkbox"] { width:15px; height:15px; margin:0; cursor:pointer; }
+    .col.readState { display:flex; align-items:center; justify-content:center; width:30px; min-width:30px; }
+    .mailReadStateIcon { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; color:#7f8287; }
+    .mailReadStateSvgUnread { color:#3394ff; }
+    .mailListIcon,
+    .mailReadStateIcon svg { display:block; flex:0 0 18px; width:18px; height:18px; transform:none; }
+    .col.star { display:flex; align-items:center; justify-content:center; width:30px; }
+    .col.star button { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; padding:0; border:0; background:transparent; color:#7f8287; cursor:pointer; }
+    .col.star button i { display:block; font-size:16px; line-height:1; }
+    .col.star button.active { color:#0373ef; }
+    .col.attach { display:flex; align-items:center; justify-content:center; width:30px; min-width:30px; }
+    .mailAttachSlot { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; color:#7f8287; }
+    .col.sender { width:190px; padding:0 15px 0 10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .col.receiver { width:200px; padding-right:16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .col.subject { display:flex; align-items:center; gap:0; flex:1 1 auto; min-width:0; padding-right:16px; }
+    .col.subject a { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; text-decoration:none; color:#2c3a47; }
+    .subjectIcons { display:inline-flex; align-items:center; gap:8px; flex:0 0 auto; color:#9aa1aa; }
+    .subjectIcons i { font-size:16px; }
+    .col.date { width:180px; padding-left:10px; text-align:right; white-space:nowrap; }
+    .mailRow.selected { background:#f5f8ff; }
+    .mailRow.read .col.icon { color:#b8bec6; }
+    .mailRow.unread { *background:#f4f9ff; }
+    .mailRow.unread .col.sender,
+    .mailRow.unread .col.subject a { font-weight:600; }
+    .emptyRow,
+    .mailEmpty { padding:100px 0; text-align:center; color:#7f8287; font-size:14px; border-top:1px solid #efefef; border-bottom:1px solid #efefef; }
+
+    .composePage { padding:0; }
+    .composePage .composeTopBar .actionLeft > button { height:36px; padding:0 16px; }
+    .composePage .composeTopBar .actionLeft button.sendBtn { min-width:82px; }
+    .composePage .composeTopBar { display:block; }
+    .composePage .composeTopBar .actionLeft { width:100%; }
+    .composeWrap { border-top:1px solid #dfdfdf; padding:20px 0 0; }
+    .composeRow { display:flex; align-items:center; font-size:0; margin:0 0 14px; }
+    .composeRow strong { flex:0 0 100px; font-size:14px; font-weight:600; }
+    .composeField { flex:1 1 auto; min-width:0; }
+    .composeRow:first-of-type { border-top:0; }
+    .composeField input[type=text] { width:100%; height:40px; padding:0 14px; border:1px solid #e8e8e8; border-radius:7px; font-size:14px; background:#fff; }
+    .composeField input[type=file] { display:block; padding:8px 0; }
+    .composeRow.fileRow strong { margin:7px 0 0; }
+    .fileActionBar { position:relative; display:flex; align-items:center; gap:0; width:100%; min-width:0; }
+    .fileInput { position:absolute; width:0; height:0; opacity:0; overflow:hidden; }
+    .fileBtn,
+    .fileDeleteBtn { display:inline-flex; align-items:center; justify-content:center; width:86px; height:36px; border:1px solid #dfdfdf; border-radius:7px; background:#fff; font-size:13px; margin-right:5px; cursor:pointer; }
+    .fileInfoText { position:absolute; top:11px; right:0; font-size:13px; color:#606060; }
+    .fileTableWrap { margin:10px 0 0; border:1px solid #e8e8e8; border-radius:7px; overflow:hidden; }
+    .fileDropZone { position:relative; transition:border-color .2s ease, box-shadow .2s ease, background-color .2s ease; }
+    .fileDropZone.is-dragover { border-color:#0373ef; background:#f4f9ff; box-shadow:0 0 0 3px rgba(0,120,255,.08); }
+    .fileTable { width:100%; border-collapse:collapse; table-layout:fixed; }
+    .fileTable thead th { background:#f7f7f7; border-bottom:1px solid #e8e8e8; font-size:13px; font-weight:normal; padding:12px; text-align:left; color:#1b1b1b; }
+    .fileTable .checkCol, .fileTable .deleteCol { width:72px; text-align:center; }
+    .fileTable .sizeCol { width:160px; }
+    .fileTable .typeCol { width:140px; }
+    .fileTable tbody td { border-bottom:1px solid #e8e8e8; padding:12px; height:46px; font-size:14px; }
+    .fileTable tbody tr:last-child td { border-bottom:0; }
+    .fileTable tr.emptyFileRow td { text-align:center; padding:50px 0; color:#707070; }
+    .fileTable th.checkCol,
+    .fileTable td.checkCol,
+    .fileTable th.deleteCol,
+    .fileTable td.deleteCol { display:table-cell !important; visibility:visible !important; }
+    .fileTable .checkCol input[type="checkbox"],
+    .fileTable .fileRowCheck,
+    .fileTable .fileAllCheck {
+        display:inline-block !important;
+        width:16px;
+        height:16px;
+        margin:0;
+        vertical-align:middle;
+        opacity:1 !important;
+        accent-color:#0373ef;
+        -webkit-appearance:checkbox !important;
+        appearance:auto !important;
+        border:1px solid #e8e8e8;
+        border-radius:3px;
+        background:#fff;
+    }
+    .composeFileNameCell { display:flex; align-items:center; gap:10px; min-height:22px; overflow:hidden; }
+    .composeFileNameText { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .composeFileIcon { position:relative; flex:0 0 16px; width:16px; height:20px; border-radius:3px; background:#9c9c9c; }
+    .composeFileIcon::after { content:""; position:absolute; top:0; right:0; width:6px; height:6px; background:rgba(255,255,255,.82); clip-path:polygon(0 0, 100% 0, 100% 100%); }
+    .composeFileIcon.is-image { background:#f59e0b; }
+    .composeFileIcon.is-excel { background:#1f9d55; }
+    .composeFileIcon.is-pdf { background:#ef4444; }
+    .composeFileIcon.is-doc { background:#0373ef; }
+    .composeFileIcon.is-archive { background:#7c3aed; }
+    .composeFileIcon.is-code { background:#0f766e; }
+    .composeEditor { padding:20px 0 0; }
+    .bodyInput { display:block; width:100%; height:420px; padding:20px; border:1px solid #e8e8e8; border-radius:4px; background:#fff; resize:none; line-height:1.5; }
+
+    .readViewWrap { border-top:1px solid #e8e8e8; margin:20px 0 0; }
+    .readType .mailArea { padding:30px; }
+    .readType .readTopBar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 0 20px; }
+    .readType .readViewWrap { border-top:0; margin:0; background:#fff; border-radius:10px; padding:24px; }
+    .readViewHeader { display:flex; align-items:flex-start; justify-content:space-between; gap:30px; padding:0 0 15px; border-bottom:1px solid #e8e8e8; }
+    .readViewLeft { display:flex; align-items:flex-start; gap:0; min-width:0; }
+    .mailStarBtn { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; padding:5px 0 0; background:transparent; border:0; color:#9c9c9c; cursor:pointer; flex:0 0 auto; }
+    .mailStarBtn i { display:block; font-size:26px; line-height:1; }
+    .mailStarBtn.active { color:#0373ef; }
+    .readTitleArea { min-width:0; }
+    .readSubject { margin:2px 0 0; font-size:22px; line-height:1.4; font-weight:600; word-break:keep-all; }
+    .readDate { margin:15px 0 0; font-size:14px; line-height:1; color:#707070; }
+    .readMeta { margin:20px 0 0; }
+    .readMeta dl { display:flex; align-items:flex-start; gap:16px; margin:0 0 12px; }
+    .readMeta dt { min-width:60px; font-size:14px; line-height:1; font-weight:600; }
+    .readMeta dd { margin:0; font-size:14px; line-height:1; color:#1b1b1b; word-break:break-all; }
+    .readTopBar .printBtn { display:inline-flex; align-items:center; justify-content:center; flex:0 0 28px; width:28px; min-width:28px; height:28px; padding:0; border:0; border-radius:0; background:transparent; cursor:pointer; color:#1b1b1b; box-sizing:border-box; }
+    .readTopBar .printBtn svg { display:block; flex:0 0 24px; width:24px; height:24px; }
+    .readBodyWrap { padding:24px 32px; }
+    .readBody { min-height:240px; font-size:15px; line-height:1.7; word-break:break-word; }
+    
+    .receiverWrap { display:flex; flex-wrap:nowrap; align-items:center; gap:6px; min-height:40px; border:1px solid #e8e8e8; border-radius:7px; font-size:14px; padding:5px 10px; overflow-x:auto; overflow-y:hidden; }
+    .receiverTags { display:flex; flex:0 0 auto; flex-wrap:nowrap; align-items:center; gap:5px; max-width:100%; }
+    .receiverTag {display:flex; flex:0 0 auto; align-items:center; max-width:260px; padding:0 10px; height:28px; background:#f5f5f5; border-radius:3px; }
+    .receiverTagText { display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .receiverTag button { margin:2px 0 0 10px; border:0; background:none; cursor:pointer; font-size:11px; }
+    .receiverWrap input.receiverInput { flex:1 1 120px; min-width:120px; border:0; outline:none; padding:0; height:32px; line-height:32px; }
+    
+    .composeField.receiverWrap { padding:0 10px; }
+    .composeField .receiverAutoWrap { flex:1 1 120px; min-width:120px; }
+    
+    .mailFolderBadge { display:inline-flex; align-items:center; justify-content:center; height:24px; padding:0 5px; border-radius:4px; border:1px solid #e8e8e8; background:#fff; color:#1b1b1b; font-size:12px; font-weight:normal; flex:0 0 auto; margin-right:10px; }
+    
+    .sentList .mailRow .col.subject a { font-weight:normal; }
+    
+    .inlineReplyWrap { margin:30px 0 0; border-top:1px solid #e8e8e8; background:#fff; overflow:hidden; }
+    .inlineReplyHead { padding:30px 0; }
+    .inlineReplyModeText { font-size:18px; }
+    .inlineReplyActions { display:flex; justify-content:flex-start; gap:10px; padding:0 0 20px; border-bottom:1px solid #e8e8e8; background:#fff; }
+    .inlineReplyActions button { height:36px; padding:0 14px; border:1px solid #dfdfdf; border-radius:4px; background:#fff; font-size:14px; font-weight:500; color:#1b1b1b; }
+    .inlineReplyActions button.inlineReplySendBtn { border-color:#252d3a; background:#252d3a; color:#fff; }
+    .inlineReplyFields { padding:10px 0 0; }
+    .inlineReplyRow { display:flex; align-items:center; padding:0 0 10px; }
+    .inlineReplyLabel { width:100px; flex:0 0 100px; font-size:14px; font-weight:600; margin:10px 0 0; }
+    .inlineReplyValue { flex:1; }
+    .inlineReplyValue input.inlineReplyReceiver,
+    .inlineReplyValue input.inlineReplySubject { width:100%; height:44px; padding:0 14px; border:1px solid #e8e8e8; border-radius:3px; background:#fff; font-size:14px; }
+    .inlineReplyEditorWrap { padding:0; }
+    .inlineReplyFileArea { display:flex; align-items:center; gap:14px; min-height:40px; }
+    .inlineReplyFileBtn { display:inline-flex; align-items:center; justify-content:center; width:86px; height:36px; border:1px solid #dfdfdf; border-radius:3px; background:#fff; font-size:13px; cursor:pointer; }
+    .inlineReplyFileBtn input[type="file"] { display:none; }
+    .inlineReplyFileName { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#707070; font-size:13px; }
+    #inlineReplyToolbar .ql-formats { margin-right:6px; }
+    #inlineReplyToolbar .ql-picker-label,
+    #inlineReplyToolbar .ql-picker-item,
+    #inlineReplyToolbar button { color:#1b1b1b; }
+    #inlineReplyEditor { min-height:240px; }
+    #inlineReplyEditor .ql-editor { min-height:240px; padding:20px; font-size:14px; line-height:1.7; }
+    .inlineReplyEditorWrap .ql-container.ql-snow { border-color:#e8e8e8; }
+    
+    .composeEditorWrap { margin:0; border:1px solid #e8e8e8; border-radius:5px; background:#fff; overflow:hidden; }
+    .tiptapToolbar { display:flex; align-items:center; flex-wrap:wrap; gap:8px; padding:10px; border-bottom:1px solid #e8e8e8; background:#f7f7f7; }
+    .tt-fontsize { min-width:78px; height:30px; padding:0 30px 0 10px; border:1px solid #e8e8e8; border-radius:4px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%231b1b1b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.7' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E") no-repeat right 10px center / 10px 7px; font-size:13px; color:#1b1b1b; -webkit-appearance:none; appearance:none; box-sizing:border-box; }
+    .tt-btn { font-size:14px; height:30px; padding:0 10px; border:0; border-radius:4px; background:transparent; color:#1b1b1b; cursor:pointer; }
+    .tt-btn img { display:block; width:12px; height:auto; margin:auto; }
+    .tt-btn:hover,
+    .tt-btn.is-active { background:#dee5ef; }
+    .tt-divider { width:1px; height:20px; background:#e5e7eb; margin:0 4px; }
+    .composeEditorWrap { position:relative; }
+    .composeEditorWrap .mailProseMirror { min-height:400px; padding:22px; font-size:14px; line-height:1.8; }
+    .composeEditorWrap.has-quoted-mail .mailProseMirror { min-height:140px; }
+    .composeEditorWrap .mailProseMirror .quotedMailBlock { margin-top:16px; padding-top:0; border-top:0; }
+    .composeEditorWrap .mailProseMirror .quotedMailBlock p { line-height:1.7; }
+    .composeEditorWrap .mailProseMirror .quotedMailBlock .quotedBody { margin-top:24px; line-height:1.9; }
+    .editorPlaceholder { position:absolute; left:20px; top:70px; color:#707070; font-size:14px; pointer-events:none; z-index:2; }
+    .editorPlaceholder.is-hidden { display:none; }
+    
+    .composeEditorWrap, .composeEditorWrap * { outline: none !important; }
+    .composeEditorWrap .mailProseMirror:focus, .composeEditorWrap .mailProseMirror:focus-visible { outline: none !important; box-shadow: none !important; border: none !important; }
+    .composeEditorWrap .tiptapEditor, .composeEditorWrap .tiptapEditor:focus, .composeEditorWrap .tiptapEditor:focus-visible { outline: none !important; box-shadow: none !important; border-color: #e8e8e8 !important; }
+    .composeToolbar .tt-fontsize, .composeToolbar .tt-fontsize:focus, .composeToolbar .tt-fontsize:focus-visible { outline: none !important; box-shadow: none !important; border-color: #e8e8e8 !important; }
+    .composeToolbar .tt-btn:focus, .composeToolbar .tt-btn:focus-visible, .fileBtn:focus, .fileBtn:focus-visible, .fileDeleteBtn:focus, .fileDeleteBtn:focus-visible { outline: none !important; box-shadow: none !important; }
+    
+    .replyOriginalWrap { margin:0; padding:10px 20px 16px; border-top:0; background:#fff; overflow:hidden; }
+    .replyOriginalHead { display:none; }
+    .replyOriginalMeta { padding:16px 18px; border-bottom:1px solid #e8e8e8; background:#fff; }
+    .replyOriginalMeta p { margin:0 0 6px; font-size:14px; color:#1b1b1b; }
+    .replyOriginalMeta p:last-child { margin-bottom:0; }
+    .replyOriginalBody { padding:24px; background:#fff; }
+    .replyOriginalHtml { overflow-x:auto; }
+    .replyOriginalHtml img { max-width:100%; height:auto; }
+    .replyOriginalHtml table { max-width:100%; }
+    
+    .inlineReplyFileRow,
+    .fileRow { align-items:flex-start; }
+    .replyAttachWrap { width:100%; padding:0 0 5px; }
+    .replyAttachTop { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+    .replyAttachBtns { display:flex; align-items:center; gap:5px; }
+    .replyAttachPcBtn,
+    .replyAttachDeleteBtn { display:inline-flex;  align-items:center; justify-content:center; height:36px; min-width:76px; padding:0 14px; border:1px solid #dfdfdf; font-size:13px; color:#1b1b1b; font-weight:500; border-radius:4px; background:#fff; cursor:pointer; }
+    .replyAttachPcBtn input[type="file"] { display:none; }
+    .replyAttachSummary { margin-left:auto; font-size:13px; color:#666; white-space:nowrap; }
+    .replyAttachTableWrap { border:1px solid #e8e8e8; border-radius:4px; overflow:hidden; background:#fff; }
+    .replyAttachTable { width:100%; border-collapse:collapse; table-layout:fixed; }
+    .replyAttachTable thead th { padding:12px; border-bottom:1px solid #e8e8e8; background:#f7f7f7; font-size:13px; color:#1b1b1b; text-align:left; font-weight:normal; }
+    .replyAttachTable tbody td { padding:12px; border-bottom:1px solid #e8e8e8; font-size:14px; vertical-align:middle; }
+    .replyAttachTable tbody tr:last-child td { border-bottom:0; }
+    .replyAttachTable tbody tr.replyAttachEmptyRow td { padding:40px 10px; }
+    .replyAttachEmptyRow td { text-align:center; color:#888; }
+    .replyAttachFileNameCell { display:flex; align-items:center; gap:10px; overflow:hidden; min-height:53px; }
+    .replyAttachFileNameText { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .replyAttachFileIcon { flex:0 0 16px; width:16px; height:20px; border-radius:3px; position:relative; background:#9c9c9c; }
+    .replyAttachFileIcon.is-excel { background:#1f9d55; }
+    .replyAttachFileIcon.is-pdf { background:#ef4444; }
+    .replyAttachFileIcon.is-doc { background:#0373ef; }
+    .replyAttachFileIcon.is-image { background:#f59e0b; }
+    .replyAttachFileIcon::after { content:""; position:absolute; top:0; right:0; width:6px; height:6px; background:rgba(255,255,255,.8); clip-path:polygon(0 0, 100% 0, 100% 100%); }
+    .replyAttachTypeBadge,
+    .replyAttachRowDeleteBtn { display:inline-flex; align-items:center; justify-content:center; min-width:76px; height:34px; padding:0 12px; border:1px solid #dfdfdf; border-radius:4px; background:#fff; font-size:13px; cursor:pointer; }
+    
+    .readAttachWrap.read_inner .replyAttachWrap { padding:20px 32px 5px; }
+    .readAttachWrap.read_inner .replyAttachTop { display:block; margin:0 0 10px; }
+    .readAttachWrap.read_inner .replyAttachBtns { display:inline-block; font-size:14px; margin:0 10px 0 0; }
+    .readAttachWrap.read_inner .replyAttachSummary { display:inline-block; font-size:13px; color:#707070; }
+    .readAttachWrap.read_inner .replyAttachFileNameCell a:hover { text-decoration:underline; }
+    
+    .readAttachments { border:1px solid #e8e8e8; padding:15px; margin:0 0 20px; border-radius:5px; }
+    .attachHeaderTitle { font-size:13px; }
+    .attachAllDownloadBtn { font-size:13px; color:#5d6065; }
+    .attachHeaderTitle:after { content:""; display:inline-block; width:1px; height:10px; background:#cecece; margin:0 10px; }
+    .attachList li { display:flex; align-items:center; padding:15px 0 0; font-size:14px; }
+    .attachList li .attachTypeIcon { display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:3px; margin-right:5px; }
+    .attachList li .attachFileName { display:inline-block; font-size:14px; vertical-align:1px; }
+    .attachList li .attachSize { display:inline-block; font-size:13px; vertical-align:1px; margin-left:10px; color:#909090; }
+    .attachTypeIcon img { display:block; width:6px; height:auto; object-fit:contain; }
+    .attachTypeIcon--img { background:#ea5b2c; }
+    .attachTypeIcon--xls { background:#0f9d58; }
+    .attachTypeIcon--pdf { background:#f44336; }
+    .attachTypeIcon--html { background:#20a5a8; }
+    .attachTypeIcon--file { background:#6b7280; }
+    .attachTypeIcon i { color:#fff; font-size:14px; line-height:1; }
+    
+    .receiverAutoWrap { position:relative; }
+    .receiverAutoList { position:absolute; left:0; top:calc(100% + 5px); width:420px; max-height:260px; overflow-y:auto; background:#fff; border:1px solid #e8e8e8; border-radius:3px; box-shadow:0 10px 30px rgba(0,0,0,.08); z-index:100; display:none; }
+    .receiverAutoItem { display:block; width:100%; padding:13px 16px; border:0; background:#fff; text-align:left; font-size:14px; line-height:1.2; cursor:pointer; }
+    .receiverAutoItem:hover { background:#f5f5f5; }
+    
+    .mymailModal { position:fixed; inset:0; width:100vw; height:100vh; z-index:10020; }
+    .mymailModalDim { position:absolute; inset:0; width:100%; height:100%; background:rgba(0,0,0,0.35); z-index:10021; }
+    .mymailModalDialog { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:420px; max-width:calc(100% - 40px); background:#fff; border-radius:5px; overflow:hidden; z-index:10022; } 
+    .mymailModalHead { display:flex; align-items:center; justify-content:space-between; padding:20px 20px 30px; }
+    .mymailModalHead strong { font-size:18px; }
+    .mymailCloseBtn { display:inline-flex; align-items:center; justify-content:center; cursor:pointer; }
+    .mymailCloseBtn i { font-size:18px; }
+    .mymailModalBody { padding:0 20px 20px }
+    .mymailSingleRow { display:flex; align-items:center; gap:0; }
+    .mymailSingleLabel { width:92px; flex:0 0 92px; font-size:13px; }
+    .mymailSingleField { flex:1; font-size:0; }
+    .mymailSingleField input[type=text] { width:100%; height:42px; line-height:42px; padding:0 12px; border:1px solid #e8e8e8; border-radius:4px; background:#fff; font-size:14px; outline:none; }
+    .mymailSingleField input::placeholder { color:#9c9c9c; }
+    .mymailSingleActions { display:flex; justify-content:flex-end; margin:30px 0 0; }
+    .mymailSingleActions button { display:inline-flex; align-items:center; justify-content:center; width:96px; height:38px; border:1px solid #dfdfdf; border-radius:4px; background:#fff; font-size:14px; font-weight:500; color:#707070; cursor:pointer; }
+    .mymailSingleActions .myMailSubmitBtn { background:#1b1b1b; border-color:#1b1b1b; color:#fff; margin-right:10px; }
+    .mymailCloseBtn:hover,
+    .myMailSubmitBtn:hover { opacity:.92; }
+    html.mymailModalOpen,
+    body.mymailModalOpen { overflow:hidden; }
+
+    .moveAction { position:relative; }
+    .moveBtn { display:inline-flex; align-items:center; justify-content:center; height:34px; padding:0 14px; border:1px solid #dfdfdf; border-radius:7px; background:#fff; font-size:13px; cursor:pointer; white-space:nowrap; }
+    .moveBtn ion-icon { margin-left:3px; font-size:10px; }
+    .moveDropdown { display:none; position:absolute; top:40px; min-width:110px; padding:6px; border:1px solid #1b1b1b; border-radius:7px; background:#fff; z-index:95; }
+    .moveAction.is-open .moveDropdown { display:block; }
+    .moveAction.is-open .moveBtn { border-color:#1b1b1b; }
+    .moveDropdown button { display:block; width:100%; padding:8px 12px; text-align:left; border:0; background:#fff; font-size:13px; border-radius:7px; cursor:pointer; }
+    .moveDropdown button:hover { background:#f4f5f8; }
+    
+    .mailPagination { display:flex; align-items:center; justify-content:center; gap:10px; margin:auto 0 0; padding:26px 0 0; min-height:32px; text-align:center; }
+    .mailPagination button { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; padding:0; border:0; background:transparent; color:#9c9c9c; cursor:pointer; }
+    .mailPagination button:disabled { color:#9c9c9c; cursor:default; }
+    .mailPagination button i { display:block; font-size:14px; line-height:1; }
+    .mailPagination .mailPageCurrent { width:30px; height:30px; border:1px solid #1b1b1b; color:#1b1b1b; border-radius:7px; font-size:13px; font-weight:500; cursor:default; }
+    
+    .bodyInput {width:100%; height:250px; border:1px solid #e8e8e8; padding:12px; resize:none;}
+    
+    .composeDraftStatusArea { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:6px; width:100%; margin:14px 0 0; text-align:left; }
+    .draftStatusText { display:block; margin:0; font-size:13px; line-height:1.35; color:#1b1b1b; }
+    .draftStatusSubText { display:block; margin:0; font-size:13px; line-height:1; color:#7f8287; }
+
+    
+    
+}
+
+@media all and (max-width:720px){
+    body.mailPageLayout .gnbMenu { display:block !important; }
+    body.mailPageLayout .mailSubmenuPanel { padding-top:16px; }
+    body.mailPageLayout .mailMenuHeading { margin:0; padding:0 10px 12px; font-size:14px; font-weight:600; color:#1b1b1b; line-height:1; }
+    body.mailPageLayout .mailSubmenuList { display:flex; flex-direction:column; gap:4px; }
+    body.mailPageLayout .mailCustomSectionTitle { margin:18px 0 8px; padding:18px 10px 0; border-top:1px solid #e8e8e8; font-size:12px; font-weight:400; color:#707070; line-height:1; }
+    body.mailPageLayout .mailSubmenuActions { margin-top:24px; padding:0 10px; }
+    body.mailPageLayout .mailSubmenuItem a { display:flex; align-items:center; min-height:46px; padding:0 10px; border-radius:7px; color:#1b1b1b; }
+    body.mailPageLayout .mailSubmenuItem:hover { background:#f5f5f5; }
+    body.mailPageLayout .mailSubmenuItem:hover a { background:transparent; }
+    body.mailPageLayout .mailSubmenuItem .menu_ico { display:flex; align-items:center; justify-content:center; width:30px; height:30px; flex:0 0 30px; }
+    body.mailPageLayout .mailSubmenuItem .menu_ico svg { width:18px; height:18px; }
+    body.mailPageLayout .mailSubmenuItem .menu_txt { font-size:14px; font-weight:500; }
+    body.mailPageLayout .mailSubmenuItem.is-custom { position:relative; }
+    body.mailPageLayout .mailSubmenuItemMore { position:absolute; top:50%; right:10px; transform:translateY(-50%); z-index:3; }
+    body.mailPageLayout .mailSubmenuMoreBtn { display:flex; align-items:center; justify-content:center; width:28px; height:28px; padding:0; border:0; background:transparent; color:#707070; font-size:20px; line-height:1; opacity:0; visibility:hidden; pointer-events:none; }
+    body.mailPageLayout .mailSubmenuItem.is-custom:hover .mailSubmenuMoreBtn,
+    body.mailPageLayout .mailSubmenuItemMore.is-open .mailSubmenuMoreBtn { opacity:1; visibility:visible; pointer-events:auto; }
+    body.mailPageLayout .mailSubmenuMoreMenu { display:none; position:absolute; top:30px; right:0; min-width:120px; padding:6px; border:1px solid #e8e8e8; border-radius:7px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,0.08); }
+    body.mailPageLayout .mailSubmenuItemMore.is-open .mailSubmenuMoreMenu { display:block; }
+    body.mailPageLayout .mailSubmenuMoreMenu button { display:block; width:100%; height:38px; padding:0 12px; border:0; background:transparent; font-size:14px; text-align:left; cursor:pointer; text-decoration:none; color:#1b1b1b; }
+    body.mailPageLayout .mailSubmenuMoreMenu button:hover { background:#f4f5f8; color:#1b1b1b; text-decoration:none; }
+    body.mailPageLayout .mailSubmenuItem.selected a { background:#f4f5f8; }
+    body.mailPageLayout .mailSubmenuItem.selected a .menu_txt { color:#1b1b1b; font-weight:600; }
+    body.mailPageLayout .mailSubmenuItem.selected a .menu_ico svg { fill:#1b1b1b !important; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuPanel { min-height:100%; padding:0; box-sizing:border-box; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailMenuHeading { display:block; margin:0; padding:20px 15px 12px; border:0; background:transparent; font-size:18px; font-weight:600; color:#1b1b1b; line-height:1; box-sizing:border-box; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuList { gap:0; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuItem { display:block; margin:0; border-radius:0; line-height:1; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuItem a { gap:5px; min-height:42px; padding:0 15px; border-radius:0; }
+    body.mailPageLayout.mobileModuleSidebarOpen .workbenchAppSubitem:hover { background:#f4f5f8; color:#1b1b1b; text-decoration:none; }
+    body.mailPageLayout.mobileModuleSidebarOpen .workbenchAppSubitem.is-active { background:#f4f5f8; color:#1b1b1b; text-decoration:none; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuItem .menu_ico { width:18px; height:18px; flex:0 0 18px; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuItem .menu_ico svg { width:18px; height:18px; fill:#1b1b1b !important; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuItem .menu_txt { font-size:14px; font-weight:500; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuItem.selected a { background:#f5f5f5; }
+    body.mailPageLayout.mobileModuleSidebarOpen .mailSubmenuActions { margin-top:28px; padding:0 14px; }
+    body.mailPageLayout.mobileModuleSidebarOpen .myMailAddBtn { display:inline-flex; align-items:center; min-height:0; font-size:13px; font-weight:500; color:#707070; text-decoration:underline; text-underline-offset:2px; }
+    body.mailPageLayout .workbenchAppRail { display:none !important; }
+    body.mailPageLayout .sidebar { left:0; right:auto; width:248px; max-width:82vw; border-right:1px solid #e8e8e8; border-left:0; transform:translateX(-100%); }
+    body.mailPageLayout.mobileModuleSidebarOpen .sidebar,
+    body.mailPageLayout.mobileModuleSidebarClosing .sidebar { left:0; right:auto; width:248px; max-width:82vw; border-right:1px solid #e8e8e8; border-left:0; }
+    body.mailPageLayout.mobileModuleSidebarClosing .sidebar { transform:translateX(-100%); }
+    body.mailPageLayout.mobileSidebarOpen .sidebar,
+    body.mailPageLayout.mobileSidebarOpen.mobileModuleSidebarOpen .sidebar { transform:translateX(0); box-shadow:12px 0 30px rgba(15,23,42,.12); }
+    body.mailPageLayout.mobileModuleSidebarOpen .workbenchAppRail,
+    body.mailPageLayout.mobileModuleSidebarClosing .workbenchAppRail { display:none !important; }
+    body.mailPageLayout.mobileModuleSidebarOpen .gnbMenu,
+    body.mailPageLayout.mobileModuleSidebarClosing .gnbMenu { display:block !important; flex:1 1 auto; min-height:0; padding:0; background:#fff; overflow-y:auto; }
+    body.mailPageLayout #contents { width:100%; max-width:100%; padding:0 0 64px; box-sizing:border-box; }
+    body.mailPageLayout .myMailAddBtn { display:inline-flex; align-items:center; gap:0; margin:0; padding:0; border:0; border-radius:7px; background:transparent; font-size:13px; font-weight:500; color:#707070; text-decoration:underline; text-underline-offset:2px; }
+    body.mailPageLayout .myMailAddBtnIcon { display:inline-flex; align-items:center; justify-content:center; width:auto; height:auto; border-radius:7px; background:transparent; color:inherit; font-size:13px; line-height:1; }
+    body.mailPageLayout .mailComposeFab { position:fixed; right:20px; bottom:calc(74px + env(safe-area-inset-bottom)); z-index:9010; display:block; width:52px; height:52px; border-radius:50%; background:#0373ef; color:transparent; font-size:0; line-height:0; text-decoration:none; box-shadow:0 10px 24px rgba(0,0,0,0.14); }
+    body.mailPageLayout .mailComposeFab::before,
+    body.mailPageLayout .mailComposeFab::after { content:""; position:absolute; top:50%; left:50%; background:#fff; border-radius:999px; transform:translate(-50%, -50%); }
+    body.mailPageLayout .mailComposeFab::before { width:18px; height:2.5px; }
+    body.mailPageLayout .mailComposeFab::after { width:2.5px; height:18px; }
+
+    .siteSheet { padding:14px 15px 72px; box-sizing:border-box; }
+    .contents_,
+    .cont_flex_area { min-width:0; }
+    .titleArea { display:flex; align-items:center; gap:8px; min-width:0; margin:0; }
+    .composeTitleArea { margin:0 0 18px; }
+    .composeTitleArea h3 { margin:0; font-size:18px; line-height:1; font-weight:600; color:#1b1b1b; }
+    .titleArea .mobileSubmenuToggleBtn { display:inline-flex; align-items:center; justify-content:center; order:-1; flex:0 0 auto; width:24px; height:24px; padding:0; border:0; background:transparent; cursor:pointer; }
+    .titleArea .mobileSubmenuToggleBtn svg { display:block; width:24px; height:24px; fill:#1b1b1b; }
+
+    .mailArea { padding:0; border:0; background:transparent; font-size:14px; }
+    .mail_topArea { position:relative; z-index:60; margin:0; overflow:visible; }
+    .mailTopBar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 10px; margin:0; }
+    .mailStatus { display:flex; flex:0 0 auto; flex-wrap:nowrap; align-items:center; justify-content:flex-end; gap:0 12px; min-width:0; margin-left:auto; }
+    .mailStatus strong { display:none; }
+    .mailStatus span { white-space:nowrap; font-size:13px; line-height:1; font-weight:500; color:#707070; }
+    .mailStatus span em { color:#00b7f0; font-style:normal; font-weight:600; }
+    .refreshBtn { display:none !important; }
+    .mailSearchArea { display:none !important; }
+    .mailSearchBox { display:flex; align-items:center; width:100%; height:34px; padding:0 12px; border:1px solid #dfdfdf; border-radius:7px; background:#fff; box-sizing:border-box; }
+    .mailActionSearchBox { width:220px; min-width:180px; }
+    .mailSearchBox i,
+    .mailSearchBox ion-icon { flex:0 0 auto; margin:0 10px 0 0; font-size:17px; color:#707070; }
+    .mailSearchBox input[type=text] { flex:1; min-width:0; height:100%; padding:0; border:0; background:transparent; font-size:13px; font-weight:500; }
+    .mailSearchBox input::placeholder { color:#707070; }
+
+    .mailActionBar { position:relative; z-index:65; display:block; width:100%; margin:0; overflow:visible; box-sizing:border-box; }
+    .actionLeft,
+    .actionRight { display:flex; align-items:center; gap:6px; width:100%; max-width:100%; overflow:visible; padding:0 0 2px; box-sizing:border-box; }
+    .actionLeft:has(.moveAction) { flex-wrap:nowrap; justify-content:space-between; }
+    .actionLeft::-webkit-scrollbar,
+    .actionRight::-webkit-scrollbar { display:none; }
+    .actionLeft > button,
+    .actionRight > button,
+    .moveBtn { display:inline-flex; align-items:center; justify-content:center; flex:0 1 auto; min-width:0; height:34px; padding:0 12px; border:1px solid #dfdfdf; border-radius:7px; background:#fff; font-size:12px; color:#1b1b1b; white-space:nowrap; box-sizing:border-box; }
+    .actionLeft:has(.moveAction) > button,
+    .actionLeft:has(.moveAction) .moveAction { flex:1 1 0; }
+    .actionLeft:has(.moveAction) > button,
+    .actionLeft:has(.moveAction) .moveBtn { padding:0 6px; }
+    .actionLeft:has(.moveAction) .selectAction { flex:0 0 49px; }
+    .actionLeft:has(.moveAction) .selectAllBox { width:49px; justify-content:center; padding:0 5px; }
+    .actionLeft:has(.moveAction) .moveBtn { width:100%; }
+    .actionLeft button.sendBtn { border-color:#2c3a47; background:#2c3a47; color:#fff; }
+    .selectAction,
+    .moveAction { position:relative; z-index:70; flex:0 0 auto; }
+    .selectAllBox { display:flex; align-items:center; height:34px; padding:0 6px; border:1px solid #dfdfdf; border-radius:7px; background:#fff; box-sizing:border-box; font-size:0; }
+    .selectAllBox input[type="checkbox"] { display:block; width:16px; height:16px; margin:0; }
+    .selectAllBox label { display:none; }
+    .selectArrowBtn { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; margin-left:5px; padding:0; border:0; background:transparent; }
+    .selectArrowBtn ion-icon,
+    .selectArrowBtn i,
+    .moveBtn ion-icon { font-size:12px; line-height:1; }
+    .selectDropdown,
+    .moveDropdown { display:none; position:absolute; top:calc(100% + 6px); left:0; min-width:132px; padding:6px 0; border:1px solid #1b1b1b; border-radius:7px; background:#fff; z-index:120; box-shadow:0 10px 24px rgba(15,23,42,.12); }
+    .moveDropdown { left:auto; right:0; }
+    .selectAction.is-open .selectDropdown,
+    .moveAction.is-open .moveDropdown { display:block; }
+    .selectDropdown button,
+    .moveDropdown button { display:block; width:100%; padding:11px 13px; border:0; background:#fff; text-align:left; font-size:13px; color:#1b1b1b; white-space:nowrap; text-decoration:none; }
+    .selectDropdown button:hover,
+    .moveDropdown button:hover { background:#f4f5f8; color:#1b1b1b; text-decoration:none; }
+
+    .mailListWrap { display:flex; flex-direction:column; gap:0; margin:0; }
+    .mailRow { position:relative; display:grid; grid-template-columns:20px minmax(0, 1fr) 30px 30px 30px; grid-template-areas:"check sender star readState attach" "subject subject subject subject subject" "date date date date date"; align-items:center; gap:5px; min-height:0; padding:15px 0; border-bottom:1px solid #e1e1e1; background:#fff; box-sizing:border-box; }
+    .mailRow.selected { background:#f5f8ff; border-color:#cfe0ff; }
+    .mailRow.unread .col.sender,
+    .mailRow.unread .col.receiver { font-weight:600; }
+    .mailRow.unread .col.subject a { font-weight:500; }
+    .col { min-width:0; font-size:14px; line-height:1.25; }
+    .col.check { grid-area:check; display:flex; align-items:center; justify-content:flex-start; width:30px; }
+    .col.check input[type="checkbox"] { width:24px; height:24px; margin:0; }
+    .col.readState { grid-area:readState; display:flex; align-items:center; justify-content:center; width:30px; min-width:30px; justify-self:end; }
+    .mailReadStateIcon { width:24px; height:24px; color:#7f8287; }
+    .mailReadStateSvgUnread { color:#3394ff; }
+    .mailListIcon,
+    .mailReadStateIcon svg { flex:0 0 24px; width:24px; height:24px; transform:none; }
+    .col.star { grid-area:star; display:flex; align-items:center; justify-content:center; width:30px; justify-self:end; }
+    .col.star button { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; font-size:16px; padding:0; border:0; background:transparent; color:#7f8287; }
+    .col.star button.active { color:#0373ef; }
+    .col.attach { grid-area:attach; display:flex; align-items:center; justify-content:center; width:30px; min-width:30px; justify-self:end; }
+    .mailAttachSlot { width:24px; height:24px; }
+    .col.sender,
+    .col.receiver { grid-area:sender; width:auto; padding:0; overflow:hidden; color:#1b1b1b; font-size:14px; font-weight:600; min-height:17px; text-overflow:ellipsis; white-space:nowrap; }
+    .col.subject { grid-area:subject; display:flex; align-items:center; min-width:0; padding:0; }
+    .col.subject a { display:block; min-width:0; overflow:hidden; color:#1b1b1b; font-size:14px; line-height:1.3; font-weight:500; text-overflow:ellipsis; white-space:nowrap; }
+    .col.subject .mailAttachIcon { display:inline-flex; flex:0 0 auto; align-items:center; justify-content:center; width:14px; height:16px; margin-right:5px; overflow:visible; }
+    .col.subject .mailAttachIcon img { display:block; width:auto; max-width:10px; height:14px; object-fit:contain; opacity:.55; }
+    .mailFolderBadge { display:inline-flex; align-items:center; justify-content:center; height:22px; margin:0 6px 0 0; padding:0 5px; border:1px solid #e8e8e8; border-radius:4px; background:#f8f8f8; font-size:11px; color:#707070; vertical-align:1px; }
+    .mailRow[data-folder] { grid-template-areas:"check sender star readState attach" "subject subject subject subject subject" "date date date date date"; padding:15px 0; row-gap:7px; }
+    .mailRow[data-folder] .mailFolderBadge { position:static; margin:0 6px 0 0; height:22px; padding:0 5px; font-size:11px; }
+    .mailRow[data-folder] .col.sender { font-size:14px; font-weight:600; line-height:1.25; margin:0; }
+    .mailRow[data-folder] .col.subject { display:flex; }
+    .mailRow[data-folder] .mailSubjectLink { display:flex; align-items:center; min-width:0; overflow:hidden; white-space:nowrap; }
+    .mailRow[data-folder] .mailSubjectText { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14px; line-height:1; font-weight:400; color:#1b1b1b; }
+    .mailRow[data-folder] .col.date { font-size:13px; }
+    .col.date { grid-area:date; width:auto; padding:0; text-align:left; font-size:13px; line-height:1.2; white-space:nowrap; }
+    .emptyRow,
+    .mailEmpty { margin:20px 0 0; padding:50px 0; background:#fff; text-align:center; color:#7f8287; font-size:14px; }
+
+    .mailPagination { gap:8px; margin-top:auto; padding:18px 0 0; min-height:28px; font-size:14px; }
+    .mailPagination button { width:20px; height:20px; }
+    .mailPagination button i { font-size:16px; }
+    .mailPagination .mailPageCurrent { width:32px; height:32px; border-radius:7px; font-size:14px; }
+
+    .composePage { font-size:0; }
+    .composePage .mail_topArea { margin:0; }
+    .composeTopBar { padding:0 0 14px; border-bottom:1px solid #e8e8e8; }
+    .composeTopBar .actionLeft { overflow-x:auto; }
+    .composeDraftStatusArea { align-items:flex-start; margin:10px 0 0; text-align:left; }
+    .draftStatusText,
+    .draftStatusSubText { margin:0; font-size:12px; line-height:1; color:#707070; }
+    .composeWrap { padding:16px 0 0; }
+    .composeRow { display:flex; align-items:center; gap:10px; margin:0 0 14px; }
+    .composeRow.fileRow { align-items:flex-start; }
+    .inlineReplyRow { display:block; margin:0 0 14px; }
+    .composeRow strong { flex:0 0 60px; width:60px; margin:0; font-size:14px; line-height:40px; font-weight:600; color:#1b1b1b; }
+    .composeRow.fileRow strong { line-height:38px; }
+    .inlineReplyLabel { display:block; width:auto; margin:0 0 8px; font-size:13px; line-height:1; font-weight:500; color:#1b1b1b; }
+    .composeField,
+    .inlineReplyValue { width:100%; min-width:0; }
+    .composeField input[type=text],
+    .inlineReplyValue input.inlineReplyReceiver,
+    .inlineReplyValue input.inlineReplySubject { width:100%; height:36px; padding:0 12px; border:1px solid #e8e8e8; border-radius:5px; background:#fff; box-sizing:border-box; font-size:14px; }
+    .receiverWrap { display:flex; flex-wrap:nowrap; align-items:center; gap:6px; min-height:40px; padding:5px 10px; border:1px solid #e8e8e8; border-radius:5px; box-sizing:border-box; overflow-x:auto; overflow-y:hidden; }
+    .composeField.receiverWrap { height:40px; }
+    .receiverWrap input.receiverInput { flex:1 1 70px; min-width:70px; height:28px; border:0; padding:0; font-size:16px; line-height:28px; }
+    .receiverTags { display:flex; flex:0 0 auto; flex-wrap:nowrap; align-items:center; gap:5px; max-width:100%; }
+    .receiverTag { display:flex; flex:0 0 auto; align-items:center; max-width:220px; height:28px; padding:0 9px; border-radius:4px; background:#f3f5f8; }
+    .composeField .receiverAutoWrap { position:relative; flex:1 1 70px; min-width:70px; width:auto; }
+    .receiverAutoList { left:0; width:100%; max-height:220px; border:1px solid #e8e8e8; border-radius:5px; background:#fff; box-shadow:0 10px 24px rgba(15,23,42,.12); }
+    .receiverAutoItem { padding:12px; font-size:14px; }
+
+    .fileActionBar,
+    .replyAttachTop { display:flex; align-items:flex-start; flex-wrap:wrap; gap:8px; }
+    .fileInput { display:none !important; }
+    .fileBtn,
+    .fileDeleteBtn,
+    .replyAttachPcBtn,
+    .replyAttachDeleteBtn,
+    .inlineReplyActions button,
+    .replyAttachTypeBadge,
+    .replyAttachRowDeleteBtn { display:inline-flex; align-items:center; justify-content:center; min-width:76px; height:38px; padding:0 12px; border:1px solid #dfdfdf; border-radius:5px; background:#fff; box-sizing:border-box; font-size:13px; font-weight:500; color:#1b1b1b; }
+    .fileInfoText,
+    .replyAttachSummary { position:static; width:100%; margin:0; font-size:12px; line-height:1; color:#707070; white-space:normal; }
+    .fileTableWrap,
+    .replyAttachTableWrap { width:100%; margin:10px 0 0; border:1px solid #e8e8e8; border-radius:5px; overflow-x:auto; background:#fff; }
+    .fileTable,
+    .replyAttachTable { min-width:620px; width:100%; border-collapse:collapse; table-layout:fixed; }
+    .fileTable thead th,
+    .replyAttachTable thead th { padding:11px 10px; border-bottom:1px solid #e8e8e8; background:#f7f7f7; font-size:12px; color:#707070; text-align:left; font-weight:500; }
+    .fileTable tbody td,
+    .replyAttachTable tbody td { padding:11px 10px; border-bottom:1px solid #e8e8e8; font-size:13px; vertical-align:middle; }
+    .fileTable tbody tr:last-child td,
+    .replyAttachTable tbody tr:last-child td { border-bottom:0; }
+    .fileTable tr.emptyFileRow td,
+    .replyAttachTable tbody tr.replyAttachEmptyRow td { padding:34px 10px; text-align:center; color:#707070; }
+    .composeFileNameCell,
+    .replyAttachFileNameCell { display:flex; align-items:center; gap:8px; min-width:0; overflow:hidden; }
+    .composeFileNameText,
+    .replyAttachFileNameText { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+    .composeEditor { padding:6px 0 0; }
+    .composeEditorWrap { position:relative; border:1px solid #e8e8e8; border-radius:5px; background:#fff; overflow:hidden; }
+    .tiptapToolbar { display:flex; align-items:center; gap:6px; overflow-x:auto; padding:8px; border-bottom:1px solid #e8e8e8; background:#f7f7f7; }
+    .tt-fontsize { flex:0 0 auto; min-width:78px; height:32px; padding:0 30px 0 8px; border:1px solid #e8e8e8; border-radius:4px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%231b1b1b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.7' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E") no-repeat right 10px center / 10px 7px; font-size:13px; -webkit-appearance:none; appearance:none; box-sizing:border-box; }
+    .tt-btn { flex:0 0 auto; min-width:32px; height:32px; padding:0 8px; border:0; border-radius:4px; background:transparent; font-size:14px; color:#1b1b1b; }
+    .tt-divider { flex:0 0 1px; width:1px; height:20px; background:#e8e8e8; }
+    .composeEditorWrap .mailProseMirror,
+    #inlineReplyEditor .ql-editor { min-height:260px; padding:20px; font-size:16px; line-height:1.7; }
+    .editorPlaceholder { position:absolute; left:20px; top:62px; font-size:14px; color:#707070; }
+    .editorPlaceholder.is-hidden { display:none; }
+
+    .readType .mailArea { }
+    .readTopBar { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:0 0 12px; border-bottom:1px solid #e8e8e8; }
+    .readTopBar .actionLeft,
+    .inlineReplyActions { display:flex; gap:8px; overflow-x:auto; padding:0 0 2px; }
+    .readTopBar .actionLeft { flex:1 1 auto; }
+    .readTopBar .actionRight { flex:0 0 auto; width:auto; padding:0 0 2px; }
+    .readTopBar .actionLeft > .backBtn { color:#1b1b1b; font-weight:600; }
+    .readTopBar .printBtn { display:inline-flex; align-items:center; justify-content:center; flex:0 0 28px; width:28px; min-width:28px; height:28px; padding:0; border:0; border-radius:0; background:transparent; color:#1b1b1b; box-sizing:border-box; }
+    .readTopBar .printBtn svg { display:block; flex:0 0 24px; width:24px; height:24px; }
+    .readViewWrap { margin:0; border:0; }
+    .readViewHeader { display:block; padding:16px 0; border-bottom:1px solid #e8e8e8; }
+    .readViewLeft { display:flex; align-items:flex-start; min-width:0; }
+    .mailStarBtn { display:inline-flex; align-items:center; justify-content:flex-start; flex:0 0 30px; width:30px; height:25px; font-size:20px; line-height:1; padding:0; border:0; background:transparent; color:#9c9c9c; }
+    .readTitleArea { min-width:0; flex:1; padding-top:0; }
+    .readSubject { margin:0; font-size:20px; line-height:1.25; font-weight:500; color:#1b1b1b; word-break:keep-all; }
+    .readDate { margin:10px 0 0; font-size:14px; line-height:1; color:#707070; }
+    .readMeta { margin:14px 0 0; }
+    .readMeta dl { display:block; margin:0 0 15px; }
+    .readMeta dt { margin:0 0 5px; font-size:13px; line-height:1; font-weight:600; }
+    .readMeta dd { margin:0; font-size:13px; line-height:1; color:#1b1b1b; word-break:break-all; }
+    .printBtn { display:inline-flex; }
+    .printBtn svg { width:24px; height:24px; }
+    .readBodyWrap { padding:18px 0 0; }
+    .readBody { min-height:200px; font-size:14px; line-height:1.7; word-break:break-word; overflow-x:auto; }
+    .readBody img { max-width:100%; height:auto; }
+    .readBody table { max-width:100%; }
+    .readAttachWrap.read_inner .replyAttachWrap { padding:14px 0 0; }
+    .readAttachments { margin-top:18px; padding-top:18px; border-top:1px solid #e8e8e8; }
+    .readAttachHeader { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+
+    .inlineReplyWrap { margin:20px 0 0; border-top:1px solid #e8e8e8; }
+    .inlineReplyHead { padding:18px 0 12px; }
+    .inlineReplyModeText { font-size:16px; font-weight:500; color:#1b1b1b; }
+    .inlineReplyFields { padding:14px 0 0; }
+    .replyOriginalWrap { padding:8px 12px 14px; }
+    .replyOriginalMeta { padding:12px; border-bottom:1px solid #e8e8e8; }
+    .replyOriginalBody { padding:16px 12px; }
+
+    .myMailModal { position:fixed; inset:0; width:100%; height:100%; z-index:10000; font-size:0; }
+    .mymailModalDim { position:absolute; inset:0; background:rgba(15,23,42,.36); }
+    .mymailModalDialog { position:absolute; left:0; right:0; bottom:0; top:auto; width:100%; max-width:none; border-radius:14px 14px 0 0; background:#fff; transform:none; box-sizing:border-box; }
+    .mymailModalHead { padding:18px; }
+    .mymailModalBody { padding:0 18px 18px; }
+    .mymailSingleRow { display:block; }
+    .mymailSingleLabel { width:auto; margin:0 0 8px; font-size:13px; font-weight:500; }
+    .mymailSingleActions { gap:8px; justify-content:flex-end; margin-top:18px; padding-top:16px; }
+    .mymailSingleActions button { width:auto; min-width:82px; height:38px; }
+}
+
+body.unifiedWorkbench .gnbMenu,
+body.unifiedWorkbench .mailSubmenuPanel {
+    display:none !important;
+}
+
+@media all and (min-width:721px){
+    body.mailPageLayout.workbenchLayoutPage .sidebar .gnbMenu,
+    body.mailPageLayout.workbenchLayoutPage .mailSubmenuPanel { display:none; }
+}

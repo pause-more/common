@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- ⓒ pause-more.com -->
+    <meta charset="utf-8">
+    <title>오토원워크</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0373ef">
+    <meta name="application-name" content="오토원워크">
+    <link rel="icon" type="image/png" href="/img/app_ico.png">
+    <script src="/layout/config.js?v=20260522-sidebar1"></script>
+    <script src="/layout/api.js?v=20260513-2"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/xeicon/2/xeicon.min.css">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
+    <link href="../layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
+    <link href="./approval.css?v=20260528-row-hover1" rel="stylesheet">
+    <link href="./approvalLayout.css?v=20260522-slide1" rel="stylesheet">
+    <script type="module" src="../layout/app.js?v=20260528-profile-settings15"></script>
+    <script type="module" src="./approvalLayout.js?v=20260513-1"></script>
+    <script type="module" src="./dashboard.js?v=20260513-2"></script>
+</head>
+<body class="approvalPageLayout workbenchLayoutPage">
+    <div id="wrap">
+        <div id="container">
+            <div id="contents" class="contents">
+                <div data-include-html="/gnbMenu.html"></div>
+
+                <div class="mainArea">
+                    <div class="siteSheet">
+                        <div class="page_title">
+                            <h3 class="titleLabel"><span>전자결재</span><span class="divider">/</span><strong>전체문서</strong></h3>
+                            <div class="approvalDashboardTitleRow">
+                                <h2>전체문서</h2>
+                                <div class="approvalStatusTabs" role="tablist" aria-label="전체문서 상태 필터">
+                                    <button type="button" class="selected" data-status-filter="all">전체</button>
+                                    <button type="button" data-status-filter="pending">결재대기</button>
+                                    <button type="button" data-status-filter="approved">승인</button>
+                                    <button type="button" data-status-filter="rejected">반려</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contents_">
+                            <div class="cont_flex_area">
+                                <div class="allDocArea">
+                                    <div class="approvalArea">
+                                        <div class="approvalListPage">
+                                            <div class="approvalListCard">
+                                                <table class="approvalListTable">
+                                                    <colgroup>
+                                                        <col class="approvalListDocNoCol">
+                                                        <col class="approvalListTypeCol">
+                                                        <col class="approvalListTitleCol">
+                                                        <col class="approvalListWriterCol">
+                                                        <col class="approvalListDateCol">
+                                                        <col class="approvalListStatusCol">
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>문서번호</th>
+                                                            <th>결재양식</th>
+                                                            <th>제목</th>
+                                                            <th>기안자</th>
+                                                            <th>상신일시</th>
+                                                            <th>상태</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="approvalDashboardListBody">
+                                                        <tr>
+                                                            <td colspan="6" class="approvalListEmpty">전체문서를 불러오는 중입니다.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

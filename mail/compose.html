@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- ⓒ pause-more.com -->
+    <meta charset="utf-8">
+    <title>오토원워크</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0373ef">
+    <meta name="application-name" content="오토원워크">
+    <link rel="icon" type="image/png" href="/img/app_ico.png">
+    <script src="/layout/config.js?v=20260522-sidebar1"></script>
+    <script src="/layout/api.js?v=20260513-2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
+    <link href="../layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
+    <link href="./mail.css?v=20260529-read-icon-stroke2" rel="stylesheet">
+    <script type="module" src="../layout/app.js?v=20260528-profile-settings15"></script>
+    <script type="module" src="./mailLayout.js?v=20260529-read-icon-stroke2"></script>
+    <script type="module" src="./compose.js?v=20260515-1"></script>
+</head>
+<body class="mailPageLayout workbenchLayoutPage">
+    <div id="wrap">
+        <div id="container">
+            <div id="contents" class="contents">
+                <div data-include-html="/gnbMenu.html"></div>
+
+                <div class="mainArea">
+                    <div class="siteSheet">
+                    <div class="contents_">
+                            <div class="cont_flex_area">
+                                <div class="titleArea composeTitleArea">
+                                    <h3>메일 쓰기</h3>
+                                </div>
+                                <div class="mailArea composePage">
+                                    <div class="mail_topArea">
+                                        <div class="mailActionBar composeTopBar">
+                                            <div class="actionLeft">
+                                                <button type="button" class="sendBtn">보내기</button>
+                                                <button type="button" class="tempBtn">임시저장</button>
+                                            </div>
+                                            <div class="actionRight composeDraftStatusArea">
+                                                <p class="draftStatusText" style="display:none;"></p>
+                                                <p class="draftStatusSubText">첨부파일은 자동저장 후 자동복원되지 않습니다.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="composeWrap">
+                                        <div class="composeRow">
+                                            <strong>받는사람</strong>
+                                            <div class="composeField receiverWrap">
+                                                <div class="receiverTags"></div>
+                                                <input type="text" class="receiverInput">
+                                            </div>
+                                        </div>
+
+                                        <div class="composeRow">
+                                            <strong>제목</strong>
+                                            <div class="composeField">
+                                                <input type="text" class="subjectInput">
+                                            </div>
+                                        </div>
+
+                                        <div class="composeRow fileRow">
+                                            <strong>첨부파일</strong>
+                                            <div class="composeField">
+                                                <div class="fileActionBar">
+                                                    <label class="fileBtn" for="composeFileInput">파일 선택</label>
+                                                    <button type="button" class="fileDeleteBtn">삭제</button>
+                                                    <div class="fileInfoText">[파일: <span class="fileCount">0</span>/10] [일반: <span class="fileSize">0 KB</span> / 20 MB] [대용량: 0 KB / 1 GB]</div>
+                                                    <input type="file" class="fileInput" id="composeFileInput" multiple>
+                                                </div>
+
+                                                <div class="fileTableWrap fileDropZone">
+                                                    <table class="fileTable" cellspacing="0" cellpadding="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="checkCol"><input type="checkbox" class="fileAllCheck"></th>
+                                                                <th>파일이름</th>
+                                                                <th class="sizeCol">크기</th>
+                                                                <th class="typeCol">첨부방식</th>
+                                                                <th class="deleteCol">삭제</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="fileTableBody">
+                                                            <tr class="emptyFileRow">
+                                                                <td colspan="5">첨부된 파일이 없습니다.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="composeEditor">
+                                            <div class="composeEditorWrap">
+                                                <div class="tiptapToolbar composeToolbar">
+                                                    <select class="tt-fontsize composeFontsize">
+                                                        <option value="12px">12px</option>
+                                                        <option value="13px" selected>13px</option>
+                                                        <option value="14px">14px</option>
+                                                        <option value="16px">16px</option>
+                                                        <option value="18px">18px</option>
+                                                        <option value="20px">20px</option>
+                                                    </select>
+
+                                                    <button type="button" class="tt-btn" data-cmd="bold"><b>B</b></button>
+                                                    <button type="button" class="tt-btn" data-cmd="italic"><i>I</i></button>
+                                                    <button type="button" class="tt-btn" data-cmd="underline"><u>U</u></button>
+                                                    <button type="button" class="tt-btn" data-cmd="strike"><s>S</s></button>
+
+                                                    <span class="tt-divider"></span>
+
+                                                    <button type="button" class="tt-btn" data-cmd="bulletList"><i class="ri-list-unordered"></i></button>
+                                                    <button type="button" class="tt-btn" data-cmd="orderedList"><i class="ri-list-ordered"></i></button>
+
+                                                    <span class="tt-divider"></span>
+
+                                                    <button type="button" class="tt-btn" data-cmd="alignLeft"><i class="ri-align-left"></i></button>
+                                                    <button type="button" class="tt-btn" data-cmd="alignCenter"><i class="ri-align-center"></i></button>
+                                                    <button type="button" class="tt-btn" data-cmd="alignRight"><i class="ri-align-right"></i></button>
+
+                                                    <span class="tt-divider"></span>
+
+                                                    <button type="button" class="tt-btn" data-cmd="link"><i class="ri-link"></i></button>
+                                                    <button type="button" class="tt-btn" data-cmd="clear"><i class="ri-format-clear"></i></button>
+                                                </div>
+
+                                                <div class="editorPlaceholder">여기에 내용을 입력해주세요.</div>
+                                                <div id="composeEditor" class="mailEditor tiptapEditor"></div>
+                                                <div class="replyOriginalWrap" style="display:none;">
+                                                    <div class="replyOriginalHtml"></div>
+                                                </div>
+                                                <textarea class="bodyInput" style="display:none;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="module">
+                            import { Editor, Extension } from 'https://esm.sh/@tiptap/core@2.11.5';
+                            import StarterKit from 'https://esm.sh/@tiptap/starter-kit@2.11.5';
+                            import Underline from 'https://esm.sh/@tiptap/extension-underline@2.11.5';
+                            import Link from 'https://esm.sh/@tiptap/extension-link@2.11.5';
+                            import TextAlign from 'https://esm.sh/@tiptap/extension-text-align@2.11.5';
+                            import TextStyle from 'https://esm.sh/@tiptap/extension-text-style@2.11.5';
+
+                            const FontSize = Extension.create({
+                                name: 'fontSize',
+                                addGlobalAttributes() {
+                                    return [{
+                                        types: ['textStyle'],
+                                        attributes: {
+                                            fontSize: {
+                                                default: null,
+                                                parseHTML: element => element.style.fontSize || null,
+                                                renderHTML: attributes => {
+                                                    if (!attributes.fontSize) return {};
+                                                    return { style: 'font-size: ' + attributes.fontSize };
+                                                }
+                                            }
+                                        }
+                                    }];
+                                },
+                                addCommands() {
+                                    return {
+                                        setFontSize: size => ({ chain }) => chain().setMark('textStyle', { fontSize: size }).run()
+                                    };
+                                }
+                            });
+
+                            window.ComposeTiptapBundle = {
+                                Editor: Editor,
+                                StarterKit: StarterKit,
+                                Underline: Underline,
+                                Link: Link,
+                                TextAlign: TextAlign,
+                                TextStyle: TextStyle,
+                                Extension: Extension,
+                                FontSize: FontSize
+                            };
+
+                            document.dispatchEvent(new Event('compose:tiptap:ready'));
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

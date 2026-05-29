@@ -1,0 +1,24 @@
+name = "autone-mail-api"
+main = "worker.js"
+compatibility_date = "2026-05-06"
+
+[[d1_databases]]
+binding = "GROUPWARE_DB"
+database_name = "autone-groupware-db"
+database_id = "D1_DATABASE_ID_HERE"
+
+[[r2_buckets]]
+binding = "GROUPWARE_FILES"
+bucket_name = "autone-groupware-files"
+
+[[kv_namespaces]]
+binding = "MAIL_KV"
+id = "MAIL_KV_NAMESPACE_ID_HERE"
+
+[[durable_objects.bindings]]
+name = "CHAT_ROOMS"
+class_name = "ChatRoomDurableObject"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ChatRoomDurableObject"]

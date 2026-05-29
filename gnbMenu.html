@@ -1,0 +1,222 @@
+<header class="workbenchTopbar">
+    <div class="workbenchTopbarLeft homeTopbarLeft">
+        <button type="button" class="homeSidebarToggleBtn" aria-label="사이드바 토글" aria-expanded="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1b1b1b" viewBox="0 0 256 256" aria-hidden="true">
+                <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
+            </svg>
+        </button>
+        <span class="workbenchTopbarBrand homeTopbarBrand" aria-label="오토원워크">
+            <img src="/img/work_logo.png" alt="AUTOONE work">
+        </span>
+    </div>
+    <div class="workbenchTopbarActions">
+        <button type="button" class="workbenchTopbarAction notificationMenuItem" aria-label="알림 열기" onclick="if(window.NotificationLayer && typeof window.NotificationLayer.open==='function'){ window.NotificationLayer.open(); }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path></svg>
+            <span class="notificationMenuBadge" hidden>0</span>
+        </button>
+        <button type="button" class="workbenchTopbarAction orgChartToggleBtn" aria-label="조직도 열기">
+            <svg class="orgChartIcon" xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="currentColor" viewBox="0 0 256 256"><path d="M160,112h48a16,16,0,0,0,16-16V48a16,16,0,0,0-16-16H160a16,16,0,0,0-16,16V64H128a24,24,0,0,0-24,24v32H72v-8A16,16,0,0,0,56,96H24A16,16,0,0,0,8,112v32a16,16,0,0,0,16,16H56a16,16,0,0,0,16-16v-8h32v32a24,24,0,0,0,24,24h16v16a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V160a16,16,0,0,0-16-16H160a16,16,0,0,0-16,16v16H128a8,8,0,0,1-8-8V88a8,8,0,0,1,8-8h16V96A16,16,0,0,0,160,112ZM56,144H24V112H56v32Zm104,16h48v48H160Zm0-112h48V96H160Z"></path></svg>
+        </button>
+        <button type="button" class="workbenchProfileBtn" aria-label="내 프로필">
+            <span class="workbenchProfileAvatar">나</span>
+            <span class="workbenchProfileMeta">
+                <strong class="workbenchProfileName">-</strong>
+                <span class="workbenchProfileDepartment">-</span>
+            </span>
+        </button>
+    </div>
+</header>
+
+<div class="sidebar">
+    <div class="side_top">
+        <div class="logo"><span><img src="/img/app_ico.png"></span><strong>Auto One Co., Ltd.</strong></div>
+    </div>
+
+    <div class="accountMenu" style="display:none;">
+        <p data-account-home="true" onclick="location.href='/'"><span class="menu_ico"></span><span class="menu_txt">홈</span></p>
+        <p class="last notificationMenuItem" data-account-path="/notifications.html" onclick="if(window.NotificationLayer && typeof window.NotificationLayer.open==='function'){ window.NotificationLayer.open(); }"><span class="notificationMenuMain"><span class="menu_ico"></span><span class="menu_txt">알림</span></span><span class="notificationMenuBadge" hidden>0</span></p>
+    </div>
+
+    <nav class="workbenchAppRail" aria-label="주요 메뉴">
+                        <a href="/" class="workbenchAppItem" data-workbench-item="home" data-workbench-paths="/">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M12.71 2.29a.996.996 0 0 0-1.41 0l-8.01 8A1 1 0 0 0 3 11v9c0 1.1.9 2 2 2h3c.55 0 1-.45 1-1v-7h6v7c0 .55.45 1 1 1h3c1.1 0 2-.9 2-2v-9c0-.27-.11-.52-.29-.71z"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M12.71 2.29a.996.996 0 0 0-1.41 0l-8.01 8A1 1 0 0 0 3 11v9c0 1.1.9 2 2 2h3c.55 0 1-.45 1-1v-7h6v7c0 .55.45 1 1 1h3c1.1 0 2-.9 2-2v-9c0-.27-.11-.52-.29-.71z"></path></svg></span>
+                            <span class="workbenchAppLabel">홈</span>
+                        </a>
+                        <a href="/chat.html" class="workbenchAppItem" data-workbench-item="chat" data-workbench-paths="/chat.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12c0 2.12.68 4.19 1.93 5.9l-1.75 2.53c-.21.31-.24.7-.06 1.03.17.33.51.54.89.54h9c5.51 0 10-4.49 10-10S17.51 2 12 2M8 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12c0 2.12.68 4.19 1.93 5.9l-1.75 2.53c-.21.31-.24.7-.06 1.03.17.33.51.54.89.54h9c5.51 0 10-4.49 10-10S17.51 2 12 2M8 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1"></path></svg></span>
+                            <span class="workbenchAppLabel">채팅</span>
+                        </a>
+                        <a href="/attendance/commute.html" class="workbenchAppItem" data-workbench-item="attendance" data-workbench-paths="/attendance/commute.html /attendance/absence.html /attendance/attendance.html /attendance/holiday.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M12 2C6.58 2 2 6.58 2 12s4.58 10 10 10 10-4.58 10-10S17.42 2 12 2m5 11h-6V7h2v4h4z"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M12 2C6.58 2 2 6.58 2 12s4.58 10 10 10 10-4.58 10-10S17.42 2 12 2m5 11h-6V7h2v4h4z"></path></svg></span>
+                            <span class="workbenchAppLabel">출퇴근 현황</span>
+                        </a>
+                        <a href="/mail/inbox.html" class="workbenchAppItem" data-workbench-item="mail" data-workbench-paths="/mail/inbox.html /mail/read.html /mail/sent.html /mail/all.html /mail/draft.html /mail/spam.html /mail/trash.html /mail/compose.html /mail/my1.html /mail/my2.html /mail/my3.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v.25l10 7.5 10-7.5V6c0-1.1-.9-2-2-2"></path><path d="M12 16c-.21 0-.42-.07-.6-.2L2 8.75V18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8.75l-9.4 7.05c-.18.13-.39.2-.6.2"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v.25l10 7.5 10-7.5V6c0-1.1-.9-2-2-2"></path><path d="M12 16c-.21 0-.42-.07-.6-.2L2 8.75V18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8.75l-9.4 7.05c-.18.13-.39.2-.6.2"></path></svg></span>
+                            <span class="workbenchAppLabel">메일</span>
+                        </a>
+                        <div class="workbenchAppSubmenu" aria-label="메일 서브 메뉴">
+                            <a href="/mail/all.html" class="workbenchAppSubitem">전체메일</a>
+                            <a href="/mail/inbox.html" class="workbenchAppSubitem">받은메일함</a>
+                            <a href="/mail/sent.html" class="workbenchAppSubitem">보낸메일함</a>
+                            <a href="/mail/draft.html" class="workbenchAppSubitem">임시보관함</a>
+                            <div class="myMailList" aria-label="나의 메일함">
+                                <div class="myMailItem" data-folder-id="my1">
+                                    <a href="/mail/my1.html" class="workbenchAppSubitem is-custom-mail-folder" data-folder-id="my1">나의메일함 1</a>
+                                    <button type="button" class="myMailMoreBtn" data-folder-id="my1" aria-label="메일함 더보기">⋮</button>
+                                    <div class="myMailMoreMenu">
+                                        <button type="button" data-folder-action="rename" data-folder-id="my1">이름 변경</button>
+                                        <button type="button" data-folder-action="delete" data-folder-id="my1">메일함 삭제</button>
+                                    </div>
+                                </div>
+                                <div class="myMailItem" data-folder-id="my2">
+                                    <a href="/mail/my2.html" class="workbenchAppSubitem is-custom-mail-folder" data-folder-id="my2">나의메일함 2</a>
+                                    <button type="button" class="myMailMoreBtn" data-folder-id="my2" aria-label="메일함 더보기">⋮</button>
+                                    <div class="myMailMoreMenu">
+                                        <button type="button" data-folder-action="rename" data-folder-id="my2">이름 변경</button>
+                                        <button type="button" data-folder-action="delete" data-folder-id="my2">메일함 삭제</button>
+                                    </div>
+                                </div>
+                                <div class="myMailItem" data-folder-id="my3">
+                                    <a href="/mail/my3.html" class="workbenchAppSubitem is-custom-mail-folder" data-folder-id="my3">나의메일함 3</a>
+                                    <button type="button" class="myMailMoreBtn" data-folder-id="my3" aria-label="메일함 더보기">⋮</button>
+                                    <div class="myMailMoreMenu">
+                                        <button type="button" data-folder-action="rename" data-folder-id="my3">이름 변경</button>
+                                        <button type="button" data-folder-action="delete" data-folder-id="my3">메일함 삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/mail/spam.html" class="workbenchAppSubitem">스팸메일함</a>
+                            <a href="/mail/trash.html" class="workbenchAppSubitem">휴지통</a>
+                            <button type="button" class="workbenchAppSubitem myMailAddBtn">+ 메일함 추가</button>
+                        </div>
+                        <a href="/approval/dashboard.html" class="workbenchAppItem" data-workbench-item="approval" data-workbench-paths="/approval/dashboard.html /approval/drafting.html /approval/pending.html /approval/closed.html /approval/return.html /approval/temp.html /approval/detail.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M17 3c0-.55-.45-1-1-1H8c-.55 0-1 .45-1 1v2.5h10z"></path><path d="M19 3h-1v3.5H6V3H5c-1.1 0-2 .9-2 2v15c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7.29 13.21c-.2.2-.45.29-.71.29s-.51-.1-.71-.29l-3-3L8.7 11.8l2.29 2.29 4.29-4.29 1.41 1.41-5 5Z"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M17 3c0-.55-.45-1-1-1H8c-.55 0-1 .45-1 1v2.5h10z"></path><path d="M19 3h-1v3.5H6V3H5c-1.1 0-2 .9-2 2v15c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7.29 13.21c-.2.2-.45.29-.71.29s-.51-.1-.71-.29l-3-3L8.7 11.8l2.29 2.29 4.29-4.29 1.41 1.41-5 5Z"></path></svg></span>
+                            <span class="workbenchAppLabel">전자결재</span>
+                        </a>
+                        <div class="workbenchAppSubmenu" aria-label="전자결재 서브 메뉴">
+                            <a href="/approval/dashboard.html" class="workbenchAppSubitem">전체문서</a>
+                            <a href="/approval/pending.html" class="workbenchAppSubitem">결재대기</a>
+                            <a href="/approval/closed.html" class="workbenchAppSubitem">결재완료</a>
+                            <a href="/approval/return.html" class="workbenchAppSubitem">반려문서</a>
+                            <a href="/approval/temp.html" class="workbenchAppSubitem">임시저장</a>
+                        </div>
+                        <a href="/calendar/my.html" class="workbenchAppItem" data-workbench-item="calendar" data-workbench-paths="/calendar/my.html /calendar/team.html /calendar/company-wide.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.1 0-2 .9-2 2v1h18V6c0-1.1-.9-2-2-2M3 20c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8H3zm12-8h2v2h-2zm0 4h2v2h-2zm-4-4h2v2h-2zm0 4h2v2h-2zm-4-4h2v2H7zm0 4h2v2H7z"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.1 0-2 .9-2 2v1h18V6c0-1.1-.9-2-2-2M3 20c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8H3zm12-8h2v2h-2zm0 4h2v2h-2zm-4-4h2v2h-2zm0 4h2v2h-2zm-4-4h2v2H7zm0 4h2v2H7z"></path></svg></span>
+                            <span class="workbenchAppLabel">캘린더</span>
+                        </a>
+                        <div class="workbenchAppSubmenu" aria-label="캘린더 서브 메뉴">
+                            <a href="/calendar/my.html" class="workbenchAppSubitem">내 캘린더</a>
+                            <a href="/calendar/team.html" class="workbenchAppSubitem">팀/부서 캘린더</a>
+                            <a href="/calendar/company-wide.html" class="workbenchAppSubitem">전사 일정</a>
+                        </div>
+                        <a href="/board/cloud.html" class="workbenchAppItem" data-workbench-item="cloud" data-workbench-paths="/board/cloud.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M19.62 11.11C19.19 7.12 15.94 4 12 4 8.95 4 6.31 5.88 5.13 8.82 2.77 9.53 1 11.85 1 14.33 1 17.45 3.44 20 6.44 20h12.22c2.39 0 4.33-2.02 4.33-4.5 0-2.14-1.45-3.94-3.38-4.39Z"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M19.62 11.11C19.19 7.12 15.94 4 12 4 8.95 4 6.31 5.88 5.13 8.82 2.77 9.53 1 11.85 1 14.33 1 17.45 3.44 20 6.44 20h12.22c2.39 0 4.33-2.02 4.33-4.5 0-2.14-1.45-3.94-3.38-4.39Z"></path></svg></span>
+                            <span class="workbenchAppLabel">클라우드</span>
+                        </a>
+                        <a href="/board/news.html" class="workbenchAppItem" data-workbench-item="news" data-workbench-paths="/board/news.html /board/notifications.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M18.5 10H22v2h-3.5zm.05-1.17 1.5-1 1.5-1L21 6l-.55-.83-1.5 1-1.5 1L18 8zm0 4.34L18 14l-.55.83 1.5 1 1.5 1L21 16l.55-.83-1.5-1zM15 8.18V4c0-.37-.2-.71-.53-.88-.32-.17-.72-.16-1.03.05L7.69 7h-1.7c-2.21 0-4 1.79-4 4 0 1.52.86 2.82 2.1 3.5l1.94 6.77 1.92-.55-1.64-5.73h1.37l5.75 3.83c.17.11.36.17.55.17.16 0 .32-.04.47-.12.33-.17.53-.51.53-.88v-4.18c1.16-.41 2-1.51 2-2.82s-.84-2.4-2-2.82Z"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M18.5 10H22v2h-3.5zm.05-1.17 1.5-1 1.5-1L21 6l-.55-.83-1.5 1-1.5 1L18 8zm0 4.34L18 14l-.55.83 1.5 1 1.5 1L21 16l.55-.83-1.5-1zM15 8.18V4c0-.37-.2-.71-.53-.88-.32-.17-.72-.16-1.03.05L7.69 7h-1.7c-2.21 0-4 1.79-4 4 0 1.52.86 2.82 2.1 3.5l1.94 6.77 1.92-.55-1.64-5.73h1.37l5.75 3.83c.17.11.36.17.55.17.16 0 .32-.04.47-.12.33-.17.53-.51.53-.88v-4.18c1.16-.41 2-1.51 2-2.82s-.84-2.4-2-2.82Z"></path></svg></span>
+                            <span class="workbenchAppLabel">공지사항</span>
+                        </a>
+                        <a href="/board/resources.html" class="workbenchAppItem" data-workbench-item="resources" data-workbench-paths="/board/resources.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M20 13H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2m-5 5h-2v-2h2zm4 0h-2v-2h2zm1-15H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-5 5h-2V6h2zm4 0h-2V6h2z"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M20 13H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2m-5 5h-2v-2h2zm4 0h-2v-2h2zm1-15H4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-5 5h-2V6h2zm4 0h-2V6h2z"></path></svg></span>
+                            <span class="workbenchAppLabel">리소스 센터</span>
+                        </a>
+                        <a href="/board/teamboard.html" class="workbenchAppItem" data-workbench-item="teamboard" data-workbench-paths="/board/teamboard.html">
+                            <span class="workbenchAppIcon"><svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M19 2H5c-.55 0-1 .45-1 1v4H2v2h2v2H2v2h2v2H2v2h2v4c0 .55.45 1 1 1h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m0 18h-3v-2.5h3zm0-4.5h-3V13h3zm0-4.5h-3V8.5h3zm0-4.5h-3V4h3z"></path></svg><svg class="icon-active" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M19 2H5c-.55 0-1 .45-1 1v4H2v2h2v2H2v2h2v2H2v2h2v4c0 .55.45 1 1 1h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m0 18h-3v-2.5h3zm0-4.5h-3V13h3zm0-4.5h-3V8.5h3zm0-4.5h-3V4h3z"></path></svg></span>
+                            <span class="workbenchAppLabel">팀 보드</span>
+                        </a>
+                    </nav>
+
+    <div class="gnbMenu" style="display:none;">
+        <div class="attendanceMenuGroup">
+            <p><a href="/attendance/commute.html"><span class="menu_ico"></span><span class="menu_txt">출퇴근 현황</span></a></p>
+            <p class="last"><a href="/attendance/absence.html"><span class="menu_ico"></span><span class="menu_txt">부재 일정</span></a></p>
+        </div>
+        <h3 class="mailMenuHeading">메일</h3>
+    </div>
+
+    <div class="side_bottom" style="display:none;">
+        <p><a href="/admin/employees.html"><span class="menu_ico"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="m21.16 7.86-1-1.73a1.997 1.997 0 0 0-2.73-.73l-.53.31c-.58-.46-1.22-.83-1.9-1.11V4c0-1.1-.9-2-2-2h-2c-1.1 0-2 .9-2 2v.6c-.67.28-1.31.66-1.9 1.11l-.53-.31c-.96-.55-2.18-.22-2.73.73l-1 1.73c-.55.96-.22 2.18.73 2.73l.5.29c-.05.37-.08.74-.08 1.11s.03.74.08 1.11l-.5.29c-.96.55-1.28 1.78-.73 2.73l1 1.73c.55.95 1.78 1.28 2.73.73l.53-.31c.58.46 1.22.83 1.9 1.11v.6c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2v-.6a8.7 8.7 0 0 0 1.9-1.11l.53.31c.96.55 2.18.22 2.73-.73l1-1.73c.55-.96.22-2.18-.73-2.73l-.5-.29c.05-.37.08-.74.08-1.11s-.03-.74-.08-1.11l.5-.29c.96-.55 1.28-1.78.73-2.73ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" fill="currentColor"/></svg></span><span class="menu_txt">어드민</span></a></p>
+    </div>
+</div>
+
+<header class="mobileGlobalTop">
+    <div class="mobileGlobalBrand">
+        <span class="mobileGlobalLogo"><img src="/img/app_ico.png" alt=""></span>
+        <strong>Auto One Co., Ltd.</strong>
+    </div>
+    <div class="mobileGlobalTools">
+        <button type="button" class="mobileGlobalNotifyBtn" onclick="if(window.NotificationLayer && typeof window.NotificationLayer.open==='function'){ window.NotificationLayer.open(); }" aria-label="알림 열기">
+            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path></svg>
+            <span class="notificationMenuBadge" hidden>0</span>
+        </button>
+        <button type="button" class="mobileGlobalMenuBtn" onclick="document.body.classList.toggle('mobileSidebarOpen')" aria-label="메뉴 열기">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<nav class="mobileGlobalBottomNav" aria-label="모바일 주요 메뉴">
+    <svg class="mobileGlobalBottomIconLine" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M12.71 2.29a.996.996 0 0 0-1.41 0l-8.01 8A1 1 0 0 0 3 11v9c0 1.1.9 2 2 2h3c.55 0 1-.45 1-1v-7h6v7c0 .55.45 1 1 1h3c1.1 0 2-.9 2-2v-9c0-.27-.11-.52-.29-.71z"></path></svg><svg class="mobileGlobalBottomIconFilled" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M12.71 2.29a.996.996 0 0 0-1.41 0l-8.01 8A1 1 0 0 0 3 11v9c0 1.1.9 2 2 2h3c.55 0 1-.45 1-1v-7h6v7c0 .55.45 1 1 1h3c1.1 0 2-.9 2-2v-9c0-.27-.11-.52-.29-.71z"></path></svg>
+    </a>
+    <svg class="mobileGlobalBottomIconLine" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12c0 2.12.68 4.19 1.93 5.9l-1.75 2.53c-.21.31-.24.7-.06 1.03.17.33.51.54.89.54h9c5.51 0 10-4.49 10-10S17.51 2 12 2M8 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1"></path></svg><svg class="mobileGlobalBottomIconFilled" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12c0 2.12.68 4.19 1.93 5.9l-1.75 2.53c-.21.31-.24.7-.06 1.03.17.33.51.54.89.54h9c5.51 0 10-4.49 10-10S17.51 2 12 2M8 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1"></path></svg>
+    </a>
+    <svg class="mobileGlobalBottomIconLine" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v.25l10 7.5 10-7.5V6c0-1.1-.9-2-2-2"></path><path d="M12 16c-.21 0-.42-.07-.6-.2L2 8.75V18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8.75l-9.4 7.05c-.18.13-.39.2-.6.2"></path></svg><svg class="mobileGlobalBottomIconFilled" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v.25l10 7.5 10-7.5V6c0-1.1-.9-2-2-2"></path><path d="M12 16c-.21 0-.42-.07-.6-.2L2 8.75V18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8.75l-9.4 7.05c-.18.13-.39.2-.6.2"></path></svg>
+    </a>
+    <svg class="mobileGlobalBottomIconLine" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#9c9c9c" viewBox="0 0 24 24"><path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.1 0-2 .9-2 2v1h18V6c0-1.1-.9-2-2-2M3 20c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8H3zm12-8h2v2h-2zm0 4h2v2h-2zm-4-4h2v2h-2zm0 4h2v2h-2zm-4-4h2v2H7zm0 4h2v2H7z"></path></svg><svg class="mobileGlobalBottomIconFilled" xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#2c3a47" viewBox="0 0 24 24"><path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.1 0-2 .9-2 2v1h18V6c0-1.1-.9-2-2-2M3 20c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8H3zm12-8h2v2h-2zm0 4h2v2h-2zm-4-4h2v2h-2zm0 4h2v2h-2zm-4-4h2v2H7zm0 4h2v2H7z"></path></svg>
+    </a>
+    <a href="/more.html" class="mobileGlobalBottomMoreBtn" data-mobile-nav="more" aria-label="더보기">
+        <span class="mobileGlobalBottomIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#1b1b1b" viewBox="0 0 24 24"><path d="M12 10a2 2 0 1 0 0 4 2 2 0 1 0 0-4m6 0a2 2 0 1 0 0 4 2 2 0 1 0 0-4M6 10a2 2 0 1 0 0 4 2 2 0 1 0 0-4"></path></svg>
+        </span>
+        <span>더보기</span>
+    </a>
+</nav>
+
+<div class="myMailModal" style="display:none;">
+    <div class="mymailModalDim"></div>
+    <div class="mymailModalDialog">
+        <div class="mymailModalHead">
+            <strong class="myMailModalTitle">메일함 추가</strong>
+            <button type="button" class="mymailCloseBtn"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>
+        </div>
+        <div class="mymailModalBody">
+            <div class="mymailSingleRow">
+                <div class="mymailSingleLabel">메일함 이름</div>
+                <div class="mymailSingleField">
+                    <input type="text" class="myMailSingleInput" placeholder="메일함 이름 입력">
+                </div>
+            </div>
+            <div class="mymailSingleActions">
+                <button type="button" class="myMailSubmitBtn">저장</button>
+                <button type="button" class="myMailCancelBtn">취소</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="notificationLayerModal" style="display:none;">
+    <div class="notificationLayerDim"></div>
+    <div class="notificationLayerBox">
+        <div class="notificationLayerHead">
+            <h3>알림</h3>
+        </div>
+        <div class="notificationLayerBody">
+            <div class="notificationLayerList"></div>
+        </div>
+        <button type="button" class="notificationLayerClose" aria-label="닫기"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>
+    </div>
+</div>
+
+<div class="notificationDetailModal" style="display:none;">
+    <div class="notificationDetailDim"></div>
+    <div class="notificationDetailBox">
+        <div class="notificationDetailHead">
+            <strong class="notificationDetailTitle">알림 상세</strong>
+            <button type="button" class="notificationDetailClose" aria-label="닫기"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>
+        </div>
+        <div class="notificationDetailBody">
+            <iframe class="notificationDetailFrame" title="알림 상세"></iframe>
+        </div>
+    </div>
+</div>
