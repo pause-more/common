@@ -3288,9 +3288,7 @@ async function handleGetAll(url, env) {
       .concat(filterListForUser(await getList(env, "sent_list"), "sent_list", userEmail))
       .concat(filterListForUser(await getList(env, "my1_list"), "my1_list", userEmail))
       .concat(filterListForUser(await getList(env, "my2_list"), "my2_list", userEmail))
-      .concat(filterListForUser(await getList(env, "my3_list"), "my3_list", userEmail))
-      .concat(filterListForUser(await getList(env, "spam_list"), "spam_list", userEmail))
-      .concat(filterListForUser(await getList(env, "trash_list"), "trash_list", userEmail));
+      .concat(filterListForUser(await getList(env, "my3_list"), "my3_list", userEmail));
     all.sort(function (a, b) { return new Date(b.date).getTime() - new Date(a.date).getTime(); });
 
     return jsonResponse({

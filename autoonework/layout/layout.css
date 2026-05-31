@@ -28,7 +28,7 @@
     --workbench-chrome-content-padding:0 40px;
     --workbench-chrome-container-background:#fff;
     --workbench-chrome-content-background:transparent;
-    --workbench-chrome-content-max-width:1200px;
+    --workbench-chrome-content-max-width:1400px;
     --workbench-chrome-item-height:42px;
     --workbench-chrome-item-gap:12px;
     --workbench-chrome-item-padding:9px 14px;
@@ -180,7 +180,8 @@ body.layoutBootstrapping *::after { transition:none !important; animation:none !
     .mymailModalHead { display:flex; align-items:center; justify-content:space-between; padding:20px 20px 30px; }
     .mymailModalHead strong { font-size:18px; }
     .mymailCloseBtn { display:inline-flex; align-items:center; justify-content:center; cursor:pointer; }
-    .mymailCloseBtn i { font-size:20px; }
+    .mymailCloseBtn svg { display:block; width:22px; height:22px; }
+    .mymailCloseBtn i { font-size:22px; }
     .mymailModalBody { padding:0 20px 20px; }
     .mymailSingleRow { display:flex; align-items:center; gap:0; }
     .mymailSingleLabel { width:80px; flex:0 0 80px; font-size:13px; color:#707070; }
@@ -346,7 +347,7 @@ body.layoutBootstrapping *::after { transition:none !important; animation:none !
     .workbenchAppRail { display:flex; flex:1 1 auto; flex-direction:column; align-items:center; gap:8px; min-height:0; height:auto; padding:10px; box-sizing:border-box; }
     body.workbenchLayoutPage .workbenchAppRail { align-items:stretch; gap:6px; padding:0 0 var(--workbench-chrome-profile-clearance); }
     .workbenchAppItem { position:relative; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:100%; color:var(--workbench-gray-2); transition:background .18s ease, color .18s ease; }
-    body.workbenchLayoutPage .workbenchAppItem { justify-content:flex-start; gap:12px; width:100%; height:42px; padding:9px 14px; border-radius:8px; color:#7f8287; box-sizing:border-box; }
+    body.workbenchLayoutPage .workbenchAppItem { justify-content:flex-start; gap:12px; width:100%; height:42px; padding:9px 48px 9px 14px; border-radius:8px; color:#7f8287; box-sizing:border-box; }
     body.workbenchLayoutPage .workbenchAppItem:hover { background:#f4f5f7; color:#7f8287; box-shadow:none; }
     body.workbenchLayoutPage .workbenchAppItem.is-active { background:#f4f5f7; color:#2c3a47; box-shadow:none; }
     .workbenchAppItem:hover { background:transparent; color:var(--workbench-black); }
@@ -373,6 +374,7 @@ body.layoutBootstrapping *::after { transition:none !important; animation:none !
     .workbenchAppItem.is-active .workbenchAppIcon .icon-active [fill]:not([fill="none"]) { fill:#2c3a47 !important; }
     .workbenchAppItem.is-active .workbenchAppIcon .icon-active [stroke] { stroke:#2c3a47 !important; }
     .chatMenuUnreadBadge { position:absolute; top:7px; right:0px; display:inline-flex; align-items:center; justify-content:center; min-width:17px; height:17px; padding:0 5px; border-radius:999px; background:#0373ef; color:#fff; font-size:10px; line-height:1; font-weight:600; box-sizing:border-box; }
+    body.workbenchLayoutPage .workbenchAppItem .workbenchMenuUnreadBadge { top:50%; right:14px; transform:translateY(-50%); }
     .chatMenuUnreadBadge[hidden] { display:none; }
     .workbenchAppLabel { position:absolute; left:50px; top:50%; display:inline-flex; align-items:center; height:32px; padding:0 10px; border:1px solid var(--workbench-border); border-radius:var(--workbench-radius); background:#fff; box-shadow:0 10px 20px rgba(20,21,26,.08); color:var(--workbench-black); font-size:12px; font-weight:600; line-height:1; white-space:nowrap; opacity:0; pointer-events:none; transform:translateY(-50%); transition:opacity .16s ease; }
     body.workbenchLayoutPage .workbenchAppLabel { position:static; display:block; height:auto; padding:0; border:0; background:transparent; box-shadow:none; color:inherit; font-size:15px; line-height:22px; font-weight:400; opacity:1; pointer-events:auto; transform:none; white-space:nowrap; }
@@ -1063,7 +1065,8 @@ body.layoutBootstrapping *::after { transition:none !important; animation:none !
     .mymailModalHead { display:flex; align-items:center; justify-content:space-between; padding:15px 15px 10px; box-sizing:border-box; }
     .mymailModalHead strong { font-size:16px; line-height:1; }
     .mymailCloseBtn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; padding:0; border:0; background:transparent; color:#1b1b1b; font-size:22px; line-height:1; cursor:pointer; }
-    .mymailCloseBtn i { font-size:18px; line-height:1; }
+    .mymailCloseBtn svg { display:block; width:22px; height:22px; }
+    .mymailCloseBtn i { font-size:22px; line-height:1; }
     .mymailModalBody { padding:20px 15px calc(24px + env(safe-area-inset-bottom)); box-sizing:border-box; }
     .mymailSingleRow { display:block; }
     .mymailSingleLabel { width:auto; margin:0 0 8px; font-size:13px; line-height:1; color:#707070; }

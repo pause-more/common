@@ -77,8 +77,9 @@
     .weekProgressTick--threshold { transform:translateX(-50%); }
     .weekProgressTick--end { right:0; }
 
-    .dashboardMailMeta { display:flex; align-items:center; gap:10px; font-size:14px; color:#7b8494; white-space:nowrap; }
-    .dashboardMailMeta em { color:#0373ef; font-style:normal; }
+    .dashboardMailMeta { display:flex; align-items:center; gap:6px; font-size:14px; color:#7b8494; white-space:nowrap; }
+    .dashboardMailMeta em { color:inherit; font-style:normal; }
+    .dashboardMailMeta .dashboardMailboxUsageValue { color:#0373f0; }
     .dashboardRefreshBtn { height:36px; padding:0 12px; border:1px solid #dfdfdf; border-radius:5px; background:#fff; font-size:13px; font-weight:500; color:#1b1b1b; cursor:pointer; }
     .dashboardMailList { flex:1 1 auto; min-height:0; }
     .dashboardMailItem { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; padding:15px 0; border-bottom:1px solid #e8e8e8; cursor:pointer; }
@@ -98,7 +99,7 @@
     .dashboardApprovalLine--meta { display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin-top:5px; }
     .dashboardApprovalDocNo { display:block; margin-top:10px; font-size:13px; font-weight:500; }
     .dashboardApprovalTitle { display:block; min-width:0; overflow:hidden; font-size:13px; font-weight:normal; text-overflow:ellipsis; white-space:nowrap; }
-    .dashboardApprovalDate { flex:none; font-size:13px; color:#9c9c9c; }
+    .dashboardApprovalDate { flex:none; font-size:13px; }
     .dashboardApprovalDivider { display:block; width:100%; height:1px; margin-top:10px; background:#e8e8e8; }
     .dashboardApprovalItem:last-child { padding-bottom:0; }
     .dashboardApprovalItem:last-child .dashboardApprovalDivider:only-child,
@@ -118,7 +119,8 @@
     .dashboardCalendarCell.is-outside .dashboardCalendarEvent { opacity:1; }
     .dashboardCalendarCell.is-today .dashboardCalendarDay { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:999px; background:#1b1b1b; color:#fff; }
     .dashboardCalendarDateLine { margin-bottom:8px; font-size:12px; color:#333; }
-    .dashboardCalendarCell.is-sunday .dashboardCalendarDateLine { color:#d93a2e; }
+    .dashboardCalendarCell.is-sunday .dashboardCalendarDateLine,
+    .dashboardCalendarCell.is-holiday .dashboardCalendarDateLine { color:#ff5c68; }
     .dashboardCalendarEvents { display:flex; flex-direction:column; gap:4px; }
     .dashboardCalendarEvent { display:block; overflow:hidden; padding:4px 6px; border-radius:3px; background:#0373ef; font-size:10px; line-height:1; font-weight:600; color:#fff; text-overflow:ellipsis; white-space:nowrap; }
     .dashboardCalendarEvent.is-vacation { padding:6px 8px; background:#f5f5f5 !important; color:#505050; font-weight:600; }
@@ -228,7 +230,8 @@
     .dashboardCalendarCell:nth-child(7n) { border-right:0; }
     .dashboardCalendarCell.is-outside .dashboardCalendarDateLine { opacity:.3; }
     .dashboardCalendarCell.is-outside .dashboardCalendarEvent { opacity:1; }
-    .dashboardCalendarCell.is-sunday .dashboardCalendarDateLine { color:#d93a2e; }
+    .dashboardCalendarCell.is-sunday .dashboardCalendarDateLine,
+    .dashboardCalendarCell.is-holiday .dashboardCalendarDateLine { color:#ff5c68; }
     .dashboardCalendarCell.is-today .dashboardCalendarDay { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:999px; background:#1b1b1b; color:#fff; }
     .dashboardCalendarDateLine { margin:0; font-size:11px; color:#333; }
     .dashboardCalendarEvents { display:flex; justify-content:center; min-height:8px; margin-top:4px; }
@@ -290,27 +293,12 @@
 }
 
 @media all and (min-width:721px){
-    body.homePage #contents {
-        width:100%;
-        max-width:none;
-        min-height:100vh;
-        margin:0;
-        padding:0;
-        border-radius:0;
-        box-sizing:border-box;
-    }
-    body.homePage .mainArea {
-        min-height:100vh;
-        padding:64px 0 70px;
-        background:#fff;
-        box-sizing:border-box;
-    }
     body.homePage .dashboardHome {
         display:grid;
-        grid-template-columns:310px minmax(0, 1fr) 370px;
-        gap:24px;
-        width:80%;
-        min-width:1180px;
+        grid-template-columns:minmax(240px, .72fr) minmax(0, 1.45fr) minmax(280px, .95fr);
+        gap:25px;
+        width:100%;
+        min-width:0;
         max-width:100%;
         margin:0 auto;
         padding:0;
@@ -319,12 +307,12 @@
     body.homePage .dashboardHomeColumn {
         display:flex;
         flex-direction:column;
-        gap:24px;
+        gap:25px;
         min-width:0;
     }
     body.homePage .dashboardHome .dashboardCard {
         min-width:0;
-        padding:28px;
+        padding:25px;
         border:1px solid #e8e8e8;
         border-radius:10px;
         background:#fff;
@@ -341,10 +329,10 @@
         height:auto;
         min-height:0;
     }
-    body.homePage .dashboardSectionHead { margin:0 0 26px; align-items:flex-start; }
+    body.homePage .dashboardSectionHead { margin:0 0 30px; align-items:flex-start; }
     body.homePage .dashboardSectionTitle {
         display:block;
-        font-size:23px;
+        font-size:22px;
         line-height:1;
         font-weight:600;
         color:#1b1b1b;
@@ -352,16 +340,16 @@
     }
 
     body.homePage .dashboardGreeting {
-        margin:0 0 28px;
-        font-size:23px;
-        line-height:1.25;
+        margin:0 0 30px;
+        font-size:22px;
+        line-height:1;
         font-weight:600;
         color:#1b1b1b;
     }
-    body.homePage .dashboardGreetingHello { width:auto; height:21px; margin-left:3px; vertical-align:-0.12em; }
+    body.homePage .dashboardGreetingHello { width:auto; height:20px; margin-left:3px; vertical-align:-0.12em; }
     body.homePage .dashboardNowLabel {
         display:block;
-        margin:0 0 14px;
+        margin:0 0 15px;
         color:#1b1b1b;
         font-size:14px;
         line-height:1;
@@ -369,13 +357,13 @@
     }
     body.homePage .dashboardNowLabel span:first-child,
     body.homePage .dashboardNowDivider { display:none; }
-    body.homePage .dashboardAttendanceBox { margin:0 0 26px; }
+    body.homePage .dashboardAttendanceBox { margin:0 0 25px; }
     body.homePage .dashboardAttendanceSummary {
         display:grid;
-        grid-template-columns:minmax(0, 1fr) 28px minmax(0, 1fr);
+        grid-template-columns:minmax(0, 1fr) 25px minmax(0, 1fr);
         align-items:center;
         min-height:70px;
-        padding:0 24px;
+        padding:0 25px;
         border-radius:6px;
         background:#f5f6f8;
         box-sizing:border-box;
@@ -386,10 +374,10 @@
         padding:0;
         text-align:center;
     }
-    body.homePage .dashboardAttendanceMetric span { color:#8c8f96; font-size:12px; line-height:1; font-weight:500; }
+    body.homePage .dashboardAttendanceMetric span { color:#7f8287; font-size:12px; line-height:1; font-weight:500; }
     body.homePage .dashboardAttendanceMetric strong { color:#1b1b1b; font-size:18px; line-height:1; font-weight:600; }
     body.homePage .dashboardAttendanceArrow svg { width:18px; height:18px; fill:#7f8287; }
-    body.homePage .dashboardAttendanceActions { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 0; }
+    body.homePage .dashboardAttendanceActions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:15px 0 0; }
     body.homePage .dashboardActionBtn {
         height:40px;
         border:1px solid #d8d8d8;
@@ -406,25 +394,26 @@
         grid-template-columns:1fr;
         gap:12px;
         margin:0;
-        padding:16px 0 0;
+        padding:15px 0 0;
         border-top:1px solid #e8e8e8;
     }
     body.homePage .dashboardMiniStats div { display:flex; align-items:center; justify-content:space-between; gap:16px; }
     body.homePage .dashboardMiniStats dt,
     body.homePage .dashboardMiniStats dd { margin:0; font-size:13px; line-height:1; font-weight:500; }
-    body.homePage .dashboardMiniStats dt { color:#8a8d93; }
+    body.homePage .dashboardMiniStats dt { color:#9c9c9c; }
     body.homePage .dashboardMiniStats dd { color:#9c9c9c; font-weight:500; }
     body.homePage .dashboardMiniStats dd.has-value { color:#0373f0; }
 
-    body.homePage .dashboardMailMeta { margin-top:8px; color:#707070; font-size:13px; line-height:1; font-weight:500; }
-    body.homePage .dashboardMailMeta em { color:#0373ef; font-style:normal; font-weight:600; }
+    body.homePage .dashboardMailMeta { margin-top:10px; color:#666666; font-size:12px; line-height:1; }
+    body.homePage .dashboardMailMeta em { color:inherit; font-style:normal; }
+    body.homePage .dashboardMailMeta .dashboardMailboxUsageValue { color:#0373f0; }
     body.homePage .dashboardMailList { display:flex; flex-direction:column; min-height:0; }
     body.homePage .dashboardMailItem {
         display:grid;
         grid-template-columns:minmax(0, 1fr);
         align-items:start;
-        gap:14px;
-        padding:22px 0;
+        gap:0;
+        padding:20px 0;
         border-bottom:1px solid #e4e4e4;
         cursor:pointer;
     }
@@ -434,12 +423,12 @@
     body.homePage .dashboardMailSubject {
         display:flex;
         align-items:center;
-        gap:7px;
+        gap:5px;
         overflow:hidden;
         margin:0 0 10px;
         color:#1b1b1b;
-        font-size:14px;
-        line-height:1.25;
+        font-size:15px;
+        line-height:1;
         font-weight:600;
         text-overflow:ellipsis;
         white-space:nowrap;
@@ -455,12 +444,12 @@
         display:block;
         flex:0 0 auto;
         width:auto;
-        height:18px;
+        height:13px;
         max-width:22px;
         object-fit:contain;
     }
     body.homePage .dashboardMailIcon--file {
-        height:18px;
+        height:13px;
         max-width:18px;
         margin-left:1px;
     }
@@ -468,11 +457,11 @@
         display:-webkit-box;
         width:100%;
         max-height:38px;
-        min-height:38px;
+        *min-height:38px;
         margin:0;
         overflow:hidden;
-        color:#1f2933;
-        font-size:13px;
+        color:#333;
+        font-size:14px;
         line-height:1.45;
         font-weight:400;
         white-space:normal;
@@ -482,10 +471,11 @@
     }
     body.homePage .dashboardMailDate {
         justify-self:end;
-        color:#707070;
+        color:#7f8287;
         font-size:13px;
         line-height:1;
         white-space:nowrap;
+        margin-top:15px;
     }
 
     body.homePage .dashboardNoticeList,
@@ -525,25 +515,24 @@
     body.homePage .dashboardApprovalTableHead,
     body.homePage .dashboardApprovalItem {
         display:grid;
-        grid-template-columns:150px 130px minmax(0, 1fr) 56px;
+        grid-template-columns:150px 110px minmax(0, 1fr) 50px;
         align-items:center;
         gap:0;
     }
     body.homePage .dashboardApprovalTableHead {
-        min-height:38px;
-        padding:0 22px;
+        min-height:36px;
+        padding:0 15px;
         border-radius:5px;
-        background:#f4f4f4;
-        color:#555;
-        font-size:11px;
+        background:#f5f5f5;
+        color:#4a4a4a;
+        font-size:12px;
         line-height:1;
-        font-weight:500;
         box-sizing:border-box;
     }
     body.homePage .dashboardApprovalItem {
         width:100%;
         min-height:38px;
-        padding:10px 22px 0;
+        padding:10px 15px 0;
         border:0;
         background:transparent;
         color:#1b1b1b;
@@ -583,27 +572,51 @@
 
     body.homePage .dashboardBirthdayList { display:flex; flex-direction:column; gap:12px; }
     body.homePage .dashboardBirthdayItem {
-        display:grid;
-        grid-template-columns:1fr;
-        gap:8px;
-        min-height:64px;
-        padding:12px;
+        display:flex;
+        align-items:center;
+        gap:10px;
+        *min-height:74px;
+        padding:15px;
         border:1px solid #e8e8e8;
         border-radius:6px;
         box-sizing:border-box;
     }
-    body.homePage .dashboardBirthdayDate,
-    body.homePage .dashboardBirthdayItem em {
-        color:#707070;
-        font-size:12px;
+    body.homePage .dashboardBirthdayAvatar {
+        flex:0 0 42px;
+        width:42px;
+        height:42px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:50%;
+        background:#83c0f9;
+        color:#ffffff;
+        font-size:15px;
+        line-height:1;
+        font-weight:600;
+    }
+    body.homePage .dashboardBirthdayInfo {
+        display:flex;
+        flex-direction:column;
+        gap:7px;
+        min-width:0;
+    }
+    body.homePage .dashboardBirthdayDate {
+        color:#7f8287;
+        font-size:13px;
         line-height:1;
         font-style:normal;
-        font-weight:500;
+    }
+    body.homePage .dashboardBirthdayItem em {
+        color:#4a4a4a;
+        font-size:13px;
+        line-height:1;
+        font-style:normal;
     }
     body.homePage .dashboardBirthdayPerson {
         display:flex;
         align-items:baseline;
-        gap:6px;
+        gap:3px;
         min-width:0;
         overflow:hidden;
         white-space:nowrap;
@@ -611,7 +624,7 @@
     body.homePage .dashboardBirthdayItem strong {
         flex:0 0 auto;
         color:#1b1b1b;
-        font-size:16px;
+        font-size:18px;
         line-height:1;
         font-weight:600;
     }
@@ -658,9 +671,9 @@
         margin:-2px 0 18px;
     }
     body.homePage .dashboardMiniCalendarMonth {
-        min-width:82px;
+        min-width:70px;
         color:#1b1b1b;
-        font-size:23px;
+        font-size:18px;
         line-height:1;
         font-weight:600;
         text-align:center;
@@ -669,10 +682,10 @@
         display:inline-flex;
         align-items:center;
         justify-content:center;
-        width:28px;
-        height:28px;
+        width:22px;
+        height:22px;
         padding:0;
-        border:1px solid #d7d7d7;
+        border:1px solid #dfdfdf;
         border-radius:50%;
         background:#fff;
         color:#8b8f96;
@@ -680,8 +693,8 @@
     }
     body.homePage .dashboardMiniCalendarNav svg {
         display:block;
-        width:16px;
-        height:16px;
+        width:14px;
+        height:14px;
         fill:currentColor;
     }
     body.homePage .dashboardMiniCalendarWeekdays,
@@ -693,13 +706,13 @@
     }
     body.homePage .dashboardMiniCalendarWeekdays {
         margin-bottom:12px;
-        color:#707070;
-        font-size:11px;
+        color:#666;
+        font-size:13px;
         line-height:1;
-        font-weight:600;
         text-align:center;
+        font-weight:500;
     }
-    body.homePage .dashboardMiniCalendarWeekdays span:first-child { color:#ff2d2d; }
+    body.homePage .dashboardMiniCalendarWeekdays span:first-child { color:#ff5c68; }
     body.homePage .dashboardMiniCalendarDay {
         position:relative;
         display:flex;
@@ -715,11 +728,12 @@
         color:#1b1b1b;
         font-size:14px;
         line-height:1;
-        font-weight:500;
+        *font-weight:500;
         cursor:pointer;
     }
-    body.homePage .dashboardMiniCalendarDay.is-sunday { color:#ff2d2d; }
-    body.homePage .dashboardMiniCalendarDay.is-outside { color:#b5b5b5; }
+    body.homePage .dashboardMiniCalendarDay.is-sunday,
+    body.homePage .dashboardMiniCalendarDay.is-holiday { color:#ff5c68; }
+    body.homePage .dashboardMiniCalendarDay.is-outside { color:#c4c4c4; }
     body.homePage .dashboardMiniCalendarDay.is-selected .dashboardMiniCalendarNumber,
     body.homePage .dashboardMiniCalendarDay.is-today .dashboardMiniCalendarNumber {
         display:inline-flex;
@@ -736,6 +750,17 @@
         background:#f0f1f3;
         color:#1b1b1b;
     }
+    body.homePage .dashboardMiniCalendarDay.is-holiday.is-today:not(.is-selected) .dashboardMiniCalendarNumber {
+        color:#ff5c68;
+    }
+    body.homePage .dashboardMiniCalendarDay.is-holiday.is-selected .dashboardMiniCalendarNumber {
+        background:#fff1f1;
+        color:#ff5c68;
+    }
+    body.homePage .dashboardMiniAgenda.is-holiday .dashboardMiniAgendaDate span,
+    body.homePage .dashboardMiniAgenda.is-holiday .dashboardMiniAgendaDate strong {
+        color:#ff5c68;
+    }
     body.homePage .dashboardMiniCalendarDot {
         position:absolute;
         left:50%;
@@ -743,48 +768,47 @@
         width:5px;
         height:5px;
         border-radius:50%;
-        background:#63c94d;
+        background:#0373f0;
         transform:translateX(-50%);
     }
     body.homePage .dashboardMiniAgenda {
         display:grid;
         grid-template-columns:40px minmax(0, 1fr);
-        gap:12px;
-        margin-top:22px;
-        padding-top:18px;
+        gap:15px;
+        margin-top:15px;
+        padding-top:25px;
         border-top:1px solid #e8e8e8;
     }
     body.homePage .dashboardMiniAgendaDate {
         display:flex;
         flex-direction:column;
         align-items:flex-start;
-        gap:6px;
+        gap:5px;
         min-width:0;
     }
     body.homePage .dashboardMiniAgendaDate span {
-        color:#8b8f96;
-        font-size:13px;
+        color:#7f8287;
+        font-size:12px;
         line-height:1;
-        font-weight:600;
     }
     body.homePage .dashboardMiniAgendaDate strong {
         color:#1b1b1b;
-        font-size:25px;
+        font-size:20px;
         line-height:1;
-        font-weight:700;
+        font-weight:600;
     }
     body.homePage .dashboardMiniAgendaDate em {
         display:inline-flex;
         align-items:center;
-        height:22px;
-        padding:0 9px;
-        border-radius:999px;
+        height:20px;
+        padding:0 6px;
+        border-radius:4px;
         background:#333;
         color:#fff;
         font-size:11px;
         line-height:1;
         font-style:normal;
-        font-weight:600;
+        font-weight:500;
     }
     body.homePage .dashboardMiniAgendaList {
         display:flex;
@@ -795,15 +819,15 @@
     body.homePage .dashboardMiniAgendaItem {
         position:relative;
         min-width:0;
-        padding:13px 12px 13px 30px;
-        border-radius:8px;
+        padding:15px 15px 15px 28px;
+        border-radius:6px;
         background:#f5f6f8;
         box-sizing:border-box;
     }
     body.homePage .dashboardMiniAgendaDot {
         position:absolute;
-        top:16px;
-        left:12px;
+        top:18px;
+        left:15px;
         width:9px;
         height:9px;
         border-radius:50%;
@@ -813,8 +837,8 @@
         display:block;
         overflow:hidden;
         color:#1b1b1b;
-        font-size:13px;
-        line-height:1.25;
+        font-size:14px;
+        line-height:1;
         font-weight:600;
         text-overflow:ellipsis;
         white-space:nowrap;
@@ -823,10 +847,9 @@
         display:block;
         overflow:hidden;
         margin-top:8px;
-        color:#8b8f96;
-        font-size:12px;
+        color:#666;
+        font-size:13px;
         line-height:1;
-        font-weight:600;
         text-overflow:ellipsis;
         white-space:nowrap;
     }
@@ -834,10 +857,10 @@
         display:flex;
         align-items:center;
         min-height:64px;
-        padding:0 12px;
-        border-radius:8px;
+        padding:0 15px;
+        border-radius:6px;
         background:#f5f6f8;
-        color:#8b8f96;
+        color:#9c9c9c;
         font-size:12px;
         line-height:1;
         white-space:nowrap;
@@ -850,9 +873,9 @@
         align-items:center;
         justify-content:center;
         min-height:120px;
-        color:#8b8f96;
+        color:#9c9c9c;
         font-size:13px;
-        line-height:1.5;
+        line-height:1;
         text-align:center;
     }
 }

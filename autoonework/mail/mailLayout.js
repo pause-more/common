@@ -34,12 +34,28 @@
 
     function readFolderRecords() {
         try {
-            var parsed = JSON.parse(localStorage.getItem(getStorageKey()) || "[]");
+            var raw = localStorage.getItem(getStorageKey());
+            if (raw === null) return [];
+            var parsed = JSON.parse(raw || "[]");
             if (!Array.isArray(parsed)) return [];
-            return parsed.map(normalizeFolderRecord).filter(Boolean);
+            var records = parsed.map(normalizeFolderRecord).filter(Boolean);
+            if (isDefaultFolderSet(records)) {
+                writeFolders([]);
+                return [];
+            }
+            return records;
         } catch (error) {
             return [];
         }
+    }
+
+    function isDefaultFolderSet(records) {
+        if (!Array.isArray(records) || records.length !== CUSTOM_FOLDER_SLOTS.length) return false;
+        return CUSTOM_FOLDER_SLOTS.every(function (id) {
+            return records.some(function (item) {
+                return item && item.id === id && item.name === getDefaultFolderName(id) && item.deleted !== true;
+            });
+        });
     }
 
     function writeFolders(items) {
@@ -62,9 +78,10 @@
         if (CUSTOM_FOLDER_SLOTS.indexOf(id) < 0) return null;
         var stored = getStoredFolderRecord(id);
         if (stored && stored.deleted) return null;
+        if (!stored) return null;
         return {
             id: id,
-            name: stored && stored.name ? stored.name : getDefaultFolderName(id)
+            name: stored.name || getDefaultFolderName(id)
         };
     }
 
@@ -136,6 +153,22 @@
     }
 
     function renderCustomFolders() {
+        var folders = readFolders();
+        var workbenchList = document.querySelector(".workbenchAppSubmenu .myMailList");
+        if (workbenchList) {
+            workbenchList.innerHTML = folders.map(function (folder) {
+                return ''
+                    + '<div class="myMailItem" data-folder-id="' + folder.id + '">'
+                    + '<a href="/mail/' + folder.id + '.html" class="workbenchAppSubitem is-custom-mail-folder" data-folder-id="' + folder.id + '">' + escapeHtml(folder.name) + '</a>'
+                    + '<button type="button" class="myMailMoreBtn" data-folder-id="' + folder.id + '" aria-label="메일함 더보기">⋮</button>'
+                    + '<div class="myMailMoreMenu">'
+                    + '<button type="button" data-folder-action="rename" data-folder-id="' + folder.id + '">이름 변경</button>'
+                    + '<button type="button" data-folder-action="delete" data-folder-id="' + folder.id + '">메일함 삭제</button>'
+                    + '</div>'
+                    + '</div>';
+            }).join("");
+        }
+
         var list = document.querySelector(".mailSubmenuList");
         if (!list) return;
 
@@ -146,7 +179,6 @@
             node.remove();
         });
 
-        var folders = readFolders();
         if (!folders.length) return;
 
         var sectionTitle = '<p class="mailCustomSectionTitle">내 메일함</p>';
@@ -510,6 +542,64 @@
         });
     }
 
+    function showMailToast(message, options) {
+        var text = String(message || "").trim();
+        if (!text) return;
+        var duration = options && Number(options.duration) > 0 ? Number(options.duration) : 5000;
+        var previous = document.querySelector(".mailToastLayer");
+        if (previous) previous.remove();
+
+        var toast = document.createElement("div");
+        toast.className = "mailToastLayer";
+        toast.setAttribute("role", "status");
+        toast.setAttribute("aria-live", "polite");
+        toast.innerHTML = ''
+            + '<span class="mailToastText"></span>'
+            + '<button type="button" class="mailToastClose" aria-label="알림 닫기"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>';
+        toast.querySelector(".mailToastText").textContent = text;
+        document.body.appendChild(toast);
+
+        var timer = setTimeout(closeToast, duration);
+        toast.querySelector(".mailToastClose").addEventListener("click", function () {
+            clearTimeout(timer);
+            closeToast();
+        });
+
+        function closeToast() {
+            if (!toast || !toast.parentNode) return;
+            toast.classList.add("is-hiding");
+            setTimeout(function () {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 180);
+        }
+    }
+
+    function showTrashMoveToast(count) {
+        showMailToast("메일을 휴지통으로 이동하였습니다.");
+    }
+
+    function showMoveToast(count, folderName) {
+        var amount = Math.max(1, parseInt(count || "1", 10) || 1);
+        var target = String(folderName || "선택한 메일함").trim() || "선택한 메일함";
+        var prefix = amount > 1 ? amount + "개의 메일을 " : "메일을 ";
+        showMailToast(prefix + target + "으로 이동하였습니다.");
+    }
+
+    function queueMailToast(message) {
+        try {
+            sessionStorage.setItem("mailPendingToast", String(message || ""));
+        } catch (error) {}
+    }
+
+    function showPendingMailToast() {
+        try {
+            var message = String(sessionStorage.getItem("mailPendingToast") || "").trim();
+            if (!message) return;
+            sessionStorage.removeItem("mailPendingToast");
+            showMailToast(message);
+        } catch (error) {}
+    }
+
     window.MailCommon = Object.assign({}, window.MailCommon || {}, {
         getInitialPage: getInitialPage,
         getPagedItems: getPagedItems,
@@ -518,7 +608,11 @@
         renderReadStateSlot: renderReadStateSlot,
         renderStarIcon: renderStarIcon,
         updateStarButton: updateStarButton,
-        renderPagination: renderPagination
+        renderPagination: renderPagination,
+        showToast: showMailToast,
+        showTrashMoveToast: showTrashMoveToast,
+        showMoveToast: showMoveToast,
+        queueToast: queueMailToast
     });
 
     function initializeMailLayout() {
@@ -529,6 +623,7 @@
         if (typeof window.syncMailSidebarState === "function") window.syncMailSidebarState();
         ensureComposeFloatingButton();
         ensureMobileMenuToggle();
+        showPendingMailToast();
     }
 
     function escapeHtml(value) {

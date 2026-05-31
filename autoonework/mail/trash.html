@@ -16,11 +16,11 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
-    <link href="../layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
-    <link href="./mail.css?v=20260529-read-icon-stroke2" rel="stylesheet">
-    <script type="module" src="../layout/app.js?v=20260528-profile-settings15"></script>
-    <script type="module" src="./mailLayout.js?v=20260529-read-icon-stroke2"></script>
-    <script type="module" src="./trash.js?v=20260529-read-icon-stroke2"></script>
+    <link href="../layout/app.css?v=20260530-modal-keys1" rel="stylesheet">
+    <link href="./mail.css?v=20260530-modal-keys1" rel="stylesheet">
+    <script type="module" src="../layout/app.js?v=20260530-modal-keys1"></script>
+    <script type="module" src="./mailLayout.js?v=20260530-toast-count1"></script>
+    <script type="module" src="./trash.js?v=20260530-move-toast1"></script>
 </head>
 <body class="mailPageLayout workbenchLayoutPage">
     <div id="wrap">
@@ -45,8 +45,17 @@
                                                     <input type="checkbox" id="allCheck">
                                                     <label for="allCheck"></label>
                                                 </div>
-                                                <button type="button">복원</button>
-                                                <button type="button">삭제</button>
+                                                <div class="moveAction">
+                                                    <button type="button" class="moveBtn">이동<ion-icon name="caret-down-outline"></ion-icon></button>
+                                                    <div class="moveDropdown">
+                                                        <button type="button" data-move-folder="inbox">받은메일함</button>
+                                                        <button type="button" data-move-folder="my1">나의메일함 1</button>
+                                                        <button type="button" data-move-folder="my2">나의메일함 2</button>
+                                                        <button type="button" data-move-folder="my3">나의메일함 3</button>
+                                                        <button type="button" data-move-folder="spam">스팸메일함</button>
+                                                    </div>
+                                                </div>
+                                                <button type="button">완전삭제</button>
                                             </div>
                                             <div class="actionRight">
                                                 <div class="mailSearchBox mailActionSearchBox">

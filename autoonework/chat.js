@@ -504,6 +504,9 @@
 
         try {
             await loadRooms();
+            if (getTotalUnreadRoomCount() > 0 && !getUrlRoomId()) {
+                setActiveTab("rooms");
+            }
             if (state.activeTab === "contacts") {
                 await loadContacts();
                 renderContacts();
@@ -532,7 +535,8 @@
 
     async function loadContacts() {
         var data = await fetchJson(CHAT_API_BASE + "/contacts?userId=" + encodeURIComponent(state.user.id));
-        state.contacts = (Array.isArray(data.items) ? data.items : []).filter(isVisibleChatContact);
+        syncCurrentChatUser(data && data.me);
+        state.contacts = (Array.isArray(data.items) ? data.items : []).map(normalizeChatContact).filter(isVisibleChatContact);
         saveFastCache("contacts", state.contacts);
     }
 
@@ -576,7 +580,7 @@
         }
 
         if (Array.isArray(contacts) && contacts.length) {
-            state.contacts = contacts.filter(isVisibleChatContact);
+            state.contacts = contacts.map(normalizeChatContact).filter(isVisibleChatContact);
             renderContacts();
             rendered = true;
         }
@@ -702,12 +706,16 @@
     }
 
     function syncChatMenuUnreadBadgeFromRooms() {
-        var total = state.rooms.reduce(function (sum, room) {
-            return sum + Math.max(0, Number(room && room.unreadCount || 0));
-        }, 0);
+        var total = getTotalUnreadRoomCount();
         if (window.ChatMenuUnread && typeof window.ChatMenuUnread.set === "function") {
             window.ChatMenuUnread.set(total);
         }
+    }
+
+    function getTotalUnreadRoomCount() {
+        return state.rooms.reduce(function (sum, room) {
+            return sum + Math.max(0, Number(room && room.unreadCount || 0));
+        }, 0);
     }
 
     function renderRooms() {
@@ -794,7 +802,7 @@
 
     function renderContacts() {
         if (!elements.contactList) return;
-        var contacts = state.contacts.filter(matchesContactSearch).sort(compareContactsForDepartmentList);
+        var contacts = getContactsWithSelf().filter(matchesContactSearch).sort(compareContactsForDepartmentList);
         var html = renderSelfProfile();
         if (contacts.length) {
             html += renderDepartmentContactGroups(contacts);
@@ -817,6 +825,14 @@
                 setOwnPresenceStatus(button.getAttribute("data-chat-status"));
             });
         });
+        Array.prototype.slice.call(elements.contactList.querySelectorAll("[data-self-contact]")).forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                state.statusMenuOpen = !state.statusMenuOpen;
+                renderContacts();
+            });
+        });
         Array.prototype.slice.call(elements.contactList.querySelectorAll("[data-contact-id]")).forEach(function (button) {
             button.addEventListener("click", function () {
                 openDirectRoom(button.getAttribute("data-contact-id"));
@@ -832,7 +848,7 @@
             '<button type="button" class="chatSelfProfile" data-self-profile aria-haspopup="true" aria-expanded="' + (state.statusMenuOpen ? "true" : "false") + '">',
             renderContactAvatar(state.user.id || name, name),
             '<span class="chatListMain">',
-            '<span class="chatListTop"><strong class="chatListName">' + escapeHtml(name) + '</strong>' + renderStatusPill(status) + '</span>',
+            '<span class="chatListTop"><strong class="chatListName">' + escapeHtml(name) + '</strong>' + renderSelfBadge() + renderStatusPill(status) + '</span>',
             '</span>',
             '</button>',
             state.statusMenuOpen ? renderStatusMenu(status) : '',
@@ -864,15 +880,20 @@
     }
 
     function renderContactItem(contact) {
-        var status = readPresenceStatus(contact.id);
+        var isSelf = isSelfContact(contact);
+        var status = isSelf ? state.userStatus : readPresenceStatus(contact.id);
         return [
-            '<button type="button" class="chatListItem chatContactItem" data-contact-id="' + escapeHtml(contact.id) + '">',
+            '<button type="button" class="chatListItem chatContactItem' + (isSelf ? ' is-self' : '') + '"' + (isSelf ? ' data-self-contact' : ' data-contact-id="' + escapeHtml(contact.id) + '"') + '>',
             renderContactAvatar(contact.id || contact.name, contact.name || contact.id),
             '<span class="chatListMain">',
-            '<span class="chatListTop"><strong class="chatListName">' + escapeHtml(contact.name || contact.id) + '</strong>' + renderStatusPill(status) + '</span>',
+            '<span class="chatListTop"><strong class="chatListName">' + escapeHtml(contact.name || contact.id) + '</strong>' + (isSelf ? renderSelfBadge() : '') + renderStatusPill(status) + '</span>',
             '</span>',
             '</button>'
         ].join("");
+    }
+
+    function renderSelfBadge() {
+        return '<span class="chatSelfBadge">나</span>';
     }
 
     function renderContactAvatar(key, name) {
@@ -3642,8 +3663,7 @@
     }
 
     function openRoomFromUrl() {
-        var params = new URLSearchParams(location.search);
-        var roomId = params.get("roomId");
+        var roomId = getUrlRoomId();
         if (!roomId) return;
         if (state.urlRoomOpened && state.activeRoom && state.activeRoom.id === roomId) return;
         var room = state.rooms.find(function (item) { return item.id === roomId; });
@@ -3653,6 +3673,15 @@
             return;
         }
         clearUrlRoom();
+    }
+
+    function getUrlRoomId() {
+        try {
+            var params = new URLSearchParams(location.search);
+            return String(params.get("roomId") || "").trim();
+        } catch (error) {
+            return "";
+        }
     }
 
     function updateUrlRoom(roomId) {
@@ -4501,10 +4530,62 @@
     }
 
     function getContactDepartment(contact) {
-        var department = String(contact && contact.department || "").trim();
+        var department = normalizeChatContactDepartment(contact, contact && contact.department || "");
         if (department && department !== "부서 미지정") return department;
         if (isRepresentativeContact(contact)) return "대표";
         return "부서 미지정";
+    }
+
+    function normalizeChatContact(contact) {
+        var item = contact || {};
+        return {
+            id: normalizeId(item.id || item.loginId || ""),
+            name: String(item.name || item.id || "").trim(),
+            role: String(item.role || "").trim(),
+            department: normalizeChatContactDepartment(item, item.department || ""),
+            position: String(item.position || "").trim(),
+            jobGrade: String(item.jobGrade || item.duty || item.responsibility || item.jobTitle || "").trim()
+        };
+    }
+
+    function normalizeChatContactDepartment(contact, department) {
+        var name = String(contact && contact.name || "").trim();
+        var id = normalizeId(contact && contact.id || contact && contact.loginId || "");
+        if (id === "jinzero" || name === "박진영") return "경영지원";
+        return String(department || "").trim();
+    }
+
+    function syncCurrentChatUser(me) {
+        if (!me) return;
+        var normalized = normalizeChatContact(me);
+        if (normalized.id && normalizeId(state.user.id) === normalized.id) {
+            state.user.name = normalized.name || state.user.name;
+            state.user.role = normalized.role || state.user.role;
+            state.user.department = normalized.department || state.user.department;
+        }
+    }
+
+    function getContactsWithSelf() {
+        var selfContact = normalizeChatContact({
+            id: state.user && state.user.id || "",
+            name: state.user && state.user.name || "",
+            role: state.user && state.user.role || "",
+            department: state.user && state.user.department || ""
+        });
+        var byId = {};
+        var list = [];
+        [selfContact].concat(state.contacts || []).forEach(function (contact) {
+            var item = normalizeChatContact(contact);
+            var id = normalizeId(item.id || "");
+            if (!id || byId[id] || !isVisibleChatContact(item)) return;
+            byId[id] = true;
+            list.push(item);
+        });
+        return list;
+    }
+
+    function isSelfContact(contact) {
+        return normalizeId(contact && contact.id || "") === normalizeId(state.user && state.user.id || "");
     }
 
     function isRepresentativeContact(contact) {

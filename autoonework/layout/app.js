@@ -1,4 +1,152 @@
-var LAYOUT_VERSION = "20260528-profile-settings15";
+var LAYOUT_VERSION = "20260530-modal-keys1";
+
+function installGlobalPopupKeyboardShortcuts() {
+    if (window.__groupwarePopupKeyboardShortcutsInstalled) return;
+    window.__groupwarePopupKeyboardShortcutsInstalled = true;
+
+    document.addEventListener("keydown", function (event) {
+        if (!event || event.defaultPrevented || event.isComposing) return;
+        if (event.key !== "Escape" && event.key !== "Enter") return;
+
+        var popup = getTopVisiblePopup();
+        if (!popup) return;
+
+        if (event.key === "Escape") {
+            var closeButton = findPopupCloseButton(popup);
+            if (!closeButton) return;
+            event.preventDefault();
+            event.stopPropagation();
+            closeButton.click();
+            return;
+        }
+
+        if (isEnterTextEditingTarget(event.target)) return;
+        var actionButton = findPopupActionButton(popup);
+        if (!actionButton) return;
+        event.preventDefault();
+        event.stopPropagation();
+        actionButton.click();
+    }, true);
+}
+
+function getTopVisiblePopup() {
+    var selector = [
+        '[role="dialog"]',
+        '.myMailModal',
+        '.calendarModal',
+        '.chatMemberModal',
+        '.chatRoomMembersModal',
+        '.chatPollModal',
+        '.chatClipboardModal',
+        '.chatImageViewerModal',
+        '.chatMessageShareModal',
+        '.notificationLayerModal',
+        '.workbenchProfileLayer',
+        '.approvalDetailModal',
+        '[class*="Modal"]',
+        '[class*="modal"]',
+        '[class*="Popup"]',
+        '[class*="popup"]',
+        '[class*="Layer"]'
+    ].join(',');
+    return Array.prototype.slice.call(document.querySelectorAll(selector))
+        .filter(isVisiblePopupElement)
+        .sort(function (a, b) { return getPopupZIndex(a) - getPopupZIndex(b); })
+        .pop() || null;
+}
+
+function isVisiblePopupElement(element) {
+    if (!element || element.nodeType !== 1) return false;
+    if (element.hidden || element.getAttribute("aria-hidden") === "true") return false;
+    var style = window.getComputedStyle(element);
+    if (!style || style.display === "none" || style.visibility === "hidden" || Number(style.opacity) === 0) return false;
+    var rect = element.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0;
+}
+
+function getPopupZIndex(element) {
+    var current = element;
+    var zIndex = 0;
+    while (current && current.nodeType === 1) {
+        var value = parseInt(window.getComputedStyle(current).zIndex || "0", 10);
+        if (Number.isFinite(value)) zIndex = Math.max(zIndex, value);
+        current = current.parentElement;
+    }
+    return zIndex;
+}
+
+function findPopupCloseButton(popup) {
+    return findFirstEnabledButton(popup, [
+        '[aria-label*="닫기"]',
+        '[aria-label*="취소"]',
+        '[data-modal-close]',
+        '[data-close]',
+        '.mymailCloseBtn',
+        '.calendarModalCloseBtn',
+        '.chatMemberModalClose',
+        '.chatRoomMembersClose',
+        '.chatPollClose',
+        '.chatClipboardCancel',
+        '.chatImageViewerClose',
+        '.approvalDetailClose',
+        '.approvalDetailCancel',
+        '.workbenchProfileCloseBtn',
+        '[class*="Close"]',
+        '[class*="close"]',
+        '[class*="Cancel"]',
+        '[class*="cancel"]'
+    ]);
+}
+
+function findPopupActionButton(popup) {
+    var candidates = Array.prototype.slice.call(popup.querySelectorAll('button, input[type="button"], input[type="submit"]'))
+        .filter(function (button) {
+            return isEnabledPopupButton(button) && !isPopupDismissButton(button);
+        });
+
+    return candidates.find(isPrimaryPopupActionButton) ||
+        candidates.find(function (button) { return button.type === "submit"; }) ||
+        null;
+}
+
+function findFirstEnabledButton(root, selectors) {
+    for (var index = 0; index < selectors.length; index += 1) {
+        var found = Array.prototype.slice.call(root.querySelectorAll(selectors[index])).find(isEnabledPopupButton);
+        if (found) return found;
+    }
+    return null;
+}
+
+function isEnabledPopupButton(button) {
+    if (!button || button.disabled || button.hidden) return false;
+    var style = window.getComputedStyle(button);
+    if (!style || style.display === "none" || style.visibility === "hidden") return false;
+    return true;
+}
+
+function isPopupDismissButton(button) {
+    var text = getPopupButtonText(button);
+    var className = String(button.className || "").toLowerCase();
+    var aria = String(button.getAttribute("aria-label") || "").toLowerCase();
+    return /취소|닫기|삭제|제거|뒤로|이전|cancel|close|delete|remove|back/.test(text + " " + className + " " + aria);
+}
+
+function isPrimaryPopupActionButton(button) {
+    var text = getPopupButtonText(button);
+    var className = String(button.className || "").toLowerCase();
+    var aria = String(button.getAttribute("aria-label") || "").toLowerCase();
+    return /저장|확인|완료|등록|추가|생성|만들기|시작|발송|보내기|submit|save|confirm|ok|done|create|start|send/.test(text + " " + className + " " + aria);
+}
+
+function getPopupButtonText(button) {
+    return String(button && (button.textContent || button.value) || "").trim().toLowerCase();
+}
+
+function isEnterTextEditingTarget(target) {
+    if (!target || target.nodeType !== 1) return false;
+    var tagName = String(target.tagName || "").toLowerCase();
+    return tagName === "textarea" || target.isContentEditable === true;
+}
 
 function markWorkbenchLayoutBootstrapping() {
     if (!document.body || document.body.classList.contains("homePage")) return;
@@ -261,8 +409,10 @@ async function bootstrapLayout() {
 
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
+        installGlobalPopupKeyboardShortcuts();
         bootstrapLayout();
     });
 } else {
+    installGlobalPopupKeyboardShortcuts();
     bootstrapLayout();
 }

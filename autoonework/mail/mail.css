@@ -24,6 +24,36 @@ body.unifiedWorkbench.mailPageLayout .sidebar .mailSubmenuPanel {
     display:none !important;
 }
 
+.mailToastLayer {
+    position:fixed;
+    top:50%;
+    left:50%;
+    z-index:10050;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    width:320px;
+    max-width:calc(100vw - 32px);
+    min-height:46px;
+    padding:0 14px 0 18px;
+    border-radius:24px;
+    background:#2c3a47;
+    color:#fff;
+    box-shadow:0 8px 18px rgba(20,21,26,0.18);
+    box-sizing:border-box;
+    transform:translate(-50%, -50%);
+    animation:mailToastIn .16s ease-out;
+}
+.mailToastLayer.is-hiding { opacity:0; transition:opacity .18s ease; }
+.mailToastText { min-width:0; overflow:visible; font-size:14px; line-height:1.25; font-weight:600; white-space:nowrap; word-break:keep-all; }
+.mailToastClose { display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; width:18px; height:18px; padding:0; border:0; background:transparent; color:#fff; font-size:18px; line-height:1; font-weight:400; cursor:pointer; }
+.mailToastClose svg { display:block; width:18px; height:18px; fill:currentColor; }
+@keyframes mailToastIn {
+    from { opacity:0; transform:translate(-50%, calc(-50% + 8px)); }
+    to { opacity:1; transform:translate(-50%, -50%); }
+}
+
 .ph.ph-arrow-clockwise::before,
 .ph.ph-star::before,
 .ph-fill.ph-star::before,
@@ -421,7 +451,8 @@ body.unifiedWorkbench.mailPageLayout .sidebar .mailSubmenuPanel {
     .mymailModalHead { display:flex; align-items:center; justify-content:space-between; padding:20px 20px 30px; }
     .mymailModalHead strong { font-size:18px; }
     .mymailCloseBtn { display:inline-flex; align-items:center; justify-content:center; cursor:pointer; }
-    .mymailCloseBtn i { font-size:18px; }
+    .mymailCloseBtn svg { display:block; width:22px; height:22px; }
+    .mymailCloseBtn i { font-size:22px; }
     .mymailModalBody { padding:0 20px 20px }
     .mymailSingleRow { display:flex; align-items:center; gap:0; }
     .mymailSingleLabel { width:92px; flex:0 0 92px; font-size:13px; }

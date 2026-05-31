@@ -1,3 +1,5 @@
+import { getKoreanHolidayEventsByDate } from "./holidays.js";
+
 (function () {
     var STORAGE_PREFIX = "calendarEvents";
     var SHARED_API_BASE = getGroupwareApiBase("/api/calendar/shared");
@@ -183,7 +185,8 @@
             var dateKey = formatDateKey(cellDate);
             var isCurrentMonth = dateKey.slice(0, 7) === activeMonthKey;
             var isSunday = cellDate.getDay() === 0;
-            var dayEvents = getEventsByDate(dateKey);
+            var holidayEvents = getKoreanHolidayEventsByDate(dateKey);
+            var dayEvents = getEventsByDate(dateKey).filter(function (item) { return !(item && item.isHoliday); });
 
             cells.push(buildDateCell({
                 dateKey: dateKey,
@@ -191,6 +194,8 @@
                 isCurrentMonth: isCurrentMonth,
                 isToday: dateKey === todayKey,
                 isSunday: isSunday,
+                isHoliday: holidayEvents.length > 0,
+                holidayTitle: holidayEvents.length ? holidayEvents[0].title : "",
                 isSelected: dateKey === state.selectedDate,
                 events: dayEvents
             }));
@@ -207,6 +212,7 @@
         if (!options.isCurrentMonth) classNames.push("is-outside");
         if (options.isToday) classNames.push("is-today");
         if (options.isSunday) classNames.push("is-sunday");
+        if (options.isHoliday) classNames.push("is-holiday");
         if (options.isSelected) classNames.push("is-selected");
 
         options.events.slice(0, 3).forEach(function (item) {
@@ -222,6 +228,7 @@
             '<div class="calendarCellInner">',
             '<div class="calendarDateRow">',
             '<span class="calendarDateNum">' + options.dayLabel + '</span>',
+            options.holidayTitle ? '<span class="calendarHolidayName">' + escapeHtml(options.holidayTitle) + '</span>' : '',
             '</div>',
             '<div class="calendarEvents">' + eventHtml + '</div>',
             '</div>',
@@ -233,11 +240,14 @@
         var color = sanitizeColor(item && item.labelColor);
         var kind = getCalendarEventKind(item);
         var palette = getCalendarEventPalette(color, kind, item);
-        var itemClass = "calendarEventItem calendarEventItem--card calendarEventItem--" + kind;
+        var baseClass = kind === "holiday" ? "calendarHolidayItem" : "calendarEventItem";
+        var itemClass = baseClass + " calendarEventItem--card calendarEventItem--" + kind;
         if (isCompanyWideEvent(item)) itemClass += " calendarEventItem--wide";
         var innerHtml = "";
 
-        if (kind === "birthday") {
+        if (kind === "holiday") {
+            innerHtml = '<span class="calendarEventCardBox"><strong class="calendarEventTitle">' + escapeHtml(item && item.title) + '</strong></span>';
+        } else if (kind === "birthday") {
             innerHtml = '<span class="calendarEventCardBox"><strong class="calendarEventTitle">' + escapeHtml(item && item.title) + '</strong></span>';
         } else if (kind === "vacation") {
             innerHtml = ''
@@ -255,10 +265,15 @@
                 + '</span>';
         }
 
+        if (kind === "holiday") {
+            return '<div class="' + itemClass + '" data-date="' + escapeHtml(dateKey) + '" style="--event-accent:' + escapeHtml(palette.accent) + ';--event-bg:' + escapeHtml(palette.background) + ';">' + innerHtml + '</div>';
+        }
+
         return '<button type="button" class="' + itemClass + '" data-id="' + escapeHtml(item && item.id) + '" data-date="' + escapeHtml(dateKey) + '" style="--event-accent:' + escapeHtml(palette.accent) + ';--event-bg:' + escapeHtml(palette.background) + ';">' + innerHtml + '</button>';
     }
 
     function getCalendarEventKind(item) {
+        if (item && item.isHoliday) return "holiday";
         if (item && item.isBirthday) return "birthday";
         if (isVacationCalendarEvent(item)) return "vacation";
         return item && item.allDay ? "allday" : "timed";
@@ -269,6 +284,7 @@
     }
 
     function getCalendarEventPalette(color, kind, item) {
+        if (kind === "holiday") return { accent: "#d93a2e", background: "#fdeded" };
         if (kind === "birthday") return { accent: BIRTHDAY_LABEL_COLOR, background: BIRTHDAY_EVENT_BACKGROUND };
         if (kind === "vacation") return { accent: "#1b1b1b", background: "#f4f4f4" };
         if (isCompanyWideEvent(item)) return { accent: WIDE_LABEL_COLOR, background: WIDE_EVENT_BACKGROUND };
@@ -636,6 +652,9 @@
     function getEventsByDate(dateKey) {
         return state.events.filter(function (item) {
             return item.startDate <= dateKey && (item.endDate || item.startDate) >= dateKey;
+        }).concat(getKoreanHolidayEventsByDate(dateKey)).sort(function (a, b) {
+            if (!!a.isHoliday !== !!b.isHoliday) return a.isHoliday ? -1 : 1;
+            return String(a.startDate || "").localeCompare(String(b.startDate || "")) || String(a.startTime || "").localeCompare(String(b.startTime || "")) || String(a.title || "").localeCompare(String(b.title || ""), "ko");
         });
     }
 

@@ -1,3 +1,5 @@
+import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
+
 (function () {
     var AUTH_API_BASE = getGroupwareApiBase("/api/auth");
     var ATTENDANCE_API_BASE = getGroupwareApiBase("/api/attendance");
@@ -117,6 +119,7 @@
         elements.miniCalendarGrid = document.querySelector(".dashboardMiniCalendarGrid");
         elements.miniAgendaDate = document.querySelector(".dashboardMiniAgendaDate");
         elements.miniAgendaList = document.querySelector(".dashboardMiniAgendaList");
+        elements.miniAgenda = document.querySelector(".dashboardMiniAgenda");
         elements.calendarGrid = document.querySelector(".dashboardCalendarGrid");
         elements.calendarAgenda = document.querySelector(".dashboardCalendarAgenda");
     }
@@ -550,7 +553,9 @@
 
     function renderVacationValue() {
         if (!elements.vacationValue) return;
-        elements.vacationValue.textContent = formatVacationValue();
+        var value = formatVacationValue();
+        elements.vacationValue.textContent = value;
+        elements.vacationValue.classList.toggle("has-value", value !== "-");
     }
 
     function renderWorkGraph() {
@@ -579,7 +584,9 @@
     function renderInbox() {
         if (elements.mailUnreadCount) elements.mailUnreadCount.textContent = String(state.inboxUnread);
         if (elements.mailTotalCount) elements.mailTotalCount.textContent = String(state.inboxTotal);
-        if (elements.mailboxUsage) elements.mailboxUsage.textContent = formatBytes(estimateMailboxBytes(state.inboxItems));
+        if (elements.mailboxUsage) {
+            elements.mailboxUsage.innerHTML = '<span class="dashboardMailboxUsageValue">' + escapeHtml(formatBytes(estimateMailboxBytes(state.inboxItems))) + '</span> / 500MB';
+        }
         if (!elements.mailList) return;
         if (!state.inboxItems.length) {
             elements.mailList.innerHTML = '<div class="dashboardMailEmpty">표시할 메일이 없습니다.</div>';
@@ -685,8 +692,11 @@
         }
         elements.birthdayList.innerHTML = birthdays.map(function (item) {
             return '<div class="dashboardBirthdayItem">'
-                + '<span class="dashboardBirthdayDate">' + escapeHtml(formatBirthdayDate(item.birthDate)) + '</span>'
-                + '<span class="dashboardBirthdayPerson"><strong>🎉 ' + escapeHtml(item.name || "-") + '</strong><em>' + escapeHtml(formatBirthdayMemberMeta(item)) + '</em></span>'
+                + '<span class="dashboardBirthdayAvatar">' + escapeHtml(getBirthdayInitial(item.name || "-")) + '</span>'
+                + '<span class="dashboardBirthdayInfo">'
+                + '<span class="dashboardBirthdayDate">🎉 ' + escapeHtml(formatBirthdayDate(item.birthDate)) + '</span>'
+                + '<span class="dashboardBirthdayPerson"><strong>' + escapeHtml(item.name || "-") + '</strong><em>' + escapeHtml(formatBirthdayMemberMeta(item)) + '</em></span>'
+                + '</span>'
                 + '</div>';
         }).join("");
         syncBirthdayControls(allBirthdays.length, totalPages);
@@ -772,17 +782,19 @@
             var date = new Date(gridStart.getFullYear(), gridStart.getMonth(), gridStart.getDate() + index);
             var dateKey = formatDateKey(date);
             var isOutside = date.getMonth() !== monthStart.getMonth();
-            var events = getMiniCalendarEventsByDate(dateKey);
+            var events = getMiniCalendarUserEventsByDate(dateKey);
+            var isHoliday = getKoreanHolidayEventsByDate(dateKey).length > 0;
             var className = "dashboardMiniCalendarDay"
                 + (isOutside ? " is-outside" : "")
                 + (date.getDay() === 0 ? " is-sunday" : "")
+                + (isHoliday ? " is-holiday" : "")
                 + (dateKey === todayKey ? " is-today" : "")
                 + (dateKey === state.miniCalendarSelectedDateKey ? " is-selected" : "")
                 + (events.length ? " has-events" : "");
             cells.push(
                 '<button type="button" class="' + className + '" data-date="' + escapeHtml(dateKey) + '">'
                 + '<span class="dashboardMiniCalendarNumber">' + date.getDate() + '</span>'
-                + (events.length ? '<span class="dashboardMiniCalendarDot"></span>' : '')
+                + (events.length ? '<span class="dashboardMiniCalendarDot"' + getMiniCalendarDotStyle(getMiniCalendarDotEvent(events)) + '></span>' : '')
                 + '</button>'
             );
         }
@@ -801,7 +813,9 @@
         var dateKey = state.miniCalendarSelectedDateKey || formatDateKey(new Date());
         var date = parseDateKey(dateKey);
         var todayKey = formatDateKey(new Date());
+        var isHoliday = getKoreanHolidayEventsByDate(dateKey).length > 0;
         var events = getMiniCalendarEventsByDate(dateKey).sort(compareCalendarEventsForDashboard);
+        if (elements.miniAgenda) elements.miniAgenda.classList.toggle("is-holiday", isHoliday);
         elements.miniAgendaDate.innerHTML = ''
             + '<span>' + escapeHtml(getKoreanWeekday(date)) + '</span>'
             + '<strong>' + escapeHtml(String(date.getDate())) + '</strong>'
@@ -812,12 +826,12 @@
     }
 
     function renderMiniAgendaEvent(item) {
-        var timeText = formatCalendarTimeRange(item) || "종일";
+        var metaText = getDashboardCalendarEventMetaText(item);
         return ''
             + '<div class="dashboardMiniAgendaItem">'
             + '<span class="dashboardMiniAgendaDot"' + getMiniCalendarDotStyle(item) + '></span>'
             + '<strong>' + escapeHtml(item && item.title || "제목 없음") + '</strong>'
-            + '<span class="dashboardMiniAgendaMeta">' + escapeHtml(timeText) + (item && item.department ? ' · ' + escapeHtml(item.department) : '') + '</span>'
+            + (metaText ? '<span class="dashboardMiniAgendaMeta">' + escapeHtml(metaText) + '</span>' : '')
             + '</div>';
     }
 
@@ -937,6 +951,10 @@
     }
 
     function getMiniCalendarEventsByDate(dateKey) {
+        return getMiniCalendarUserEventsByDate(dateKey).concat(getKoreanHolidayEventsByDate(dateKey));
+    }
+
+    function getMiniCalendarUserEventsByDate(dateKey) {
         return getHomeMiniCalendarEvents().filter(function (item) {
             return isDateWithinEvent(dateKey, item);
         });
@@ -1021,6 +1039,7 @@
 
     function formatCalendarTimeRange(item) {
         if (item && item.isBirthday) return "";
+        if (isVacationCalendarEvent(item)) return "";
         if (!item || item.allDay) return "종일";
         var startTime = normalizeClockTime(item.startTime);
         var endTime = normalizeClockTime(item.endTime);
@@ -1073,12 +1092,7 @@
 
     function formatBirthdayMemberMeta(item) {
         var department = normalizeDepartment(item && item.department || "");
-        var position = String(item && item.position || "").trim();
-        var jobGrade = String(item && item.jobGrade || "").trim();
-        var roleText = "";
-        if (position && jobGrade) roleText = position + "(" + jobGrade + ")";
-        else roleText = position || jobGrade;
-        return [department, roleText].filter(Boolean).join(" · ") || "-";
+        return department || "-";
     }
 
     function buildBirthdayEventsForDashboard() {
@@ -1152,13 +1166,26 @@
     }
 
     function renderDashboardAgendaEvent(item) {
-        var timeText = formatCalendarTimeRange(item) || "시간 미정";
+        var timeText = getDashboardCalendarEventTimeText(item);
         return ''
             + '<div class="dashboardAgendaEvent">'
             + '<span class="dashboardAgendaEventBar"' + getDashboardCalendarEventStyle(item) + '></span>'
-            + '<span class="dashboardAgendaEventTime">' + escapeHtml(timeText) + '</span>'
+            + (timeText ? '<span class="dashboardAgendaEventTime">' + escapeHtml(timeText) + '</span>' : '')
             + '<span class="dashboardAgendaEventTitle">' + escapeHtml(item.title || "제목 없음") + '</span>'
             + '</div>';
+    }
+
+    function getDashboardCalendarEventTimeText(item) {
+        if (isVacationCalendarEvent(item)) return "";
+        return formatCalendarTimeRange(item) || "시간 미정";
+    }
+
+    function getDashboardCalendarEventMetaText(item) {
+        if (item && item.isHoliday) return "공휴일";
+        var parts = [];
+        var timeText = getDashboardCalendarEventTimeText(item);
+        if (timeText) parts.push(timeText);
+        return parts.join(" · ");
     }
 
     function buildDashboardTodaySummary(todayKey) {
@@ -1208,11 +1235,16 @@
     }
 
     function getMiniCalendarDotStyle(item) {
+        if (item && item.isHoliday) return ' style="background:#ff5c68;"';
         if (item && item.isBirthday) return ' style="background:#63c94d;"';
         if (item && item.calendarScope === "wide") return ' style="background:#0373ef;"';
         var color = normalizeDashboardCalendarLabelColor(item && item.labelColor);
         var dotColor = color === DEFAULT_CALENDAR_LABEL_COLOR ? "#63c94d" : color;
         return ' style="background:' + escapeHtml(dotColor) + ';"';
+    }
+
+    function getMiniCalendarDotEvent(events) {
+        return (events || []).slice().sort(compareCalendarEventsForDashboard)[0] || null;
     }
 
     function getDashboardCalendarPalette(color) {
@@ -1664,7 +1696,13 @@
         if (!digits) return "-";
         var year = new Date().getFullYear();
         var date = new Date(year, Number(digits.slice(4, 6)) - 1, Number(digits.slice(6, 8)));
-        return year + ". " + pad(date.getMonth() + 1) + ". " + pad(date.getDate()) + ". " + getKoreanWeekday(date) + "요일";
+        return pad(date.getMonth() + 1) + "/" + pad(date.getDate()) + "(" + getKoreanWeekday(date) + ")";
+    }
+
+    function getBirthdayInitial(name) {
+        var nameChars = Array.from(String(name || "").replace(/\s+/g, ""));
+        if (!nameChars.length) return "나";
+        return nameChars[Math.floor(nameChars.length / 2)] || "나";
     }
 
     function formatVacationValue() {

@@ -200,7 +200,7 @@ function buildPrintDocumentHtml(data, options) {
   var autoPrint = !options || options.autoPrint !== false;
   var baseHref = escapeHtml(getMailAssetBaseOrigin() || location.origin || "");
   var script = autoPrint ? '<script>window.addEventListener("load", function () { setTimeout(function () { window.print(); setTimeout(function () { window.close(); }, 200); }, 120); });<\/script>' : "";
-  return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><base href="' + baseHref + '"><title>' + escapeHtml(data.subject) + '</title><style>body { margin:0; background:#fff; color:#1b1b1b; font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif; } .printMail { max-width:900px; margin:0 auto; padding:32px 28px 40px; box-sizing:border-box; } .printHead { border-bottom:1px solid #e5e7eb; padding-bottom:20px; margin-bottom:24px; } .printSubject { margin:0 0 14px; font-size:28px; line-height:1.35; font-weight:700; word-break:keep-all; } .printDate { margin:0 0 18px; font-size:13px; color:#666; } .printMeta { margin:0; } .printMetaRow { display:flex; gap:16px; margin:0 0 10px; font-size:14px; line-height:1.6; } .printMetaRow dt { width:72px; flex:0 0 72px; font-weight:700; } .printMetaRow dd { margin:0; flex:1; word-break:break-all; } .printAttachWrap { margin:0 0 24px; padding:18px 20px; border:1px solid #e5e7eb; border-radius:8px; } .printAttachWrap h4 { margin:0 0 12px; font-size:16px; } .printAttachList { margin:0; padding-left:18px; } .printAttachList li { margin:0 0 8px; font-size:14px; line-height:1.6; } .printAttachList li:last-child { margin-bottom:0; } .printAttachSize { color:#666; font-size:13px; } .printBody { font-size:14px; line-height:1.8; word-break:break-word; } .printBody img { max-width:100%; height:auto; } .printBody table { max-width:100% !important; width:auto !important; } @page { margin:16mm; }</style></head><body><div class="printMail"><div class="printHead"><h1 class="printSubject">' + escapeHtml(data.subject) + '</h1><p class="printDate">' + escapeHtml(data.date) + '</p><dl class="printMeta"><div class="printMetaRow"><dt>보낸사람</dt><dd>' + escapeHtml(data.sender) + '</dd></div><div class="printMetaRow"><dt>받는사람</dt><dd>' + escapeHtml(data.receiver) + '</dd></div></dl></div>' + data.attachmentHtml + '<div class="printBody">' + normalizeMailHtmlAssets(data.bodyHtml, getMailAssetBaseOrigin()) + '</div></div>' + script + '</body></html>';
+  return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><base href="' + baseHref + '"><title>' + escapeHtml(data.subject) + '</title><style>body { margin:0; background:#fff; color:#1b1b1b; font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif; } .printMail { max-width:900px; margin:0 auto; padding:32px 28px 40px; box-sizing:border-box; } .printHead { border-bottom:1px solid #e5e7eb; padding-bottom:20px; margin-bottom:24px; } .printSubject { margin:0 0 14px; font-size:28px; line-height:1.35; font-weight:600; word-break:keep-all; } .printDate { margin:0 0 18px; font-size:13px; color:#666; } .printMeta { margin:0; } .printMetaRow { display:flex; gap:16px; margin:0 0 10px; font-size:14px; line-height:1.6; } .printMetaRow dt { width:72px; flex:0 0 72px; font-weight:600; } .printMetaRow dd { margin:0; flex:1; word-break:break-all; } .printAttachWrap { margin:0 0 24px; padding:18px 20px; border:1px solid #e5e7eb; border-radius:8px; } .printAttachWrap h4 { margin:0 0 12px; font-size:16px; } .printAttachList { margin:0; padding-left:18px; } .printAttachList li { margin:0 0 8px; font-size:14px; line-height:1.6; } .printAttachList li:last-child { margin-bottom:0; } .printAttachSize { color:#666; font-size:13px; } .printBody { font-size:14px; line-height:1.8; word-break:break-word; } .printBody img { max-width:100%; height:auto; } .printBody table { max-width:100% !important; width:auto !important; } @page { margin:16mm; }</style></head><body><div class="printMail"><div class="printHead"><h1 class="printSubject">' + escapeHtml(data.subject) + '</h1><p class="printDate">' + escapeHtml(data.date) + '</p><dl class="printMeta"><div class="printMetaRow"><dt>보낸사람</dt><dd>' + escapeHtml(data.sender) + '</dd></div><div class="printMetaRow"><dt>받는사람</dt><dd>' + escapeHtml(data.receiver) + '</dd></div></dl></div>' + data.attachmentHtml + '<div class="printBody">' + normalizeMailHtmlAssets(data.bodyHtml, getMailAssetBaseOrigin()) + '</div></div>' + script + '</body></html>';
 }
 
 function updateReadMode(folder) {
@@ -306,7 +306,7 @@ function injectAttachmentStyles() {
   style.textContent = ""
     + ".readAttachments{margin-top:28px;padding-top:28px;border-top:1px solid #e5e5e5;}"
     + ".readAttachHeader{display:flex;align-items:center;gap:16px;margin-bottom:18px;}"
-    + ".attachHeaderTitle{font-size:16px;font-weight:700;color:#1b1b1b;}"
+    + ".attachHeaderTitle{font-size:16px;font-weight:600;color:#1b1b1b;}"
     + ".attachAllDownloadBtn{border:0;background:none;color:#5978a8;font-size:14px;font-weight:500;cursor:pointer;padding:0;}"
     + ".attachList{display:flex;flex-direction:column;gap:18px;margin:0;padding:0;list-style:none;}"
     + ".attachItem{display:flex;align-items:center;}"
@@ -688,7 +688,7 @@ function moveMailToTrash() {
   })
   .then(function (data) {
     if (data.success) {
-      alert("휴지통으로 이동되었습니다.");
+      showTrashMoveToast(1);
       goBackToList();
     } else {
       alert(data.message || "삭제 실패");
@@ -698,6 +698,20 @@ function moveMailToTrash() {
     console.error(err);
     alert("오류 발생");
   });
+}
+
+function showTrashMoveToast(count) {
+  var amount = Math.max(1, parseInt(count || "1", 10) || 1);
+  var message = amount + "개의 메일을 휴지통으로 이동하였습니다.";
+  if (window.MailCommon && typeof window.MailCommon.queueToast === "function") {
+    window.MailCommon.queueToast(message);
+    return;
+  }
+  if (window.MailCommon && typeof window.MailCommon.showTrashMoveToast === "function") {
+    window.MailCommon.showTrashMoveToast(count);
+    return;
+  }
+  alert("휴지통으로 이동되었습니다.");
 }
 
 function deleteMailForever() {

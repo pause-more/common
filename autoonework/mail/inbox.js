@@ -304,7 +304,7 @@
         errorMessage: "휴지통 이동 실패"
       });
 
-      alert("메일을 휴지통으로 이동하였습니다.");
+      showTrashMoveToast(selectedIds.length);
       elements.allCheck.checked = false;
       loadInbox();
 
@@ -312,6 +312,22 @@
       console.error(error);
       alert("오류 발생");
     }
+  }
+
+  function showTrashMoveToast(count) {
+    if (window.MailCommon && typeof window.MailCommon.showTrashMoveToast === "function") {
+      window.MailCommon.showTrashMoveToast(count);
+      return;
+    }
+    alert("메일을 휴지통으로 이동하였습니다.");
+  }
+
+  function showMoveToast(count, folderName) {
+    if (window.MailCommon && typeof window.MailCommon.showMoveToast === "function") {
+      window.MailCommon.showMoveToast(count, folderName);
+      return;
+    }
+    alert("메일을 " + folderName + "으로 이동하였습니다.");
   }
 
   async function toggleSelectedMailsReadState() {
@@ -363,7 +379,7 @@
         errorMessage: "이동 실패"
       });
 
-      alert("메일을 " + getMoveFolderLabel(toFolder) + "으로 이동하였습니다.");
+      showMoveToast(selectedIds.length, getMoveFolderLabel(toFolder));
       loadInbox();
 
     } catch (error) {

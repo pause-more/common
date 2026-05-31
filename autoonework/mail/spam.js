@@ -227,12 +227,20 @@
             } else {
                 await post("/move", { ids: ids, fromFolder: "spam", toFolder: targetFolder });
             }
-            alert("메일을 " + getMoveFolderLabel(targetFolder) + "으로 이동하였습니다.");
+            showMoveToast(ids.length, getMoveFolderLabel(targetFolder));
             loadSpamMails();
         } catch (error) {
             console.error(error);
             alert("이동 중 오류가 발생했습니다.");
         }
+    }
+
+    function showMoveToast(count, folderName) {
+        if (window.MailCommon && typeof window.MailCommon.showMoveToast === "function") {
+            window.MailCommon.showMoveToast(count, folderName);
+            return;
+        }
+        alert("메일을 " + folderName + "으로 이동하였습니다.");
     }
 
     function bindMoveDropdownEvents() {

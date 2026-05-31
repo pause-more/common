@@ -16,8 +16,11 @@
     listWrap: null,
     searchInput: null,
     allCheck: null,
-    restoreBtn: null,
     deleteBtn: null,
+    moveAction: null,
+    moveBtn: null,
+    moveDropdown: null,
+    moveItems: [],
     statusText: null,
     statusCount: null,
     pagination: null
@@ -34,11 +37,15 @@
     elements.listWrap = document.querySelector(".mailListWrap");
     elements.searchInput = document.querySelector(".mailActionSearchBox input[type='text']");
     elements.allCheck = document.getElementById("allCheck");
-    elements.restoreBtn = findActionButton("복원");
     elements.deleteBtn = findActionButton("삭제");
+    elements.moveAction = document.querySelector(".moveAction");
+    elements.moveBtn = document.querySelector(".moveBtn");
+    elements.moveDropdown = document.querySelector(".moveDropdown");
+    elements.moveItems = Array.prototype.slice.call(document.querySelectorAll(".moveDropdown button"));
     elements.statusText = document.querySelector(".mailStatus span");
     elements.statusCount = document.querySelector(".mailStatus em");
     elements.pagination = document.querySelector(".mailPagination");
+    syncMoveDropdownFolders();
   }
 
   function bindEvents() {
@@ -61,17 +68,13 @@
       });
     }
 
-    if (elements.restoreBtn) {
-      elements.restoreBtn.addEventListener("click", function () {
-        restoreSelectedMails();
-      });
-    }
-
     if (elements.deleteBtn) {
       elements.deleteBtn.addEventListener("click", function () {
         deleteSelectedMailsForever();
       });
     }
+
+    bindMoveDropdownEvents();
   }
 
   async function loadTrashMails() {
@@ -257,29 +260,97 @@
     }
   }
 
-  async function restoreSelectedMails() {
+  async function moveSelectedMails(targetFolder) {
     var ids = getSelectedIds();
 
     if (!ids.length) {
-      alert("복원할 메일을 선택해 주세요.");
+      alert("이동할 메일을 선택해 주세요.");
       return;
     }
 
     try {
-      await API.post(API_BASE + "/restore", {
+      await API.post(API_BASE + "/move", {
           ids: ids,
-          userEmail: getCurrentUserEmail()
+          fromFolder: "trash",
+          toFolder: targetFolder
         }, {
-          errorMessage: "복원 실패"
+          errorMessage: "이동 실패"
       });
 
-      alert("메일이 복원되었습니다.");
+      showMoveToast(ids.length, getMoveFolderLabel(targetFolder));
+      if (elements.allCheck) elements.allCheck.checked = false;
       loadTrashMails();
 
     } catch (error) {
       console.error(error);
-      alert("복원 중 오류가 발생했습니다.");
+      alert("이동 중 오류가 발생했습니다.");
     }
+  }
+
+  function showMoveToast(count, folderName) {
+    if (window.MailCommon && typeof window.MailCommon.showMoveToast === "function") {
+      window.MailCommon.showMoveToast(count, folderName);
+      return;
+    }
+    alert("메일을 " + folderName + "으로 이동하였습니다.");
+  }
+
+  function bindMoveDropdownEvents() {
+    if (elements.moveBtn && elements.moveAction && elements.moveDropdown) {
+      if (window.MailCommon && typeof window.MailCommon.updateMoveButtonIcon === "function") {
+        window.MailCommon.updateMoveButtonIcon(elements.moveAction, elements.moveBtn);
+      }
+
+      elements.moveBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        var isOpen = elements.moveAction.classList.contains("is-open");
+        elements.moveAction.classList.remove("is-open");
+
+        if (!isOpen) {
+          elements.moveAction.classList.add("is-open");
+          elements.moveDropdown.style.left = "";
+          elements.moveDropdown.style.top = "";
+        }
+
+        if (window.MailCommon && typeof window.MailCommon.updateMoveButtonIcon === "function") {
+          window.MailCommon.updateMoveButtonIcon(elements.moveAction, elements.moveBtn);
+        }
+      });
+    }
+
+    elements.moveItems.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var folder = button.getAttribute("data-move-folder") || "";
+        if (elements.moveAction) elements.moveAction.classList.remove("is-open");
+        if (window.MailCommon && typeof window.MailCommon.updateMoveButtonIcon === "function") {
+          window.MailCommon.updateMoveButtonIcon(elements.moveAction, elements.moveBtn);
+        }
+        moveSelectedMails(folder);
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (elements.moveAction && !elements.moveAction.contains(event.target) && elements.moveDropdown && !elements.moveDropdown.contains(event.target)) {
+        elements.moveAction.classList.remove("is-open");
+        if (window.MailCommon && typeof window.MailCommon.updateMoveButtonIcon === "function") {
+          window.MailCommon.updateMoveButtonIcon(elements.moveAction, elements.moveBtn);
+        }
+      }
+    });
+  }
+
+  function syncMoveDropdownFolders() {
+    elements.moveItems.forEach(function (button) {
+      var folderId = String(button.getAttribute("data-move-folder") || "").trim();
+      if (folderId !== "my1" && folderId !== "my2" && folderId !== "my3") return;
+      var folder = window.MyMailFolderStore && typeof window.MyMailFolderStore.getFolderById === "function"
+        ? window.MyMailFolderStore.getFolderById(folderId)
+        : null;
+      button.hidden = !folder;
+      if (folder && folder.name) button.textContent = folder.name;
+    });
   }
 
   async function deleteSelectedMailsForever() {
@@ -366,6 +437,22 @@
     if (elements.statusText) {
       elements.statusText.innerHTML = '안읽음 <em>' + trashState.total + '</em> / ' + trashState.total;
     }
+  }
+
+  function getMoveFolderLabel(folderId) {
+    if (folderId === "inbox") return "받은메일함";
+    if (folderId === "sent") return "보낸메일함";
+    if (folderId === "draft") return "임시보관함";
+    if (folderId === "trash") return "휴지통";
+    if (folderId === "spam") return "스팸메일함";
+    if ((folderId === "my1" || folderId === "my2" || folderId === "my3") && window.MyMailFolderStore && typeof window.MyMailFolderStore.getFolderById === "function") {
+      var folder = window.MyMailFolderStore.getFolderById(folderId);
+      if (folder && folder.name) return String(folder.name);
+    }
+    if (folderId === "my1") return "메일함 1";
+    if (folderId === "my2") return "메일함 2";
+    if (folderId === "my3") return "메일함 3";
+    return "선택한 메일함";
   }
 
   function renderPagination() {

@@ -328,13 +328,29 @@
         ids: selected.map(function (mail) { return mail.id; }),
         folder: "sent"
       });
-      alert("메일을 휴지통으로 이동하였습니다.");
+      showTrashMoveToast(selected.length);
       if (elements.allCheck) elements.allCheck.checked = false;
       loadSentList();
     } catch (error) {
       console.error(error);
       alert("삭제 중 오류가 발생했습니다.");
     }
+  }
+
+  function showTrashMoveToast(count) {
+    if (window.MailCommon && typeof window.MailCommon.showTrashMoveToast === "function") {
+      window.MailCommon.showTrashMoveToast(count);
+      return;
+    }
+    alert("메일을 휴지통으로 이동하였습니다.");
+  }
+
+  function showMoveToast(count, folderName) {
+    if (window.MailCommon && typeof window.MailCommon.showMoveToast === "function") {
+      window.MailCommon.showMoveToast(count, folderName);
+      return;
+    }
+    alert("메일을 " + folderName + "으로 이동하였습니다.");
   }
 
   async function moveSelectedMails(toFolder) {
@@ -350,7 +366,7 @@
         fromFolder: "sent",
         toFolder: toFolder
       });
-      alert("메일을 " + getMoveFolderLabel(toFolder) + "으로 이동하였습니다.");
+      showMoveToast(selected.length, getMoveFolderLabel(toFolder));
       if (elements.allCheck) elements.allCheck.checked = false;
       loadSentList();
     } catch (error) {

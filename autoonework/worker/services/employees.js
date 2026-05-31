@@ -116,7 +116,7 @@ async function ensureEmployeeSeedUncached(env) {
 
   const seeded = [
     await buildServerEmployee({ id: "admin", name: "관리자", password: "1234", role: "admin", isTempPassword: false, birthDate: "", hireDate: "", department: "", employeeNumber: "260000" }, env),
-    await buildServerEmployee({ id: "jinzero", name: "박진영", password: "1234", role: "staff", isTempPassword: false, birthDate: "", hireDate: "", department: "영업팀", employeeNumber: "260002" }, env)
+    await buildServerEmployee({ id: "jinzero", name: "박진영", password: "1234", role: "staff", isTempPassword: false, birthDate: "", hireDate: "", department: "경영지원", employeeNumber: "260002" }, env)
   ];
 
   await setEmployeeList(env, seeded);
@@ -126,13 +126,14 @@ async function ensureEmployeeSeedUncached(env) {
 }
 
 export function sanitizeEmployee(employee) {
+  const department = normalizeEmployeeDepartmentForResponse(employee);
   return {
     id: employee.id,
     name: employee.name,
     email: employee.email,
     birthDate: employee.birthDate || "",
     hireDate: employee.hireDate || "",
-    department: employee.department || "",
+    department: department,
     position: employee.position || "",
     jobGrade: employee.jobGrade || "",
     mobilePhone: employee.mobilePhone || "",
@@ -146,6 +147,13 @@ export function sanitizeEmployee(employee) {
     createdAt: employee.createdAt || "",
     updatedAt: employee.updatedAt || ""
   };
+}
+
+function normalizeEmployeeDepartmentForResponse(employee) {
+  const id = normalizeLoginId(employee && employee.id || "");
+  const name = String(employee && employee.name || "").trim();
+  if (id === "jinzero" || name === "박진영") return "경영지원";
+  return employee && employee.department || "";
 }
 
 export function normalizeEmployeeText(value) {

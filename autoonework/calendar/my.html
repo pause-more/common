@@ -15,12 +15,12 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
-    <link href="../layout/app.css?v=20260528-profile-settings15" rel="stylesheet">
-    <link href="./calendar.css?v=20260522-slide1" rel="stylesheet">
+    <link href="../layout/app.css?v=20260530-modal-keys1" rel="stylesheet">
+    <link href="./calendar.css?v=20260530-header1" rel="stylesheet">
     <link href="./calendarLayout.css?v=20260522-slide1" rel="stylesheet">
-    <script type="module" src="../layout/app.js?v=20260528-profile-settings15"></script>
-    <script type="module" src="./calendarLayout.js?v=20260522-sidebar1"></script>
-    <script type="module" src="./mycalendar.js?v=20260519-1"></script>
+    <script type="module" src="../layout/app.js?v=20260530-modal-keys1"></script>
+    <script type="module" src="./calendarLayout.js?v=20260530-dept-title1"></script>
+    <script type="module" src="./mycalendar.js?v=20260530-holiday-inline1"></script>
 </head>
 <body class="calendarPageLayout workbenchLayoutPage">
     <div id="wrap">
@@ -46,7 +46,7 @@
                                                 <button type="button" class="calendarNavBtn calendarNextBtn" aria-label="다음 달"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1b1b1b" viewBox="0 0 24 24"><path d="m9.71 17.71 5.7-5.71-5.7-5.71-1.42 1.42 4.3 4.29-4.3 4.29z"></path></svg></button>
                                                 <select class="calendarPageMoveSelect" aria-label="캘린더 이동">
                                                     <option value="my.html" selected>내 캘린더</option>
-                                                    <option value="team.html">팀/부서 캘린더</option>
+                                                    <option value="team.html">부서 캘린더</option>
                                                     <option value="company-wide.html">전사 일정</option>
                                                 </select>
                                             </div>
@@ -201,7 +201,7 @@
                                     <label for="calendarVisibility" class="calendarSectionLabel"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#1b1b1b" viewBox="0 0 24 24"><path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2M5 20V8h14V6v14z"></path></svg></label>
                                     <select id="calendarVisibility" class="calendarAlertInput calendarVisibilitySelect">
                                         <option value="private">내 캘린더</option>
-                                        <option value="team">팀/부서 캘린더</option>
+                                        <option value="team">부서 캘린더</option>
                                     </select>
                                 </div>
                                 <div class="calendarModalActions">

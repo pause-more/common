@@ -72,6 +72,10 @@
                 errorMessage: "전체메일 조회 실패"
             });
             allState.mails = (payload.items || [])
+                .filter(function (item) {
+                    var folder = String(item && item.folder || "").trim().toLowerCase();
+                    return folder !== "trash" && folder !== "spam";
+                })
                 .map(function (item) {
                     return {
                         id: item.id,
@@ -187,7 +191,7 @@
         try {
             var grouped = groupByFolder(selected);
             for (var folder in grouped) await post("/trash", { ids: grouped[folder], folder: folder });
-            alert("메일을 휴지통으로 이동하였습니다.");
+            showTrashMoveToast(selected.length);
             if (elements.allCheck) elements.allCheck.checked = false;
             loadAllMails();
         } catch (error) { console.error(error); alert("삭제 중 오류가 발생했습니다."); }
@@ -216,6 +220,22 @@
         location.href = "/mail/read.html?id=" + encodeURIComponent(mail.id) + "&folder=" + encodeURIComponent(mail.folder);
     }
 
+    function showTrashMoveToast(count) {
+        if (window.MailCommon && typeof window.MailCommon.showTrashMoveToast === "function") {
+            window.MailCommon.showTrashMoveToast(count);
+            return;
+        }
+        alert("메일을 휴지통으로 이동하였습니다.");
+    }
+
+    function showMoveToast(count, folderName) {
+        if (window.MailCommon && typeof window.MailCommon.showMoveToast === "function") {
+            window.MailCommon.showMoveToast(count, folderName);
+            return;
+        }
+        alert("메일을 " + folderName + "으로 이동하였습니다.");
+    }
+
     async function moveSelectedMails(toFolder) {
         var selected = getSelectedMails();
         if (!selected.length) { alert("이동할 메일을 선택해 주세요."); return; }
@@ -227,7 +247,7 @@
                 else if (toFolder === "spam") await post("/spam", { ids: ids, fromFolder: fromFolder });
                 else await post("/move", { ids: ids, fromFolder: fromFolder, toFolder: toFolder });
             }
-            alert("메일을 " + getMoveFolderLabel(toFolder) + "으로 이동하였습니다.");
+            showMoveToast(selected.length, getMoveFolderLabel(toFolder));
             loadAllMails();
         } catch (error) { console.error(error); alert("이동 오류"); }
     }

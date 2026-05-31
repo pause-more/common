@@ -165,7 +165,23 @@
     async function deleteSelectedMails() {
         var ids = selectedIds();
         if (!ids.length) { alert("삭제할 메일을 선택해 주세요."); return; }
-        try { await post("/trash", { ids: ids, folder: myMailState.folderId }); alert("메일을 휴지통으로 이동하였습니다."); loadMyFolderMails(); } catch (error) { console.error(error); alert("삭제 중 오류가 발생했습니다."); }
+        try { await post("/trash", { ids: ids, folder: myMailState.folderId }); showTrashMoveToast(ids.length); loadMyFolderMails(); } catch (error) { console.error(error); alert("삭제 중 오류가 발생했습니다."); }
+    }
+
+    function showTrashMoveToast(count) {
+        if (window.MailCommon && typeof window.MailCommon.showTrashMoveToast === "function") {
+            window.MailCommon.showTrashMoveToast(count);
+            return;
+        }
+        alert("메일을 휴지통으로 이동하였습니다.");
+    }
+
+    function showMoveToast(count, folderName) {
+        if (window.MailCommon && typeof window.MailCommon.showMoveToast === "function") {
+            window.MailCommon.showMoveToast(count, folderName);
+            return;
+        }
+        alert("메일을 " + folderName + "으로 이동하였습니다.");
     }
 
     async function markSelectedUnread() {
@@ -181,7 +197,7 @@
             if (targetFolder === "trash") await post("/trash", { ids: ids, folder: myMailState.folderId });
             else if (targetFolder === "spam") await post("/spam", { ids: ids, fromFolder: myMailState.folderId });
             else await post("/move", { ids: ids, fromFolder: myMailState.folderId, toFolder: targetFolder });
-            alert("메일을 " + getMoveFolderLabel(targetFolder) + "으로 이동하였습니다.");
+            showMoveToast(ids.length, getMoveFolderLabel(targetFolder));
             loadMyFolderMails();
         } catch (error) { console.error(error); alert("이동 중 오류가 발생했습니다."); }
     }
