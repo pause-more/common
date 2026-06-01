@@ -1,0 +1,28 @@
+/**
+ * Paperlogy 2024.10.07_v1.001
+ * Original: https://freesentation.blog/paperlogyfont
+*/
+@font-face{
+  font-family:Paperlogy;
+  font-weight:300;
+  font-display:swap;
+  src:url('Paperlogy-3Light.woff2') format('woff2');
+}
+@font-face{
+  font-family:Paperlogy;
+  font-weight:400;
+  font-display:swap;
+  src:url('Paperlogy-4Regular.woff2') format('woff2');
+}
+@font-face{
+  font-family:Paperlogy;
+  font-weight:500;
+  font-display:swap;
+  src:url('Paperlogy-6SemiBold.woff2') format('woff2');
+}
+@font-face{
+  font-family:Paperlogy;
+  font-weight:600;
+  font-display:swap;
+  src:url('Paperlogy-7Bold.woff2') format('woff2');
+}
