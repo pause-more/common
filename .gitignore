@@ -1,8 +1,13 @@
 .DS_Store
-.wrangler/
 node_modules/
+.wrangler/
+.dev.vars
+.env
+.env.*
 dist/
 build/
-desktop/release/
-main
+coverage/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
