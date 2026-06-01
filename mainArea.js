@@ -29,6 +29,9 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
     var DASHBOARD_APPROVAL_LIMIT = 5;
     var DASHBOARD_TEAMBOARD_LIMIT = 3;
     var DASHBOARD_BIRTHDAY_LIMIT = 2;
+    var DASHBOARD_BIRTHDAY_LOOKBACK_DAYS = 10;
+    var DASHBOARD_BIRTHDAY_LOOKAHEAD_DAYS = 45;
+    var DASHBOARD_TEAMBOARD_NEW_HOURS = 48;
     var state = {
         user: null,
         profile: null,
@@ -555,7 +558,7 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
         if (!elements.vacationValue) return;
         var value = formatVacationValue();
         elements.vacationValue.textContent = value;
-        elements.vacationValue.classList.toggle("has-value", value !== "-");
+        elements.vacationValue.classList.add("has-value");
     }
 
     function renderWorkGraph() {
@@ -663,7 +666,7 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
     }
 
     function renderTeamboard() {
-        updateMiniStatValue(elements.teamCount, state.teamboardItems.length);
+        updateTeamboardStatValue();
         if (!elements.teamList) return;
         if (!state.teamboardItems.length) {
             elements.teamList.innerHTML = '<div class="dashboardSimpleEmpty">팀 보드에 등록된 글이 없습니다.</div>';
@@ -679,14 +682,14 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
 
     function renderBirthdays() {
         if (!elements.birthdayList) return;
-        var allBirthdays = getCurrentMonthBirthdays();
+        var allBirthdays = getBirthdayTimeline();
         var totalPages = Math.max(1, Math.ceil(allBirthdays.length / DASHBOARD_BIRTHDAY_LIMIT));
         if (state.birthdayPageIndex >= totalPages) state.birthdayPageIndex = totalPages - 1;
         if (state.birthdayPageIndex < 0) state.birthdayPageIndex = 0;
         var startIndex = state.birthdayPageIndex * DASHBOARD_BIRTHDAY_LIMIT;
         var birthdays = allBirthdays.slice(startIndex, startIndex + DASHBOARD_BIRTHDAY_LIMIT);
         if (!birthdays.length) {
-            elements.birthdayList.innerHTML = '<div class="dashboardBirthdayEmpty">이번달은 생일을 맞이한 멤버가 없습니다.</div>';
+            elements.birthdayList.innerHTML = '<div class="dashboardBirthdayEmpty">표시할 생일자가 없습니다.</div>';
             syncBirthdayControls(allBirthdays.length, totalPages);
             return;
         }
@@ -694,7 +697,7 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
             return '<div class="dashboardBirthdayItem">'
                 + '<span class="dashboardBirthdayAvatar">' + escapeHtml(getBirthdayInitial(item.name || "-")) + '</span>'
                 + '<span class="dashboardBirthdayInfo">'
-                + '<span class="dashboardBirthdayDate">🎉 ' + escapeHtml(formatBirthdayDate(item.birthDate)) + '</span>'
+                + '<span class="dashboardBirthdayDate">🎉 ' + escapeHtml(formatBirthdayDate(item.dashboardBirthdayDate || item.birthDate)) + '</span>'
                 + '<span class="dashboardBirthdayPerson"><strong>' + escapeHtml(item.name || "-") + '</strong><em>' + escapeHtml(formatBirthdayMemberMeta(item)) + '</em></span>'
                 + '</span>'
                 + '</div>';
@@ -703,10 +706,10 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
     }
 
     function moveBirthdayPage(delta) {
-        var birthdays = getCurrentMonthBirthdays();
+        var birthdays = getBirthdayTimeline();
         if (birthdays.length <= DASHBOARD_BIRTHDAY_LIMIT) return;
         var totalPages = Math.ceil(birthdays.length / DASHBOARD_BIRTHDAY_LIMIT);
-        state.birthdayPageIndex = (state.birthdayPageIndex + delta + totalPages) % totalPages;
+        state.birthdayPageIndex = (state.birthdayPageIndex + Number(delta || 0) + totalPages) % totalPages;
         renderBirthdays();
     }
 
@@ -721,6 +724,20 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
     function renderTodayScheduleCount() {
         if (!elements.todayScheduleCount) return;
         updateMiniStatValue(elements.todayScheduleCount, getCalendarEventsByDate(formatDateKey(new Date())).length);
+    }
+
+    function updateTeamboardStatValue() {
+        if (!elements.teamCount) return;
+        elements.teamCount.textContent = String(state.teamboardItems.length);
+        elements.teamCount.classList.toggle("has-value", hasRecentTeamboardPost());
+    }
+
+    function hasRecentTeamboardPost() {
+        return state.teamboardItems.some(function (item) {
+            var createdTime = new Date(item && (item.createdAt || item.updatedAt) || 0).getTime();
+            if (!isFinite(createdTime) || createdTime <= 0) return false;
+            return Date.now() - createdTime <= DASHBOARD_TEAMBOARD_NEW_HOURS * 60 * 60 * 1000;
+        });
     }
 
     function updateMiniStatValue(node, value) {
@@ -1680,18 +1697,48 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
         return amount.toFixed(1) + "d";
     }
 
-    function getCurrentMonthBirthdays() {
-        var now = new Date();
-        var month = pad(now.getMonth() + 1);
-        return state.birthdayEvents.filter(function (item) {
-            return normalizeBirthdayDate(item.birthDate).slice(4, 6) === month;
-        }).sort(function (a, b) {
-            return normalizeBirthdayDate(a.birthDate).slice(4, 8).localeCompare(normalizeBirthdayDate(b.birthDate).slice(4, 8))
+    function getBirthdayTimeline() {
+        var today = startOfDay(new Date());
+        var rangeStart = addDays(today, -DASHBOARD_BIRTHDAY_LOOKBACK_DAYS);
+        var rangeEnd = addDays(today, DASHBOARD_BIRTHDAY_LOOKAHEAD_DAYS);
+        return state.birthdayEvents.map(function (item) {
+            var displayDate = getBirthdayDateInRange(item.birthDate, rangeStart, rangeEnd);
+            if (!displayDate) return null;
+            return Object.assign({}, item, { dashboardBirthdayDate: displayDate });
+        }).filter(Boolean).sort(function (a, b) {
+            return a.dashboardBirthdayDate - b.dashboardBirthdayDate
                 || String(a.name || "").localeCompare(String(b.name || ""), "ko");
         });
     }
 
+    function getBirthdayDateInRange(birthDate, rangeStart, rangeEnd) {
+        var digits = normalizeBirthdayDate(birthDate);
+        if (!digits) return null;
+        var month = Number(digits.slice(4, 6)) - 1;
+        var day = Number(digits.slice(6, 8));
+        var baseYear = new Date().getFullYear();
+        for (var year = baseYear - 1; year <= baseYear + 1; year += 1) {
+            var date = new Date(year, month, day);
+            if (date.getMonth() !== month || date.getDate() !== day) continue;
+            if (date >= rangeStart && date <= rangeEnd) return date;
+        }
+        return null;
+    }
+
+    function startOfDay(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
+    function addDays(date, days) {
+        var next = new Date(date);
+        next.setDate(next.getDate() + Number(days || 0));
+        return next;
+    }
+
     function formatBirthdayDate(birthDate) {
+        if (birthDate instanceof Date && !isNaN(birthDate.getTime())) {
+            return pad(birthDate.getMonth() + 1) + "/" + pad(birthDate.getDate()) + "(" + getKoreanWeekday(birthDate) + ")";
+        }
         var digits = normalizeBirthdayDate(birthDate);
         if (!digits) return "-";
         var year = new Date().getFullYear();

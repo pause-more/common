@@ -403,6 +403,7 @@
     body.homePage .dashboardMiniStats dt { color:#9c9c9c; }
     body.homePage .dashboardMiniStats dd { color:#9c9c9c; font-weight:500; }
     body.homePage .dashboardMiniStats dd.has-value { color:#0373f0; }
+    body.homePage .dashboardMiniStats dd.dashboardVacationValue { color:#0373f0; }
 
     body.homePage .dashboardMailMeta { margin-top:10px; color:#666666; font-size:12px; line-height:1; }
     body.homePage .dashboardMailMeta em { color:inherit; font-style:normal; }
@@ -886,7 +887,7 @@
         padding-right:40px;
     }
     body.homePage .dashboardHome {
-        width:min(1320px, 100%);
+        width:min(var(--workbench-chrome-content-max-width), 100%);
     }
 }
 
