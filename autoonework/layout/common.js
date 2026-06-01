@@ -360,7 +360,7 @@
             item.setAttribute("href", "/index.html");
             item.setAttribute("data-workbench-paths", "/ /index.html");
         });
-        document.querySelectorAll('[data-mobile-nav="home"], [data-account-home="true"]').forEach(function (item) {
+        document.querySelectorAll('[data-account-home="true"]').forEach(function (item) {
             item.style.display = "none";
         });
     }
@@ -2640,6 +2640,223 @@ document.addEventListener("DOMContentLoaded", function () {
         return position || grade || "-";
     }
 
+    function formatContactProfileSummary(profile) {
+        var department = String(profile && profile.department || "").trim();
+        var position = String(profile && profile.position || "").trim();
+        var grade = String(profile && (profile.jobGrade || profile.duty || profile.responsibility || profile.jobTitle || "") || "").trim();
+        var roleText = "";
+        if (position && grade && position !== grade) roleText = position + "(" + grade + ")";
+        else roleText = position || grade;
+        return [department, roleText].filter(Boolean).join(" · ") || "-";
+    }
+
+    function formatContactProfileDepartmentDuty(profile) {
+        var department = String(profile && profile.department || "").trim();
+        var duty = String(profile && (profile.jobGrade || profile.duty || profile.responsibility || profile.jobTitle || "") || "").trim();
+        return [department, duty].filter(Boolean).join(" / ") || "-";
+    }
+
+    function getContactProfilePositionOnly(profile) {
+        return String(profile && profile.position || "").trim() || "-";
+    }
+
+    function getContactProfileEmail(profile) {
+        var email = String(profile && profile.email || "").trim().toLowerCase();
+        var id = String(profile && profile.id || profile && profile.loginId || "").trim().toLowerCase();
+        if (!email && id) email = id + "@autonecar.kr";
+        return email;
+    }
+
+    function getContactProfileStatusOptions() {
+        return [
+            { key: "online", label: "온라인" },
+            { key: "away", label: "자리비움" },
+            { key: "meeting", label: "회의중" },
+            { key: "vacation", label: "휴가중" },
+            { key: "outside", label: "외근중" },
+            { key: "offline", label: "오프라인" }
+        ];
+    }
+
+    function normalizeContactProfileStatus(value) {
+        var status = String(value || "").trim().toLowerCase();
+        return getContactProfileStatusOptions().some(function (item) { return item.key === status; }) ? status : "offline";
+    }
+
+    function getContactProfileStatusLabel(status) {
+        status = normalizeContactProfileStatus(status);
+        var item = getContactProfileStatusOptions().find(function (option) { return option.key === status; });
+        return item ? item.label : "오프라인";
+    }
+
+    function getCurrentContactProfileUserId() {
+        if (window.AuthStore && typeof window.AuthStore.getCurrentUser === "function") {
+            var user = window.AuthStore.getCurrentUser();
+            return String(user && user.id || "").trim().toLowerCase();
+        }
+        try {
+            return String(localStorage.getItem("userId") || "").trim().toLowerCase();
+        } catch (error) {
+            return "";
+        }
+    }
+
+    function getContactProfileStatus(profile) {
+        var id = String(profile && (profile.id || profile.loginId) || "").trim().toLowerCase();
+        var defaultStatus = id && id === getCurrentContactProfileUserId() ? "online" : "offline";
+        if (!id) return defaultStatus;
+        try {
+            return normalizeContactProfileStatus(localStorage.getItem("chatPresenceStatus:" + id) || defaultStatus);
+        } catch (error) {
+            return defaultStatus;
+        }
+    }
+
+    function ensureContactProfileModal() {
+        if (document.querySelector(".contactProfileModal")) return;
+        var modal = document.createElement("div");
+        modal.className = "contactProfileModal";
+        modal.hidden = true;
+        modal.innerHTML = ''
+            + '<div class="contactProfileDim"></div>'
+            + '<section class="contactProfileDialog" role="dialog" aria-modal="true" aria-labelledby="contactProfileName">'
+            + '<button type="button" class="contactProfileClose" aria-label="프로필 닫기"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#1b1b1b" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>'
+            + '<div class="contactProfileTop">'
+            + '<span class="contactProfileAvatar"></span>'
+            + '<span class="contactProfileStatus"><span></span>온라인</span>'
+            + '<strong class="contactProfileName" id="contactProfileName">-</strong>'
+            + '<em class="contactProfileSummary">-</em>'
+            + '</div>'
+            + '<div class="contactProfileActions">'
+            + '<button type="button" class="contactProfileAction" data-contact-profile-action="mail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1b1b1b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><span>메일쓰기</span></button>'
+            + '<button type="button" class="contactProfileAction" data-contact-profile-action="chat"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1b1b1b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg><span>채팅하기</span></button>'
+            + '<button type="button" class="contactProfileAction" data-contact-profile-action="detail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1b1b1b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="5"/><path d="M2 21a8 8 0 0 1 10.434-7.62"/><circle cx="18" cy="18" r="3"/><path d="m22 22-1.9-1.9"/></svg><span>상세 프로필</span></button>'
+            + '</div>'
+            + '<dl class="contactProfileDetails" hidden>'
+            + '<div><dt>부서/직책</dt><dd data-contact-profile-field="departmentDuty">-</dd></div>'
+            + '<div><dt>직위</dt><dd data-contact-profile-field="position">-</dd></div>'
+            + '<div><dt>이메일</dt><dd data-contact-profile-field="email">-</dd></div>'
+            + '<div><dt>휴대전화</dt><dd data-contact-profile-field="phone">-</dd></div>'
+            + '<div><dt>생일</dt><dd data-contact-profile-field="birthDate">-</dd></div>'
+            + '</dl>'
+            + '</section>';
+        document.body.appendChild(modal);
+    }
+
+    function normalizeContactProfile(profile) {
+        var item = Object.assign({}, profile || {});
+        item.id = String(item.id || item.loginId || "").trim().toLowerCase();
+        item.name = String(item.name || item.id || "").trim();
+        item.department = String(item.department || item.team || "").trim();
+        item.position = String(item.position || "").trim();
+        item.jobGrade = String(item.jobGrade || item.duty || item.responsibility || item.jobTitle || "").trim();
+        item.email = getContactProfileEmail(item);
+        item.mobilePhone = String(item.mobilePhone || item.phone || item.directPhone || "").trim();
+        item.birthDate = String(item.birthDate || "").trim();
+        return item;
+    }
+
+    function renderContactProfileModal(profile) {
+        ensureContactProfileModal();
+        var modal = document.querySelector(".contactProfileModal");
+        if (!modal) return;
+        var item = normalizeContactProfile(profile);
+        modal.__contactProfile = item;
+        modal.querySelector(".contactProfileName").textContent = item.name || "-";
+        modal.querySelector(".contactProfileSummary").textContent = formatContactProfileSummary(item);
+        var avatar = modal.querySelector(".contactProfileAvatar");
+        if (avatar) {
+            avatar.innerHTML = "";
+            avatar.style.backgroundColor = getProfileAvatarColor(item.id || item.name);
+            avatar.style.color = "#fff";
+            avatar.textContent = getProfileInitial(item.name || item.id);
+        }
+        var status = modal.querySelector(".contactProfileStatus");
+        if (status) {
+            var profileStatus = getContactProfileStatus(item);
+            status.hidden = false;
+            status.className = "contactProfileStatus contactProfileStatus--" + profileStatus;
+            status.innerHTML = '<span></span>' + getContactProfileStatusLabel(profileStatus);
+        }
+        setContactProfileField("departmentDuty", formatContactProfileDepartmentDuty(item));
+        setContactProfileField("position", getContactProfilePositionOnly(item));
+        setContactProfileField("email", item.email || "-");
+        setContactProfileField("phone", formatProfilePhoneText(item.mobilePhone || item.phone || ""));
+        setContactProfileField("birthDate", formatProfileDateText(item.birthDate || ""));
+    }
+
+    function setContactProfileField(name, value) {
+        var node = document.querySelector('[data-contact-profile-field="' + name + '"]');
+        if (node) node.textContent = String(value || "-").trim() || "-";
+    }
+
+    async function enrichContactProfile(profile) {
+        if (!window.AuthStore || typeof window.AuthStore.getEmployees !== "function") return;
+        var current = normalizeContactProfile(profile);
+        try {
+            var employees = await window.AuthStore.getEmployees({ cache: true, mergeAttendance: false });
+            var matched = (Array.isArray(employees) ? employees : []).find(function (employee) {
+                var employeeId = String(employee && (employee.id || employee.loginId) || "").trim().toLowerCase();
+                if (current.id && employeeId && current.id === employeeId) return true;
+                return current.name && String(employee && employee.name || "").trim() === current.name;
+            });
+            if (matched) renderContactProfileModal(Object.assign({}, matched, current, matched));
+        } catch (error) {}
+    }
+
+    function openContactProfile(profile) {
+        ensureContactProfileModal();
+        renderContactProfileModal(profile || {});
+        var modal = document.querySelector(".contactProfileModal");
+        if (!modal) return;
+        var details = modal.querySelector(".contactProfileDetails");
+        if (details) details.hidden = true;
+        modal.hidden = false;
+        modal.classList.add("is-open");
+        document.documentElement.classList.add("contactProfileOpen");
+        document.body.classList.add("contactProfileOpen");
+        enrichContactProfile(profile || {});
+    }
+
+    function closeContactProfile() {
+        var modal = document.querySelector(".contactProfileModal");
+        if (!modal) return;
+        modal.hidden = true;
+        modal.classList.remove("is-open");
+        document.documentElement.classList.remove("contactProfileOpen");
+        document.body.classList.remove("contactProfileOpen");
+    }
+
+    function toggleContactProfileDetails() {
+        var details = document.querySelector(".contactProfileDetails");
+        if (details) details.hidden = !details.hidden;
+    }
+
+    function handleContactProfileAction(action) {
+        var modal = document.querySelector(".contactProfileModal");
+        var profile = modal && modal.__contactProfile ? modal.__contactProfile : {};
+        if (action === "detail") {
+            toggleContactProfileDetails();
+            return;
+        }
+        if (action === "mail") {
+            var email = getContactProfileEmail(profile);
+            if (!email) return;
+            location.href = "/mail/compose.html?to=" + encodeURIComponent(email);
+            return;
+        }
+        if (action === "chat") {
+            var id = String(profile && (profile.id || profile.loginId) || "").trim().toLowerCase();
+            if (!id) return;
+            closeContactProfile();
+            if (window.GroupwareChatActions && typeof window.GroupwareChatActions.openDirectRoom === "function") {
+                window.GroupwareChatActions.openDirectRoom(id);
+                return;
+            }
+            location.href = "/chat.html?directUserId=" + encodeURIComponent(id);
+        }
+    }
+
     function getDefaultDownloadFolderText() {
         var saved = String(localStorage.getItem("workbenchDownloadFolder") || "").trim();
         if (saved) return saved;
@@ -3259,6 +3476,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ensureWorkbenchProfileLayer();
         ensureWorkbenchSettingsLayer();
         ensureOrgChartLayer();
+        ensureContactProfileModal();
         if (document.body.getAttribute("data-profile-layer-bound") === "true") return;
         document.body.setAttribute("data-profile-layer-bound", "true");
 
@@ -3323,6 +3541,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("다운로드 폴더 변경은 데스크톱 앱 설정과 연결될 예정입니다.");
                 return;
             }
+            if (target && target.closest && (target.closest(".contactProfileClose") || target.closest(".contactProfileDim"))) {
+                event.preventDefault();
+                closeContactProfile();
+                return;
+            }
+            if (target && target.closest && target.closest("[data-contact-profile-action]")) {
+                event.preventDefault();
+                handleContactProfileAction(target.closest("[data-contact-profile-action]").getAttribute("data-contact-profile-action"));
+                return;
+            }
+            if (target && target.closest && target.closest(".contactProfileDialog")) {
+                return;
+            }
             if (target && target.closest && target.closest(".workbenchSettingsBox")) {
                 return;
             }
@@ -3361,9 +3592,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 closeWorkbenchProfileLayer();
                 closeOrgChartLayer();
                 closeWorkbenchSettingsLayer();
+                closeContactProfile();
             }
         });
     }
+
+    window.openGroupwareContactProfile = openContactProfile;
 
     function bindHomeSidebarToggle() {
         var button = document.querySelector(".homeSidebarToggleBtn");

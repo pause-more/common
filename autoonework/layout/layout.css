@@ -318,6 +318,36 @@ body.layoutBootstrapping *::after { transition:none !important; animation:none !
     .workbenchProfileLayerActions .workbenchProfileSaveBtn { border-color:var(--workbench-black); background:var(--workbench-black); color:#fff; }
     .workbenchProfileLayerActions .workbenchProfileLogoutBtn { margin-left:0; border-color:#dedede; background:#f5f5f5; color:#666666; }
     .workbenchProfileLayerActions button:disabled { opacity:.55; cursor:default; }
+    .contactProfileModal { position:fixed; inset:0; z-index:10020; line-height:1; }
+    .contactProfileModal[hidden] { display:none; }
+    .contactProfileDim { position:absolute; inset:0; background:rgba(0,0,0,.38); }
+    .contactProfileDialog { position:absolute; top:50%; left:50%; width:300px; max-width:calc(100vw - 30px); padding:30px; border-radius:10px; background:#fff; box-sizing:border-box; transform:translate(-50%, -50%); }
+    .contactProfileClose { position:absolute; top:20px; right:20px; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; padding:0; border:0; background:transparent; color:#1b1b1b; cursor:pointer; }
+    .contactProfileClose svg { width:22px; height:22px; }
+    .contactProfileTop { display:flex; flex-direction:column; align-items:center; min-width:0; }
+    .contactProfileAvatar { display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:50%; background:#83c0f9; color:#fff; font-size:22px; line-height:1; font-weight:600; overflow:hidden; }
+    .contactProfileStatus { position:relative; z-index:1; display:inline-flex; align-items:center; gap:3px; min-height:24px; margin:-10px 0 20px; padding:0 6px; border:1px solid #dfdfdf; border-radius:4px; background:#f4f5f7; color:#1b1b1b; font-size:11px; line-height:1; box-sizing:border-box; }
+    .contactProfileStatus span { width:5px; height:5px; border-radius:50%; background:#0373f0; }
+    .contactProfileStatus--away span { background:#ffa24a; }
+    .contactProfileStatus--meeting span { background:#5bcf7a; }
+    .contactProfileStatus--vacation span { background:#ec4c4c; }
+    .contactProfileStatus--outside span { background:#b684ff; }
+    .contactProfileStatus--offline span { background:#7f8287; }
+    .contactProfileStatus[hidden] { display:none; }
+    .contactProfileName { display:block; color:#1b1b1b; font-size:18px; line-height:1; font-weight:600; text-align:center; }
+    .contactProfileSummary { display:block; margin:5px 0 0; color:#9c9c9c; font-size:13px; line-height:1; font-style:normal; font-weight:500; text-align:center; }
+    .contactProfileActions { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:20px; width:100%; max-width:240px; margin:40px auto 0; }
+    .contactProfileAction { display:flex; flex-direction:column; align-items:center; gap:10px; min-width:0; padding:0; border:0; background:transparent; color:#1b1b1b; font-size:14px; line-height:1; font-weight:600; cursor:pointer; }
+    .contactProfileAction svg { display:block; width:auto; height:20px; }
+    .contactProfileAction span { display:block; white-space:nowrap; }
+    .contactProfileDetails { display:grid; grid-template-columns:1fr; gap:0; margin:20px 0 0; padding:20px 0 0; border-top:1px solid #e8e8e8; }
+    .contactProfileDetails[hidden] { display:none; }
+    .contactProfileDetails div { display:grid; grid-template-columns:90px minmax(0, 1fr); align-items:center; margin:0 0 10px; }
+    .contactProfileDetails > div:last-child { margin:0; }
+    .contactProfileDetails dt,
+    .contactProfileDetails dd { margin:0; font-size:13px; line-height:1; }
+    .contactProfileDetails dt { color:#9c9c9c; }
+    .contactProfileDetails dd { color:#1b1b1b; word-break:break-word; }
     .workbenchSettingsBox { position:absolute; top:50%; left:50%; width:440px; max-width:calc(100vw - 80px); max-height:calc(100vh - 80px); padding:20px; border:1px solid #efefef; border-radius:10px; background:#fff; box-shadow:0 18px 45px rgba(15,23,42,.13); box-sizing:border-box; overflow:auto; transform:translate(-50%, -50%); }
     .workbenchSettingsHead { display:flex; align-items:center; justify-content:space-between; gap:0; margin:0 0 20px; }
     .workbenchSettingsHead h3 { margin:0; color:#1b1b1b; font-size:18px; line-height:1; font-weight:600; }
@@ -1007,7 +1037,7 @@ body.layoutBootstrapping *::after { transition:none !important; animation:none !
     html,
     body { width:100%; max-width:100%; overflow-x:hidden; }
     #container { width:100%; max-width:100%; margin:0; overflow:hidden; box-sizing:border-box; }
-    #contents { position:relative; width:100%; max-width:100%; min-height:400px; padding:0 0 54px; margin:0; overflow:hidden; box-sizing:border-box; }
+    #contents { position:relative; width:100%; max-width:100%; min-height:400px; padding:0 0 96px; margin:0; overflow:hidden; box-sizing:border-box; }
     .titleArea { margin:0 0 20px; }
     .titleArea h3 { font-size:18px; font-weight:600; }
     
@@ -1035,23 +1065,24 @@ body.layoutBootstrapping *::after { transition:none !important; animation:none !
     .mobileGlobalMenuBtn { flex-direction:column; gap:4px; }
     .mobileGlobalMenuBtn span { display:block; width:18px; height:2px; border-radius:2px; background:#1b1b1b; }
     .mobileGlobalMenuBtn { display:none; }
-    .mobileGlobalBottomNav { position:fixed; left:0; right:0; bottom:0; z-index:9000; display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); width:100%; min-height:54px; padding:6px 8px calc(6px + env(safe-area-inset-bottom)); border-top:1px solid #e8e8e8; background:#fff; box-sizing:border-box; }
+    .mobileGlobalBottomNav { position:fixed; left:18px; right:18px; bottom:16px; z-index:9000; display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); width:auto; max-width:420px; min-height:68px; margin:0 auto; padding:7px 10px calc(7px + env(safe-area-inset-bottom)); border:1px solid #f1f1f1; border-radius:999px; background:#fff; box-shadow:0 10px 30px rgba(15,23,42,.12); box-sizing:border-box; }
     .mobileGlobalBottomNav a,
-    .mobileGlobalBottomNav button { position:relative; display:flex; align-items:center; justify-content:center; min-width:0; padding:0; border:0; background:transparent; color:#707070; text-align:center; }
+    .mobileGlobalBottomNav button { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; min-width:0; min-height:54px; padding:0 2px; border:0; border-radius:22px; background:transparent; color:#9c9c9c; text-align:center; box-sizing:border-box; }
     .mobileGlobalBottomNav a > span:not(.mobileGlobalBottomIcon):not(.chatMenuUnreadBadge):not(.workbenchMenuUnreadBadge),
-    .mobileGlobalBottomNav button > span:not(.mobileGlobalBottomIcon):not(.chatMenuUnreadBadge):not(.workbenchMenuUnreadBadge) { display:none; }
-    .mobileGlobalBottomIcon { position:relative; display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; }
-    .mobileGlobalBottomIcon svg { position:absolute; top:50%; left:50%; display:block; width:24px; height:24px; fill:#9c9c9c !important; stroke:#9c9c9c !important; transform:translate(-50%, -50%); transition:fill .16s ease, stroke .16s ease, opacity .16s ease; }
+    .mobileGlobalBottomNav button > span:not(.mobileGlobalBottomIcon):not(.chatMenuUnreadBadge):not(.workbenchMenuUnreadBadge) { display:block; font-size:12px; line-height:1; font-weight:500; white-space:nowrap; }
+    .mobileGlobalBottomIcon { position:relative; display:inline-flex; align-items:center; justify-content:center; width:25px; height:25px; }
+    .mobileGlobalBottomIcon svg { position:absolute; top:50%; left:50%; display:block; width:23px; height:23px; fill:#9c9c9c !important; stroke:#9c9c9c !important; transform:translate(-50%, -50%); transition:fill .16s ease, stroke .16s ease, opacity .16s ease; }
     .mobileGlobalBottomIconFilled { opacity:0; }
-    .mobileGlobalBottomMoreBtn .mobileGlobalBottomIcon svg { fill:#707070 !important; stroke:#707070 !important; }
+    .mobileGlobalBottomMoreBtn .mobileGlobalBottomIcon svg { fill:#9c9c9c !important; stroke:#9c9c9c !important; }
     .mobileGlobalBottomNav .is-active { color:#1b1b1b; }
+    .mobileGlobalBottomNav a.is-active,
+    .mobileGlobalBottomNav button.is-active { background:#f4f5f8; }
     .mobileGlobalBottomNav .is-active .mobileGlobalBottomIconLine { opacity:0; }
     .mobileGlobalBottomNav .is-active .mobileGlobalBottomIconFilled { opacity:1; }
     .mobileGlobalBottomNav .is-active .mobileGlobalBottomIconFilled,
     .mobileGlobalBottomNav .is-active .mobileGlobalBottomIcon svg { fill:#1b1b1b !important; stroke:#1b1b1b !important; }
     .mobileGlobalBottomNav .chatMenuUnreadBadge,
-    .mobileGlobalBottomNav .workbenchMenuUnreadBadge { top:5px; right:calc(50% - 23px); }
-    .mobileGlobalBottomNav [data-mobile-nav="home"] { display:none !important; }
+    .mobileGlobalBottomNav .workbenchMenuUnreadBadge { top:4px; right:calc(50% - 20px); }
     body.mobileSidebarOpen:not(.mobileModuleSidebarOpen) .mobileGlobalBottomMoreBtn { color:#1b1b1b; }
     body.mobileSidebarOpen:not(.mobileModuleSidebarOpen) .mobileGlobalBottomMoreBtn .mobileGlobalBottomIcon svg { fill:#1b1b1b !important; stroke:#1b1b1b !important; }
 
@@ -1560,4 +1591,21 @@ body.is-mail-layout .workbenchAppSubmenu .myMailMoreMenu button:hover {
     background:#f4f5f8;
     color:#1b1b1b;
     text-decoration:none;
+}
+
+@media all and (max-width:720px){
+    .contactProfileDialog { width:calc(100vw - 32px); max-width:550px; padding:54px 34px 42px; }
+    .contactProfileClose { top:22px; right:22px; width:28px; height:28px; }
+    .contactProfileClose svg { width:28px; height:28px; }
+    .contactProfileAvatar { width:84px; height:84px; font-size:34px; }
+    .contactProfileStatus { min-height:30px; margin:-8px 0 24px; font-size:14px; }
+    .contactProfileName { font-size:26px; }
+    .contactProfileSummary { margin-top:16px; font-size:18px; }
+    .contactProfileActions { gap:18px; margin-top:48px; }
+    .contactProfileAction { gap:13px; font-size:16px; }
+    .contactProfileAction svg { width:32px; height:32px; }
+    .contactProfileDetails { margin-top:46px; padding-top:24px; }
+    .contactProfileDetails div { grid-template-columns:112px minmax(0, 1fr); min-height:42px; }
+    .contactProfileDetails dt,
+    .contactProfileDetails dd { font-size:16px; }
 }

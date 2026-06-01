@@ -33,7 +33,6 @@
         page.innerHTML = [
             '<div class="resourcesBoard">',
             '<div class="resourcesBoardHead">',
-            '<div class="resourcesBoardTitleWrap"><strong class="resourcesBoardTitle">리소스 센터</strong></div>',
             '<div class="resourcesBoardTools">',
             '<div class="resourcesBoardSearch"><div class="boardSearchField"><input type="search" class="boardSearchInput" placeholder="제목이나 파일명을 검색하세요"></div></div>',
             '<select class="boardFormSelect resourcesSortSelect"><option value="latest">최신순</option><option value="oldest">오래된순</option></select>',

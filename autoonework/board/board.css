@@ -79,11 +79,9 @@
     .boardFileRemove i { font-size:12px; margin-left:5px; }
     
     .newsBoard { position:relative; }
-    .newsBoardHead { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 0 20px; }
-    .newsBoardTitleWrap { display:flex; align-items:center; min-width:0; flex:0 0 auto; }
-    .newsBoardTitle { font-size:18px; line-height:1; font-weight:600; color:#1b1b1b; }
-    .newsBoardTools { display:flex; align-items:center; justify-content:flex-end; gap:10px; flex:0 0 auto; margin-left:auto; }
-    .newsBoardSearch { display:flex; align-items:center; justify-content:flex-end; flex:0 0 auto; width:400px; max-width:100%; margin:0; }
+    .newsBoardHead { display:flex; align-items:center; justify-content:flex-start; gap:24px; padding:0 0 20px; }
+    .newsBoardTools { display:flex; align-items:center; justify-content:flex-start; gap:10px; flex:0 0 auto; margin-left:0; }
+    .newsBoardSearch { display:flex; align-items:center; justify-content:flex-start; flex:0 0 auto; width:400px; max-width:100%; margin:0; }
     .newsBoardSearch .boardSearchField { width:100%; max-width:100%; margin-left:0; }
     .newsSortSelect { width:120px; padding-right:40px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E") no-repeat right 16px center / 10px 7px; -webkit-appearance:none; appearance:none; }
     .newsBoardList { padding:0; }
@@ -137,11 +135,9 @@
     .boardPage--resources .boardFormSelect { padding-right:40px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E") no-repeat right 16px center / 10px 7px; -webkit-appearance:none; appearance:none; }
     
     .boardPage--resources .resourcesBoard { position:relative; }
-    .boardPage--resources .resourcesBoardHead { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 0 20px; }
-    .boardPage--resources .resourcesBoardTitleWrap { display:flex; align-items:center; min-width:0; flex:0 0 auto; }
-    .boardPage--resources .resourcesBoardTitle { font-size:18px; line-height:1; font-weight:600; color:#1b1b1b; }
-    .boardPage--resources .resourcesBoardTools { display:flex; align-items:center; justify-content:flex-end; gap:10px; flex:0 0 auto; margin-left:auto; }
-    .boardPage--resources .resourcesBoardSearch { display:flex; align-items:center; justify-content:flex-end; flex:0 0 auto; width:400px; max-width:100%; margin:0; }
+    .boardPage--resources .resourcesBoardHead { display:flex; align-items:center; justify-content:flex-start; gap:24px; padding:0 0 20px; }
+    .boardPage--resources .resourcesBoardTools { display:flex; align-items:center; justify-content:flex-start; gap:10px; flex:0 0 auto; margin-left:0; }
+    .boardPage--resources .resourcesBoardSearch { display:flex; align-items:center; justify-content:flex-start; flex:0 0 auto; width:400px; max-width:100%; margin:0; }
     .boardPage--resources .resourcesBoardSearch .boardSearchField { width:100%; max-width:100%; margin-left:0; }
     .boardPage--resources .resourcesSortSelect { width:120px; padding-right:40px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E") no-repeat right 16px center / 10px 7px; -webkit-appearance:none; appearance:none; }
     .boardPage--resources .resourcesTable { border-top:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8; background:#fff; overflow:hidden; }
@@ -171,11 +167,9 @@
     .boardPage--resources .resourcesFooter { margin:20px 0 0; text-align:right; }
 
     .boardPage--cloud .cloudBoard { position:relative; }
-    .boardPage--cloud .cloudBoardHead { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 0 20px; }
-    .boardPage--cloud .cloudBoardTitleWrap { display:flex; align-items:center; min-width:0; flex:0 0 auto; }
-    .boardPage--cloud .cloudBoardTitle { font-size:18px; line-height:1; font-weight:600; color:#1b1b1b; }
-    .boardPage--cloud .cloudBoardTools { display:flex; align-items:center; justify-content:flex-end; gap:10px; flex:0 0 auto; margin-left:auto; }
-    .boardPage--cloud .cloudBoardSearch { display:flex; align-items:center; justify-content:flex-end; flex:0 0 auto; width:400px; max-width:100%; margin:0; }
+    .boardPage--cloud .cloudBoardHead { display:flex; align-items:center; justify-content:flex-start; gap:24px; padding:0 0 20px; }
+    .boardPage--cloud .cloudBoardTools { display:flex; align-items:center; justify-content:flex-start; gap:10px; flex:0 0 auto; margin-left:0; }
+    .boardPage--cloud .cloudBoardSearch { display:flex; align-items:center; justify-content:flex-start; flex:0 0 auto; width:400px; max-width:100%; margin:0; }
     .boardPage--cloud .cloudBoardSearch .boardSearchField { width:100%; max-width:100%; margin-left:0; }
     .boardPage--cloud .cloudSortSelect { width:120px; padding-right:40px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E") no-repeat right 16px center / 10px 7px; -webkit-appearance:none; appearance:none; }
     .boardPage--cloud .cloudUsageCard { display:grid; gap:12px; margin:0 0 18px; padding:18px 20px; border:1px solid #e8e8e8; border-radius:5px; background:#fff; }
@@ -238,11 +232,9 @@
     .resourcesDrawerBody { overflow:auto; padding:0 30px 30px; background:#fff; }
 
     .boardPage--teamboard .teamboardBoard { display:flex; flex-direction:column; gap:0; }
-    .boardPage--teamboard .teamboardBoardHead { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 0 20px; }
-    .boardPage--teamboard .teamboardBoardTitleWrap { display:flex; align-items:center; min-width:0; }
-    .boardPage--teamboard .teamboardBoardTitle { font-size:18px; line-height:1; font-weight:600; color:#1b1b1b; }
-    .boardPage--teamboard .teamboardBoardTools { display:flex; align-items:center; justify-content:flex-end; gap:10px; flex:0 0 auto; margin-left:auto; }
-    .boardPage--teamboard .teamboardBoardSearch { display:flex; align-items:center; justify-content:flex-end; flex:0 0 auto; width:400px; max-width:100%; margin:0; }
+    .boardPage--teamboard .teamboardBoardHead { display:flex; align-items:center; justify-content:flex-start; gap:24px; padding:0 0 20px; }
+    .boardPage--teamboard .teamboardBoardTools { display:flex; align-items:center; justify-content:flex-start; gap:10px; flex:0 0 auto; margin-left:0; }
+    .boardPage--teamboard .teamboardBoardSearch { display:flex; align-items:center; justify-content:flex-start; flex:0 0 auto; width:400px; max-width:100%; margin:0; }
     .boardPage--teamboard .teamboardBoardSearch .boardSearchField { width:100%; max-width:100%; margin-left:0; }
     .boardPage--teamboard .teamboardNoticeList { display:flex; flex-direction:column; gap:12px; }
     .boardPage--teamboard .teamboardNoticeCard { display:flex; align-items:center; gap:10px; width:100%; padding:10px; border:1px solid #e8e8e8; border-radius:5px; background:#fcfdff; text-align:left; cursor:pointer; box-sizing:border-box; }
@@ -420,8 +412,6 @@ body.notificationModalOpen { overflow:hidden; }
     .boardEmpty { display:flex; align-items:center; justify-content:center; min-height:120px; padding:24px 10px; border-top:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8; background:#fff; font-size:14px; line-height:1.5; color:#1b1b1b; text-align:center; }
 
     .newsBoardHead { display:flex; flex-direction:column; align-items:stretch; gap:0; padding:0 0 15px; }
-    .newsBoardTitleWrap { display:flex; flex:0 0 0 auto; align-items:center; height:60px; }
-    .newsBoardTitle { display:block; font-size:18px; line-height:1; font-weight:600; }
     .newsBoardSearch { flex:none; width:100%; max-width:none; }
     .newsBoardSearch .boardSearchField { width:100%; }
     .newsBoardTools { display:flex; align-items:center; width:100%; gap:8px; }
@@ -469,8 +459,6 @@ body.notificationModalOpen { overflow:hidden; }
     .newsRow.is-pinned .newsRowTitle { line-height:1; -webkit-line-clamp:1; }
 
     .boardPage--resources .resourcesBoardHead { display:flex; flex-direction:column; align-items:stretch; gap:0; padding:0 0 15px; }
-    .boardPage--resources .resourcesBoardTitleWrap { display:flex; flex:0 0 0 auto; align-items:center; height:60px; }
-    .boardPage--resources .resourcesBoardTitle { display:block; font-size:18px; line-height:1; font-weight:600; }
     .boardPage--resources .resourcesBoardSearch { flex:none; width:100%; max-width:none; }
     .boardPage--resources .resourcesBoardSearch .boardSearchField { width:100%; }
     .boardPage--resources .resourcesBoardTools { display:flex; align-items:center; width:100%; gap:8px; }
@@ -505,8 +493,6 @@ body.notificationModalOpen { overflow:hidden; }
 
     .boardPage--cloud .cloudBoard { width:100%; padding-bottom:0; }
     .boardPage--cloud .cloudBoardHead { display:flex; flex-direction:column; align-items:stretch; gap:0; padding:0 0 15px; }
-    .boardPage--cloud .cloudBoardTitleWrap { display:flex; flex:0 0  auto; align-items:center; height:60px; }
-    .boardPage--cloud .cloudBoardTitle { display:block; font-size:18px; line-height:1; font-weight:600; color:#1b1b1b; }
     .boardPage--cloud .cloudBoardTools { display:flex; align-items:center; width:100%; gap:8px; }
     .boardPage--cloud .cloudBoardSearch { flex:1 1 auto; width:auto; min-width:0; max-width:none; }
     .boardPage--cloud .cloudBoardSearch .boardSearchField { width:100%; }
@@ -620,8 +606,6 @@ body.notificationModalOpen { overflow:hidden; }
     .boardPage--teamboard .teamboardComposerSubmit { width:100%; margin-left:0; }
     .boardPage--teamboard .teamboardComposerSubmit { background:#0373ef; color:#fff; }
     .boardPage--teamboard .teamboardBoardHead { display:flex; flex-direction:column; align-items:stretch; gap:0; padding:0 0 15px; }
-    .boardPage--teamboard .teamboardBoardTitleWrap { display:flex; flex:0 0 0 auto; align-items:center; height:60px; }
-    .boardPage--teamboard .teamboardBoardTitle { font-size:18px; font-weight:600; line-height:1; }
     .boardPage--teamboard .teamboardBoardSearch { flex:none; width:100%; max-width:none; }
     .boardPage--teamboard .teamboardBoardSearch .boardSearchField { width:100%; }
     .boardPage--teamboard .teamboardBoardTools { display:flex; align-items:center; width:100%; gap:8px; }

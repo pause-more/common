@@ -1,4 +1,4 @@
-var LAYOUT_VERSION = "20260530-modal-keys1";
+var LAYOUT_VERSION = "20260601-mobile-bottom-nav1";
 
 function installGlobalPopupKeyboardShortcuts() {
     if (window.__groupwarePopupKeyboardShortcutsInstalled) return;

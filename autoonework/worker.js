@@ -2632,7 +2632,10 @@ async function handleGetSharedCalendarBirthdays(url, env) {
           birthDate: normalizeBirthDate(employee.birthDate || ""),
           department: employee.department || "",
           position: employee.position || "",
-          jobGrade: employee.jobGrade || ""
+          jobGrade: employee.jobGrade || "",
+          phone: employee.phone || "",
+          mobilePhone: employee.mobilePhone || "",
+          directPhone: employee.directPhone || ""
         };
       })
     });

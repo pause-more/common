@@ -47,7 +47,6 @@
         page.innerHTML = [
             '<div class="teamboardBoard">',
             '<div class="teamboardBoardHead">',
-            '<div class="teamboardBoardTitleWrap"><strong class="teamboardBoardTitle">팀 보드</strong></div>',
             '<div class="teamboardBoardTools">',
             '<div class="teamboardBoardSearch"><div class="boardSearchField"><input type="search" class="boardSearchInput teamboardSearchInput" placeholder="제목이나 내용을 검색하세요"></div></div>',
             '<select class="boardFormSelect teamboardSortSelect">',

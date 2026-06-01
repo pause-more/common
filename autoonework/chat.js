@@ -496,6 +496,10 @@
             closeRoomContextMenu();
         }, true);
         window.addEventListener("chat:rooms-updated", handleGlobalRoomsUpdated);
+        window.addEventListener("groupware:open-profile-chat", function (event) {
+            var id = normalizeId(event && event.detail && event.detail.userId || "");
+            if (id) openDirectRoom(id);
+        });
         window.addEventListener("beforeunload", closeSocket);
     }
 
@@ -520,6 +524,7 @@
                 }
             }
             renderRooms();
+            if (!state.urlRoomOpened && await openDirectRoomFromUrl()) return;
             if (!state.urlRoomOpened) openRoomFromUrl();
             if (state.activeTab !== "contacts") {
                 scheduleLowPriority(function () {
@@ -835,7 +840,8 @@
         });
         Array.prototype.slice.call(elements.contactList.querySelectorAll("[data-contact-id]")).forEach(function (button) {
             button.addEventListener("click", function () {
-                openDirectRoom(button.getAttribute("data-contact-id"));
+                var contact = findContactById(button.getAttribute("data-contact-id"));
+                if (contact && window.openGroupwareContactProfile) window.openGroupwareContactProfile(contact);
             });
         });
     }
@@ -1054,15 +1060,24 @@
             var avatarText = getInitial(member.name || member.id);
             var avatarStyle = getAvatarStyle(member.id || member.name);
             return [
-                '<div class="chatMemberItem is-readonly">',
+                '<button type="button" class="chatMemberItem is-readonly" data-room-member-id="' + escapeHtml(member.id || "") + '">',
                 '<span class="chatAvatar" style="' + escapeHtml(avatarStyle) + '">' + escapeHtml(avatarText) + '</span>',
                 '<span class="chatMemberMain">',
                 '<strong class="chatMemberName">' + escapeHtml(member.name || member.id) + '</strong>',
                 '<span class="chatMemberMeta">' + escapeHtml(member.meta || "") + '</span>',
                 '</span>',
-                '</div>'
+                '</button>'
             ].join("");
         }).join("");
+        Array.prototype.slice.call(elements.roomMembersList.querySelectorAll("[data-room-member-id]")).forEach(function (button) {
+            button.addEventListener("click", function () {
+                var memberId = button.getAttribute("data-room-member-id");
+                var contact = findContactById(memberId) || getRoomMembersForDisplay(room).find(function (member) {
+                    return normalizeId(member.id) === normalizeId(memberId);
+                });
+                if (contact && window.openGroupwareContactProfile) window.openGroupwareContactProfile(contact);
+            });
+        });
     }
 
     function toggleSelectedMember(memberId) {
@@ -1273,6 +1288,15 @@
         } catch (error) {
             alert(error.message || "대화방을 만들지 못했습니다.");
         }
+    }
+
+    async function openDirectRoomFromUrl() {
+        var targetUserId = getDirectUserIdFromUrl();
+        if (!targetUserId || state.urlRoomOpened) return false;
+        state.urlRoomOpened = true;
+        await openDirectRoom(targetUserId);
+        clearDirectUserUrl();
+        return true;
     }
 
     async function inviteMembersToRoom(memberIds) {
@@ -3684,6 +3708,15 @@
         }
     }
 
+    function getDirectUserIdFromUrl() {
+        try {
+            var params = new URLSearchParams(location.search);
+            return normalizeId(params.get("directUserId") || "");
+        } catch (error) {
+            return "";
+        }
+    }
+
     function updateUrlRoom(roomId) {
         if (!history || !history.replaceState) return;
         var url = new URL(location.href);
@@ -3695,6 +3728,13 @@
         if (!history || !history.replaceState) return;
         var url = new URL(location.href);
         url.searchParams.delete("roomId");
+        history.replaceState(null, "", url.pathname + url.search);
+    }
+
+    function clearDirectUserUrl() {
+        if (!history || !history.replaceState) return;
+        var url = new URL(location.href);
+        url.searchParams.delete("directUserId");
         history.replaceState(null, "", url.pathname + url.search);
     }
 
@@ -3777,6 +3817,23 @@
         if (contact) return contact;
         var title = formatRoomTitle(room);
         return state.contacts.find(function (item) { return String(item.name || "").trim() === title; }) || null;
+    }
+
+    function findContactById(id) {
+        var targetId = normalizeId(id);
+        if (!targetId) return null;
+        if (targetId === normalizeId(state.user && state.user.id || "")) {
+            return {
+                id: state.user.id,
+                name: state.user.name,
+                email: state.user.email,
+                department: state.user.department,
+                position: state.user.role
+            };
+        }
+        return state.contacts.find(function (contact) {
+            return normalizeId(contact && contact.id || "") === targetId;
+        }) || null;
     }
 
     function getMessageUnreadCount(message) {
@@ -4542,6 +4599,9 @@
             id: normalizeId(item.id || item.loginId || ""),
             name: String(item.name || item.id || "").trim(),
             role: String(item.role || "").trim(),
+            email: String(item.email || "").trim().toLowerCase(),
+            mobilePhone: String(item.mobilePhone || item.phone || "").trim(),
+            birthDate: String(item.birthDate || "").trim(),
             department: normalizeChatContactDepartment(item, item.department || ""),
             position: String(item.position || "").trim(),
             jobGrade: String(item.jobGrade || item.duty || item.responsibility || item.jobTitle || "").trim()
@@ -4717,4 +4777,8 @@
         if (elements.roomList) elements.roomList.innerHTML = html;
         if (elements.contactList) elements.contactList.innerHTML = html;
     }
+
+    window.GroupwareChatActions = Object.assign({}, window.GroupwareChatActions || {}, {
+        openDirectRoom: openDirectRoom
+    });
 })();

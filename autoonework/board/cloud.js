@@ -36,7 +36,6 @@
         page.innerHTML = [
             '<div class="cloudBoard">',
             '<div class="cloudBoardHead">',
-            '<div class="cloudBoardTitleWrap"><strong class="cloudBoardTitle">클라우드</strong></div>',
             '<div class="cloudBoardTools">',
             '<div class="cloudBoardSearch"><div class="boardSearchField"><input type="search" class="boardSearchInput" placeholder="파일명이나 제목을 검색하세요"></div></div>',
             '<select class="boardFormSelect cloudSortSelect"><option value="latest">최신순</option><option value="oldest">오래된순</option></select>',

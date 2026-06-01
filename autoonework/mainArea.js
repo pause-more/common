@@ -54,6 +54,7 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
         miniCalendarDate: null,
         miniCalendarSelectedDateKey: "",
         birthdayPageIndex: 0,
+        birthdayVisibleItems: [],
         clockTimerId: null
     };
     var elements = {};
@@ -137,6 +138,15 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
         if (elements.birthdayNext) elements.birthdayNext.addEventListener("click", function () {
             moveBirthdayPage(1);
         });
+        if (elements.birthdayList) {
+            elements.birthdayList.addEventListener("click", function (event) {
+                var button = event.target.closest("[data-dashboard-birthday-index]");
+                if (!button) return;
+                var index = Number(button.getAttribute("data-dashboard-birthday-index") || -1);
+                var item = state.birthdayVisibleItems[index];
+                if (item && window.openGroupwareContactProfile) window.openGroupwareContactProfile(item);
+            });
+        }
         if (elements.miniCalendarPrev) elements.miniCalendarPrev.addEventListener("click", function () {
             moveMiniCalendarMonth(-1);
         });
@@ -492,7 +502,10 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
             return Object.assign({}, birthday, {
                 department: birthday.department || matched.department || "",
                 position: birthday.position || matched.position || "",
-                jobGrade: birthday.jobGrade || matched.jobGrade || ""
+                jobGrade: birthday.jobGrade || matched.jobGrade || "",
+                phone: birthday.phone || matched.phone || "",
+                mobilePhone: birthday.mobilePhone || matched.mobilePhone || "",
+                directPhone: birthday.directPhone || matched.directPhone || ""
             });
         });
     }
@@ -688,19 +701,20 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
         if (state.birthdayPageIndex < 0) state.birthdayPageIndex = 0;
         var startIndex = state.birthdayPageIndex * DASHBOARD_BIRTHDAY_LIMIT;
         var birthdays = allBirthdays.slice(startIndex, startIndex + DASHBOARD_BIRTHDAY_LIMIT);
+        state.birthdayVisibleItems = birthdays.slice();
         if (!birthdays.length) {
             elements.birthdayList.innerHTML = '<div class="dashboardBirthdayEmpty">표시할 생일자가 없습니다.</div>';
             syncBirthdayControls(allBirthdays.length, totalPages);
             return;
         }
-        elements.birthdayList.innerHTML = birthdays.map(function (item) {
-            return '<div class="dashboardBirthdayItem">'
+        elements.birthdayList.innerHTML = birthdays.map(function (item, index) {
+            return '<button type="button" class="dashboardBirthdayItem" data-dashboard-birthday-index="' + escapeHtml(String(index)) + '">'
                 + '<span class="dashboardBirthdayAvatar">' + escapeHtml(getBirthdayInitial(item.name || "-")) + '</span>'
                 + '<span class="dashboardBirthdayInfo">'
                 + '<span class="dashboardBirthdayDate">🎉 ' + escapeHtml(formatBirthdayDate(item.dashboardBirthdayDate || item.birthDate)) + '</span>'
                 + '<span class="dashboardBirthdayPerson"><strong>' + escapeHtml(item.name || "-") + '</strong><em>' + escapeHtml(formatBirthdayMemberMeta(item)) + '</em></span>'
                 + '</span>'
-                + '</div>';
+                + '</button>';
         }).join("");
         syncBirthdayControls(allBirthdays.length, totalPages);
     }
@@ -709,16 +723,15 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
         var birthdays = getBirthdayTimeline();
         if (birthdays.length <= DASHBOARD_BIRTHDAY_LIMIT) return;
         var totalPages = Math.ceil(birthdays.length / DASHBOARD_BIRTHDAY_LIMIT);
-        state.birthdayPageIndex = (state.birthdayPageIndex + Number(delta || 0) + totalPages) % totalPages;
+        var nextPageIndex = state.birthdayPageIndex + Number(delta || 0);
+        state.birthdayPageIndex = Math.max(0, Math.min(nextPageIndex, totalPages - 1));
         renderBirthdays();
     }
 
     function syncBirthdayControls(totalCount, totalPages) {
-        var isEnabled = Number(totalCount || 0) > DASHBOARD_BIRTHDAY_LIMIT;
-        [elements.birthdayPrev, elements.birthdayNext].forEach(function (button) {
-            if (!button) return;
-            button.disabled = !isEnabled;
-        });
+        var hasMultiplePages = Number(totalCount || 0) > DASHBOARD_BIRTHDAY_LIMIT;
+        if (elements.birthdayPrev) elements.birthdayPrev.disabled = !hasMultiplePages || state.birthdayPageIndex <= 0;
+        if (elements.birthdayNext) elements.birthdayNext.disabled = !hasMultiplePages || state.birthdayPageIndex >= totalPages - 1;
     }
 
     function renderTodayScheduleCount() {
@@ -1103,7 +1116,10 @@ import { getKoreanHolidayEventsByDate } from "./calendar/holidays.js";
             birthDate: normalizeBirthdayDate(item && item.birthDate || ""),
             department: normalizeDepartment(item && item.department || ""),
             position: String(item && (item.position || item.jobTitle || item.title) || "").trim(),
-            jobGrade: String(item && (item.jobGrade || item.duty || item.responsibility) || "").trim()
+            jobGrade: String(item && (item.jobGrade || item.duty || item.responsibility) || "").trim(),
+            phone: String(item && item.phone || "").trim(),
+            mobilePhone: String(item && item.mobilePhone || "").trim(),
+            directPhone: String(item && item.directPhone || "").trim()
         };
     }
 
